@@ -37,7 +37,7 @@ export default function Technologies() {
             Built with Scalable, Production-Ready Stacks
           </h2>
           <p className="text-base text-text-muted">
-            We use modern, industry-standard technologies to ensure high reliability, modularity, and lightning-fast web responsiveness.
+            We use modern, industry standard technologies to ensure high reliability, modularity, and lightning-fast web responsiveness.
           </p>
         </div>
 
