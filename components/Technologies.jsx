@@ -39,7 +39,7 @@ export default function Technologies() {
           <p className="text-base text-text-muted">
             We use modern, industry standard technologies to ensure high reliability, modularity, and lightning-fast web responsiveness.
           </p>
-        </div>
+        </div> 
 
         {/* Tab Controls */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-12 border-b border-border-light pb-6">

@@ -5,13 +5,15 @@ import TrustedBy from '@/components/TrustedBy';
 import Services from '@/components/Services';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import Process from '@/components/Process';
-import Technologies from '@/components/Technologies';
+// import Technologies from '@/components/Technologies';
 import CaseStudies from '@/components/CaseStudies';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { theme } from '@/config/theme';
+import Technologies from '../components/Technologies';
+
 
 export default function Home() {
   return (
@@ -38,7 +40,7 @@ export default function Home() {
               '@type': 'ProfessionalService',
               'name': theme.companyName,
               'description': 'Premium enterprise software engineering and AI business process automation.',
-              'url': 'https://veloratech.com',
+              'url': 'https://velortechnologies.in',
               'address': {
                 '@type': 'PostalAddress',
                 'streetAddress': theme.contact.office,
@@ -73,7 +75,8 @@ export default function Home() {
           <Process />
 
           {/* Technologies Showcase Matrix */}
-          <Technologies />
+          {/* <Technologies /> */}
+          <Technologies/>
 
           {/* Case Studies Section */}
           <CaseStudies />
