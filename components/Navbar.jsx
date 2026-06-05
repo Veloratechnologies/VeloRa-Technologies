@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import { theme } from '@/config/theme';
-import { useTheme } from '@/context/ThemeContext';
+import { theme } from '../config/theme';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

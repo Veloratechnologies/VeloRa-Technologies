@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Shield, Cpu, RefreshCw, Layers, Compass, HelpCircle } from 'lucide-react';
+import { Shield, Cpu, RefreshCw, Layers, Compass, HelpCircle} from 'lucide-react';
 
 export default function WhyChooseUs() {
   const cards = [

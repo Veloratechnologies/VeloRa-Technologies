@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { faqs } from '@/content/faq';
+import { faqs } from '../content/faq';
 
 export default function FAQ() {
   const [expandedIndex, setExpandedIndex] = useState(null);

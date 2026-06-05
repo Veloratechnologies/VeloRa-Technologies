@@ -1,3 +1,6 @@
+
+
+
 export const technologyStack = [
   {
     category: "Frontend",
@@ -16,7 +19,7 @@ export const technologyStack = [
       { name: "Node.js", level: "Enterprise APIs", icon: "Server" },
       { name: "Python", level: "Automation & Scripts", icon: "Terminal" },
       { name: "FastAPI", level: "High-Speed RESTful", icon: "Zap" },
-      { name: "Spring Boot", level: "Powerful Secure Backend", icon: "Zap" }
+      { name: "Spring Boot", level: "Powerful Secure Backend", icon: "Power" }
     ]
   },
   {
@@ -32,7 +35,9 @@ export const technologyStack = [
     description: "Automated container hosting, continuous deployment, and scalable infrastructure.",
     items: [
       { name: "AWS", level: "Cloud Hosting", icon: "Cloud" },
-      { name: "Docker", level: "Containerization", icon: "Box" }
+      { name: "Docker", level: "Containerization", icon: "Box" },
+      { name: "JenKins", level: "CI/CD", icon: "Hand" }
+      
     ]
   },
   {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle2, Building, Mail, User, MessageSquare, PhoneCall } from 'lucide-react';
-import { theme } from '@/config/theme';
+import { theme } from '../config/theme';
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -32,22 +32,61 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.service || !form.message) {
-      setStatus({ submitting: false, submitted: false, error: 'Please fill in all required fields.' });
-      return;
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!form.name || !form.email || !form.service || !form.message) {
+    setStatus({
+      submitting: false,
+      submitted: false,
+      error: "Please fill in all required fields."
+    });
+    return;
+  }
+
+  try {
+    setStatus({
+      submitting: true,
+      submitted: false,
+      error: null
+    });
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(form)
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setStatus({
+        submitting: false,
+        submitted: true,
+        error: null
+      });
+
+      setForm({
+        name: "",
+        email: "",
+        company: "",
+        service: "",
+        message: ""
+      });
+    } else {
+      throw new Error();
     }
 
-    setStatus({ submitting: true, submitted: false, error: null });
-
-    // Mock api submission delay
-    setTimeout(() => {
-      setStatus({ submitting: false, submitted: true, error: null });
-      // Reset form
-      setForm({ name: '', email: '', company: '', service: '', message: '' });
-    }, 1500);
-  };
+  } catch (error) {
+    setStatus({
+      submitting: false,
+      submitted: false,
+      error: "Failed to send request. Please try again."
+    });
+  }
+};
 
   return (
     <section id="contact" className="py-20 bg-bg-white border-t border-border-light relative overflow-hidden">

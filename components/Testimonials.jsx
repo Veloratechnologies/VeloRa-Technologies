@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { testimonials } from '@/content/testimonials';
+import { testimonials } from '../content/testimonials';
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);

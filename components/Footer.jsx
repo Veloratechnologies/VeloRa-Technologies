@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from 'lucide-react';
-import { theme } from '@/config/theme';
+import { theme } from '../config/theme';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

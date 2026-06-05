@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ChevronRight, Play } from 'lucide-react';
-import { theme } from '@/config/theme';
+
+// import { theme } from '../config/theme';
 
 export default function Hero() {
   const handleScrollTo = (e, href) => {

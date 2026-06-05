@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
-import { technologyStack } from '@/content/technologies';
+import { technologyStack } from '../content/technologies';
 
 export default function Technologies() {
   const [activeCategory, setActiveCategory] = useState(0);

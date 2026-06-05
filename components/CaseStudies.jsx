@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronRight, BarChart2 } from 'lucide-react';
-import { caseStudies } from '@/content/caseStudies';
+import { caseStudies } from '../content/caseStudies';
 
 export default function CaseStudies() {
   const [activeCase, setActiveCase] = useState(0);

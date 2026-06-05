@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
-import { services } from '@/content/services';
+import { services } from '../content/services';
 
 export default function Services() {
   const containerVariants = {
