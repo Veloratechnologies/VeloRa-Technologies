@@ -5,7 +5,8 @@ import Sidebar from "../components/Sidebar";
 import ChatWindow from "../components/ChatWindow";
 import DraftBox from "../components/DraftBox"; 
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE =
+"http://98.92.69.126:8000/docs";
 
 function Dashboard() {
   const [chats, setChats] = useState([]);
