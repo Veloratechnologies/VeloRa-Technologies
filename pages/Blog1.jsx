@@ -236,8 +236,6 @@ export default function Blog1() {
 
       </main>
 
-      {/* FIXED: Footer is now inside the return statement layout */}
-      <Footer />
     </div>
   );
 }
