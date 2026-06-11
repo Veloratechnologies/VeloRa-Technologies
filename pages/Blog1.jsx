@@ -229,7 +229,7 @@ export default function Blog1() {
             </div>
             
             <div className="mt-6 text-xs text-slate-500">
-              No pushy sales pitches. Just a straightforward talk about your operational setup.
+              No pushy  pitches. Just a straightforward talk about your operational setup.
             </div>
           </div>
         </section>
