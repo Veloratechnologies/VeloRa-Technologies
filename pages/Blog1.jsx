@@ -228,12 +228,16 @@ export default function Blog1() {
               </button>
             </div>
             
-            
+            <div className="mt-6 text-xs text-slate-500">
+              No pushy sales pitches. Just a straightforward talk about your operational setup.
+            </div>
           </div>
         </section>
 
       </main>
 
+      {/* FIXED: Footer is now inside the return statement layout */}
+      <Footer />
     </div>
   );
 }
