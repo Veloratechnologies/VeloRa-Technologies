@@ -6,7 +6,7 @@ import ChatWindow from "../components/Chatwindow";
 import DraftBox from "../components/draftbox"; 
 
 const API_BASE =
-"http://98.92.69.126:8000";
+"https://api.veloratechnologies.in/";
 
 function Dashboard() {
   const [chats, setChats] = useState([]);
