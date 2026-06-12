@@ -39,9 +39,7 @@ stages {
     stage('Restart Application') {
         steps {
             sh '''
-            pm2 kill
-            pm2 start npm --name "VeloRa-Technologies" -- run start
-
+            pm2 restart VeloRa-Technologies || pm2 start npm --name "VeloRa-Technologies" -- run start
             pm2 save
             '''
         }
