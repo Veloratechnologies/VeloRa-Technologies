@@ -12,6 +12,7 @@ pipeline {
                 sh '''
                 git config --global --add safe.directory /var/www/html/VeloRa-Technologies
                 cd /var/www/html/VeloRa-Technologies
+                git reset --hard HEAD
                 git pull origin main
                 '''
             }
