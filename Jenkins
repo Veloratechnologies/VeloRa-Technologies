@@ -1,0 +1,62 @@
+pipeline {
+agent any
+
+```
+triggers {
+    githubPush()
+}
+
+stages {
+
+    stage('Pull Latest Code') {
+        steps {
+            sh '''
+            git config --global --add safe.directory /var/www/html/VeloRa-Technologies
+            cd /var/www/html/VeloRa-Technologies
+            git pull origin main
+            '''
+        }
+    }
+
+    stage('Install Dependencies') {
+        steps {
+            sh '''
+            cd /var/www/html/VeloRa-Technologies
+            npm install
+            '''
+        }
+    }
+
+    stage('Build') {
+        steps {
+            sh '''
+            cd /var/www/html/VeloRa-Technologies
+            npm run build
+            '''
+        }
+    }
+
+    stage('Restart Application') {
+        steps {
+            sh '''
+            pm2 kill
+            pm2 start npm --name "VeloRa-Technologies" -- run start
+
+            pm2 save
+            '''
+        }
+    }
+}
+
+post {
+    success {
+        echo 'Deployment Successful'
+    }
+
+    failure {
+        echo 'Deployment Failed'
+    }
+}
+```
+
+}
