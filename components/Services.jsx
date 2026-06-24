@@ -21,6 +21,30 @@ export default function Services() {
     },
   };
 
+
+  const handleScrollTo = (e, href) => {
+
+    e.preventDefault();
+
+    const targetElement = document.querySelector(href);
+
+    if (targetElement) {
+
+      const offset = 80;
+
+      const elementPosition =
+        targetElement.getBoundingClientRect().top;
+
+      const offsetPosition =
+        elementPosition + window.scrollY - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  }
+
   return (
     <section id="services" className="py-20 bg-bg-slate-50 border-t border-border-light relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
@@ -95,8 +119,12 @@ export default function Services() {
 
                 {/* Micro interactive CTA in card */}
                 <div className="mt-8 pt-4 border-t border-border-light flex items-center text-xs font-bold text-primary group-hover:underline cursor-pointer">
-                  <span>Inquire about this service</span>
-                  <Icons.ArrowRight className="ml-1 w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                  <a  href="#contact"
+            onClick={(e) => handleScrollTo(e, '#contact')}
+           
+                  
+                  
+                  >Inquire about this service</a>
                 </div>
               </motion.div>
             );

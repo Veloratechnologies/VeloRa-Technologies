@@ -61,7 +61,7 @@ export default function Testimonials() {
                   {testimonials[current].author}
                 </h4>
                 <p className="text-xs text-text-muted mt-1 font-semibold">
-                  {testimonials[current].role} at <span className="text-primary">{testimonials[current].company}</span>
+                  {testimonials[current].role} <span className="text-primary">{testimonials[current].company}</span>
                 </p>
                 <span className="text-[10px] text-text-muted font-medium">
                   {testimonials[current].location}
