@@ -5,17 +5,13 @@ pipeline {
         githubPush()
     }
 
-    environment {
-        APP_DIR = "/var/www/html/VeloRa-Technologies"
-    }
-
     stages {
 
         stage('Pull Latest Code') {
             steps {
                 sh '''
-                git config --global --add safe.directory $APP_DIR
-                cd $APP_DIR
+                git config --global --add safe.directory /var/www/html/VeloRa-Technologies
+                cd /var/www/html/VeloRa-Technologies
                 git reset --hard HEAD
                 git pull origin main
                 '''
@@ -25,10 +21,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                cd $APP_DIR
-
-                # ONLY use npm ci in CI
+                cd /var/www/html/VeloRa-Technologies
+                
                 npm ci --no-audit --no-fund
+                npm install axios
                 '''
             }
         }
@@ -36,7 +32,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                cd $APP_DIR
+                cd /var/www/html/VeloRa-Technologies
                 npm run build
                 '''
             }
