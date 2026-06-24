@@ -61,7 +61,7 @@ export default function Navbar() {
           <img
               src="/logo1.png"
               alt="VeloRa Technologies"
-              className="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-105"
+              className="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-105"
 />
           <span className="text-xl font-bold tracking-tight text-text-primary flex items-center">
             {theme.logo.text}
