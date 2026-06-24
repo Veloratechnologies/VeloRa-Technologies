@@ -23,7 +23,7 @@ pipeline {
                 sh '''
                 cd /var/www/html/VeloRa-Technologies
                 rm -rf node_modules
-                npm install
+                npm ci --no-audit --no-fund
                 npm install axios
                 '''
             }
@@ -41,7 +41,7 @@ pipeline {
         stage('Restart Application') {
             steps {
                 sh '''
-                pm2 restart VeloRa-Technologies || pm2 start npm --name "VeloRa-Technologies" -- run start
+                pm2 restart all
                 pm2 save
                 '''
             }
