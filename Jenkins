@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh '''
                 cd /var/www/html/VeloRa-Technologies
-                rm -rf node_modules
+                rm -rf node_modules package-lock.json
                 npm ci --no-audit --no-fund
                 npm install axios
                 '''
