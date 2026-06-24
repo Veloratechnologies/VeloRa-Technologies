@@ -53,11 +53,16 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo */} 
         <a href="#home" onClick={(e) => handleScrollTo(e, '#home')} className="flex items-center space-x-2 group">
-          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-bg-white font-bold text-xl tracking-tight transition-transform duration-300 group-hover:scale-105">
+          {/* <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-bg-white font-bold text-xl tracking-tight transition-transform duration-300 group-hover:scale-105">
             {theme.logo.text[0]}
-          </div>
+          </div> */}
+          <img
+              src="/logo1.png"
+              alt="VeloRa Technologies"
+              className="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-105"
+/>
           <span className="text-xl font-bold tracking-tight text-text-primary flex items-center">
             {theme.logo.text}
             <span className="text-primary font-medium ml-1 text-sm bg-primary/10 px-2 py-0.5 rounded-full">
