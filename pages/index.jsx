@@ -78,8 +78,7 @@ export default function Home() {
           {/* <Technologies /> */}
           <Technologies/>
 
-          {/* Case Studies Section */}
-          <CaseStudies />
+         
 
           {/* Testimonial slider Section */}
           <Testimonials />
