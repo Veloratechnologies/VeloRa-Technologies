@@ -1,4 +1,5 @@
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from 'lucide-react';
+import { Mail, Phone, MapPin } from "lucide-react";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { theme } from '../config/theme';
 
 export default function Footer() {
@@ -34,10 +35,11 @@ export default function Footer() {
   ];
 
   const socialIcons = {
-    linkedin: Linkedin,
-    twitter: Twitter,
-    github: Github,
-  };
+  linkedin: FaLinkedin,
+  twitter: FaXTwitter,
+  github: FaGithub,
+};
+
 
   return (
     <footer className="bg-bg-slate-100 border-t border-border-light pt-16 pb-8">
