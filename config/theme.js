@@ -4,7 +4,7 @@ export const theme = {
   logo: {
     text: "VeloRa",
     subtext: "Technologies",
-    iconColor: "#2563EB", // Primary blue
+    iconColor: "#0033ad", // Primary blue
   },
   colors: {
     // White Shades
@@ -17,17 +17,17 @@ export const theme = {
     slate200: "#E2E8F0",
     slate300: "#CBD5E1",
     slate400: "#94A3B8",
-    slate500: "#64748B",
+    slate500: "#64748B",  
     
     // Blue Shades
-    blue600: "#2563EB", // Primary Blue
+    blue600: "#075985", // Primary Blue
     blue700: "#1D4ED8",
     blue500: "#3B82F6",
     blue400: "#60A5FA",
     
     // Text Colors
-    textPrimary: "#0F172A", // Dark Slate
-    textSecondary: "#1E293B",
+    textPrimary: "#075985", // Dark Slate
+    textSecondary: "#e5e7eb",
     textTertiary: "#334155",
     
     // Borders

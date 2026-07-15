@@ -262,7 +262,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status.submitting}
-                  className="w-full flex items-center justify-center bg-primary hover:bg-primary-hover text-bg-white font-semibold py-3.5 px-6 rounded-premium shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5"
+                  className="w-full flex items-center justify-center bg-primary hover:bg-primary-hover text-bg-white font-semibold py-3.5 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5"
                 >
                   {status.submitting ? (
                     <div className="w-5 h-5 border-2 border-bg-white border-t-transparent rounded-full animate-spin" />

@@ -49,7 +49,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-bg-white/80 backdrop-blur-md border-b border-border-light shadow-navbar py-3'
-          : 'bg-transparent py-5'
+          : 'bg-transparent py-5 backdrop-blur-xl  border-b border-border-light'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
@@ -87,7 +87,7 @@ export default function Navbar() {
           </nav>
 
           {/* Theme Toggle Button */}
-          <button
+          {/* <button
             onClick={toggleTheme}
             className="w-10 h-10 rounded-full border border-border-light bg-bg-white flex items-center justify-center text-sm shadow-sm hover:bg-bg-slate-100 hover:border-border-medium transition-all duration-200 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20"
             aria-label="Toggle theme"
@@ -99,7 +99,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={(e) => handleScrollTo(e, '#contact')}
-            className="inline-flex items-center justify-center text-sm font-semibold text-bg-white bg-primary hover:bg-primary-hover px-5 py-2.5 rounded-premium shadow-sm transition-all duration-200 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center text-sm font-semibold text-bg-white bg-primary hover:bg-primary-hover px-5 py-2.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
           >
             Book Consultation
             <ArrowRight className="ml-2 w-4 h-4" />
@@ -159,7 +159,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={(e) => handleScrollTo(e, '#contact')}
-                className="flex items-center justify-center w-full text-base font-semibold text-bg-white bg-primary hover:bg-primary-hover py-3 rounded-premium shadow-sm transition-colors text-center"
+                className="flex items-center justify-center w-full text-base font-semibold text-bg-white bg-primary hover:bg-primary-hover py-3 rounded-full shadow-sm transition-colors text-center"
               >
                 Book Consultation
                 <ArrowRight className="ml-2 w-4 h-4" />
