@@ -30,7 +30,7 @@
           <meta property="og:title" content={`${theme.companyName} | Premium Software Engineering`} />
           <meta property="og:description" content="Enterprise custom software, web platforms, and automated workflow agents built for modern companies." />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://veloratech.com" />
+          <meta property="og:url" content="https://veloratechnologies.in" />
           
           {/* Semantic Structured Data (JSON-LD) for SEO schema */}
           <script
@@ -41,7 +41,7 @@
                 '@type': 'ProfessionalService',
                 'name': theme.companyName,
                 'description': 'Premium enterprise software engineering and AI business process automation.',
-                'url': 'https://velortechnologies.in',
+                'url': 'https://veloratechnologies.in',
                 'address': {
                   '@type': 'PostalAddress',
                   'streetAddress': theme.contact.office,
@@ -61,10 +61,7 @@
           {/* Semantic Page Layout */}
           <main>
 
-           
-
-
-            {/* Hero Section */}
+          {/* Hero Section */}
             <Hero />
 
              {/* BusinessSolutions */}
