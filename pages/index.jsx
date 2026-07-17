@@ -14,12 +14,15 @@
   import { theme } from '../config/theme';
   import Technologies from '../components/Technologies';
   import BusinessSolutions from "../components/BusinessSolutions";
+  
+  import MarketTrends from '../components/MarketTrends';
 
 
   export default function Home() {
     return (
       <>
         <Head>
+          <link rel="icon" type="image/png" href="/icons/favicon.png" />
           <title>{`${theme.companyName} | Enterprise Web Dev & AI Automation`}</title>
           <meta name="description" content="We engineer premium custom web applications, robust CRM/ERP integrations, and advanced business process automation using AI agents for international companies." />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,6 +71,10 @@
 
             <BusinessSolutions />
 
+            {/* Trend */}
+            <MarketTrends/>
+
+
             {/* Trust Building Brands Bar */}
             <TrustedBy />
 
@@ -92,8 +99,7 @@
             {/* FAQ Accordion Section */}
             <FAQ />
 
-            {/* Contact Section */}
-            <Contact />
+           
           </main>
 
           {/* Global Footer */}

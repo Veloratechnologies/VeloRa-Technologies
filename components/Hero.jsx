@@ -169,28 +169,28 @@ const handleScrollTo = (e, href) => {
           </motion.h1>
 
           {/* Subheadline */}
-          <motion.p
+          {/* <motion.p
             variants={itemVariants}
             className="text-lg text-text-muted leading-relaxed mb-8 max-w-xl"
           >
             We help businesses grow through custom web development, AI-powered automation, and scalable software solutions designed for efficiency and long-term success.
-          </motion.p>
+          </motion.p> */}
 
           {/* Key Bullet Points */}
           <motion.div variants={itemVariants} className="grid grid-cols-2 gap-4 mb-10 max-w-lg">
-            <div className="flex items-center space-x-2 text-sm text-text-secondary font-medium">
+            <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Enterprise Grade Security</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-text-secondary font-medium">
+            <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>AI Automation Integration</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-text-secondary font-medium">
+            <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Scalable Architectures</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-text-secondary font-medium">
+            <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Dedicated Support</span>
             </div>

@@ -20,7 +20,7 @@ const SOLUTIONS_DATA = [
     title: "Digital Presence Solution",
     story: "In an ecosystem where your digital footprint is your primary storefront, patchwork systems kill credibility. We build unified architectural frameworks that align engineering performance with exceptional user experiences.",
     benefits: ["Customer Trust", "Business Growth", "Visibility"],
-    image: "/images/PROFESSIONAL.png",
+    image: "/images/Digital_Presence _Solution.png",
   },
   {
     id: 2,
@@ -89,14 +89,14 @@ const SolutionCard = ({ item }) => {
       onMouseLeave={handleMouseLeave}
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      className="group relative flex flex-col justify-between h-[500px] rounded-[10px] border border-slate-300 shadow-[0_4px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(15,23,42,0.06)] hover:border-slate-300 overflow-hidden transition-all duration-500 ease-out bg-slate-300 backdrop-blur-3xl  ">
+      className="group relative flex flex-col justify-between h-[500px] rounded-[7px] border border-slate-300 shadow-[0_4px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(15,23,42,0.06)] hover:border-slate-300 overflow-hidden transition-all duration-500 ease-out bg-slate-300 backdrop-blur-3xl  ">
       
       <div >
         {/* Image & Reveal */}
         <div className="relative w-full h-[220] overflow-hidden bg-slate-100 border-b border-slate-100">
           <motion.div 
             initial={{ scale: 1.1, filter: "brightness(0.95)" }}
-            whileHover={{ scale: 1.05, filter: "brightness(1.02)" }}
+            whileHover={{ scale: 1.15, filter: "brightness(1.02)" }}
             transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
             className="w-full h-full relative"
           >

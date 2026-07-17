@@ -27,8 +27,9 @@ export const theme = {
     
     // Text Colors
     textPrimary: "#075985", // Dark Slate
-    textSecondary: "#e5e7eb",
+    textSecondary: "#1e293b",
     textTertiary: "#334155",
+    testAkash: "",
     
     // Borders
     borderLight: "#E2E8F0",
@@ -36,7 +37,7 @@ export const theme = {
   },
   contact: {
     email: "team@veloratechnologies.in",
-    phone: "+91 73553-96110 | +91 96284-82672",
+    phone: "+91 91984-27611 | +91 84290-08091",
     office: "Noida Sector 63 G/10",
     hours: "Mon - Fri, 9 AM - 6 PM IST",
   },
