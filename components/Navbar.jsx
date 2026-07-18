@@ -64,34 +64,30 @@ useEffect(() => {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled || !isHomePage
           ? 'bg-bg-black/80 backdrop-blur-md border-b border-border-light shadow-navbar py-3 '
-          : 'bg-transparent py-5 backdrop-blur-xl  border-b border-border-light'
+          : 'bg-transparent  py-2 md:py-5 lg:py-5 backdrop-blur-xl  border-b border-border-light'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-3 md:px-8 flex items-center justify-between">
         {/* Logo */} 
         <a href="#home" onClick={(e) => handleScrollTo(e, '#home')} className="flex items-center space-x-2 group">
-          {/* <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-bg-white font-bold text-xl tracking-tight transition-transform duration-300 group-hover:scale-105">
-            {theme.logo.text[0]}
-          </div> */}
+         
           <img
               src="/icons/logo1.png"
               alt="VeloRa Technologies icon"
-              className="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-105"
-/>
+              className=" w-12  h-8 md:h-12 lg:h-12 object-contain transition-transform duration-300 group-hover:scale-105"/>
           <span
-  className={`text-3xl font-bold tracking-tight flex items-center transition-colors duration-300  ${
-    isScrolled || !isHomePage
-    ?  "text-slate-900" : "text-white"
-  }`}
+              className={` md:text-3xl lg:text-3xl text-xl  font-bold tracking-tight flex items-center transition-colors duration-300  ${
+               isScrolled || !isHomePage
+               ?  "text-slate-900" : "text-white"}`}
 >
             {theme.logo.text}
             <span
-  className={`font-medium ml-1 text-lg px-1 pt-2 rounded-full transition-all duration-300 ${
-    isScrolled || !isHomePage
-      ? "bg-primary/10 text-primary"
-      : " text-white"
-  }`}
->
+             className={`font-medium ml-1 md:text-lg lg:text-lg text-sm  md:pt-2 lg:pt-2 rounded-full transition-all duration-300 ${
+               isScrolled || !isHomePage
+              ? "bg-primary/10 text-primary"
+              : " text-white"
+               }`}
+            >
               {theme.logo.subtext}
             </span>
           </span>
@@ -140,13 +136,13 @@ useEffect(() => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center space-x-4 md:hidden">
+        <div className="flex items-center  space-x-4 md:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-lg text-text-secondary hover:bg-bg-slate-100 transition-colors"
+            className="p-2 rounded-lg text-text-secondary transition-colors"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-6 h-6 my-4" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
@@ -159,34 +155,20 @@ useEffect(() => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-bg-white border-b border-border-light overflow-hidden"
+            className="md:hidden bg-white/10 border-b border-border-light overflow-hidden"
           >
-            <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col space-y-4">
+            <div className="max-w-7xl mx-auto px-6 py-2 flex flex-col space-y-2 ">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleScrollTo(e, link.href)}
-                  className="text-base font-medium text-text-secondary hover:text-primary transition-colors py-2"
+                  className="text-base  bg-gray-400/50 backdrop-blur-lg w-fit rounded-full text-left pl-5 pr-5 font-medium text-text-secondary hover:text-primary transition-colors py-2"
                 >
                   {link.name}
                 </a>
               ))}
-              
-              <hr className="border-border-light my-1" />
-
-              {/* Mobile Theme Toggle row */}
-              <hr className="border-border-light my-1" />
-
-              <Link
-  href="/contactUs"
-  onClick={() => setIsMobileMenuOpen(false)}
-  className="flex items-center justify-center w-full text-base font-semibold text-bg-white bg-primary hover:bg-primary-hover py-3 rounded-full shadow-sm transition-colors text-center"
->
-  Book Consultation
-  <ArrowRight className="ml-2 w-4 h-4" />
-</Link>
-            </div>
+               </div>
           </motion.div>
         )}
       </AnimatePresence>
