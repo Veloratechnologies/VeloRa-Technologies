@@ -9,76 +9,90 @@ import {
   BarChart3,
   Cpu,
   AppWindow,
-  ArrowRight
+  ArrowRight,
+  Shield,
+  Code2,
+  Bot
 } from 'lucide-react';
 
 const trendsData = [
   {
     id: 1,
     icon: Zap,
-    title: 'Artificial Intelligence Engine',
-    subtitle: 'NEURAL SYSTEM INTEGRATION',
-    description: 'Autonomous neural layers executing end-to-end operational workflows at zero-latency.',
-    growth: '+240%',
-    metric: 'Core Loop Velocity',
-    shadowColor: 'rgba(245, 158, 11, 0.15)',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop'
+    title: "AI Workflow Automation",
+    subtitle: "INTELLIGENT AUTOMATION",
+    description:
+      "AI workflow automation is becoming the foundation of modern enterprises. Organizations are replacing repetitive manual processes with intelligent systems that automate operations, accelerate decision-making, improve customer experiences, and significantly reduce operational costs while increasing productivity.",
+    growth: "+245%",
+    metric: "Enterprise AI Adoption",
+    shadowColor: "rgba(59, 130, 246, 0.15)",
+    image: "/AI_Workflow_Automation1.png",
   },
+
   {
     id: 2,
-    icon: Cloud,
-    title: 'Sovereign Infrastructure Mesh',
-    subtitle: 'DECENTRALIZED RESILIENCE',
-    description: 'Multi-region failover network matrices guaranteeing total compliance and data sovereignty.',
-    growth: '+185%',
-    metric: 'Node Residency Matrix',
-    shadowColor: 'rgba(59, 130, 246, 0.15)',
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200&auto=format&fit=crop'
+    icon: Shield,
+    title: "Zero Trust Security",
+    subtitle: "CYBERSECURITY FRAMEWORK",
+    description:
+      "With cyber threats becoming more sophisticated, enterprises are rapidly adopting Zero Trust Architecture. Continuous identity verification, endpoint protection, and least-privilege access have become essential strategies for protecting sensitive business data and digital infrastructure.",
+    growth: "+195%",
+    metric: "Cyber Risk Reduction",
+    shadowColor: "rgba(239, 68, 68, 0.15)",
+    image: "/Zero_Trust_Security.png",
   },
+
   {
     id: 3,
-    icon: Cpu,
-    title: 'Hyper-Autonomous Workflows',
-    subtitle: 'SYSTEM DECOUPLING',
-    description: 'Replacing historical software legacy with self-optimizing orchestration runtime nodes.',
-    growth: '+210%',
-    metric: 'Process Friction Drop',
-    shadowColor: 'rgba(139, 92, 246, 0.15)',
-    image: 'https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=1200&auto=format&fit=crop'
+    icon: Cloud,
+    title: "Cloud Infrastructure",
+    subtitle: "CLOUD MODERNIZATION",
+    description:
+      "Businesses are accelerating cloud adoption to improve scalability, operational efficiency, and business continuity. Modern cloud-native platforms enable faster deployments, lower infrastructure costs, enhanced security, and seamless collaboration across distributed teams.",
+    growth: "+176%",
+    metric: "Cloud Migration Growth",
+    shadowColor: "rgba(14, 165, 233, 0.15)",
+    image: "",
   },
+
   {
     id: 4,
-    icon: Lock,
-    title: 'Zero-Trust Protocol Layer',
-    subtitle: 'CRYPTOGRAPHIC ASSERTION',
-    description: 'Continuous validation protocols applied at the sub-packet infrastructure access vectors.',
-    growth: '+195%',
-    metric: 'Threat Surface Erasure',
-    shadowColor: 'rgba(239, 68, 68, 0.15)',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop'
+    icon: BarChart3,
+    title: "Business Intelligence",
+    subtitle: "DATA ANALYTICS",
+    description:
+      "Real-time analytics is transforming executive decision-making. Companies increasingly rely on predictive dashboards, AI-driven reporting, and customer intelligence to identify opportunities, optimize performance, and gain a competitive advantage in rapidly changing markets.",
+    growth: "+212%",
+    metric: "Data-Driven Decisions",
+    shadowColor: "rgba(16, 185, 129, 0.15)",
+    image: "",
   },
+
   {
     id: 5,
-    icon: BarChart3,
-    title: 'Real-Time Telemetry Synthesis',
-    subtitle: 'INSIGHT VELOCITY AXIS',
-    description: 'Processing ambient data flows to execute macro-market updates ahead of system runtime schedules.',
-    growth: '+220%',
-    metric: 'Pipeline Throughput',
-    shadowColor: 'rgba(16, 185, 129, 0.15)',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop'
+    icon: Code2,
+    title: "Custom Software",
+    subtitle: "DIGITAL TRANSFORMATION",
+    description:
+      "Organizations are moving away from one-size-fits-all platforms in favor of custom software tailored to their business processes. Personalized digital solutions improve operational efficiency, customer experience, scalability, and long-term return on technology investments.",
+    growth: "+188%",
+    metric: "Digital Product Investment",
+    shadowColor: "rgba(99, 102, 241, 0.15)",
+    image: "",
   },
+
   {
     id: 6,
-    icon: AppWindow,
-    title: 'Unified Component Microservice',
-    subtitle: 'INTERFACE CONSOLIDATION',
-    description: 'Consolidating fractured architectural touchpoints into one core continuous framework.',
-    growth: '+175%',
-    metric: 'System Debt Recovery',
-    shadowColor: 'rgba(236, 72, 153, 0.15)',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop'
-  }
+    icon: Bot,
+    title: "Enterprise AI Assistants",
+    subtitle: "GENERATIVE AI",
+    description:
+      "Generative AI is reshaping enterprise productivity by enabling intelligent assistants for customer support, internal knowledge management, sales, and operations. Businesses are leveraging AI copilots to streamline workflows, improve decision-making, and enhance user experiences.",
+    growth: "+327%",
+    metric: "Generative AI Adoption",
+    shadowColor: "rgba(168, 85, 247, 0.15)",
+    image: "",
+  },
 ];
 
 export default function MarketTrends() {
