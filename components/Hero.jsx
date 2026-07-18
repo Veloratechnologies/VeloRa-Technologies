@@ -64,7 +64,7 @@ const handleScrollTo = (e, href) => {
     id="home"
  onMouseMove={handleBackgroundMove}
  onMouseLeave={resetBackground} 
-  className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden mesh-grid bg-bg-light"
+  className="relative min-h-screen flex items-start lg:items-center pt-24 lg:pt-28 pb-16 overflow-hidden mesh-grid bg-bg-light"
     >
 
 
@@ -77,20 +77,8 @@ const handleScrollTo = (e, href) => {
       {/* Animated Background */}
 
 
-<motion.div
-  className="absolute inset-0 z-[2]"
-  animate={{
-    opacity: [0.2, 0.45, 0.2],
-  }}
-  transition={{
-    duration: 6,
-    repeat: Infinity,
-  }}
-  style={{
-    background:
-      "radial-gradient(circle at 75% 35%, rgba(37,99,235,.35), transparent 50%)",
-  }}
-/>
+
+
 <motion.div
   className="absolute inset-0 z-0"
   style={{
@@ -114,10 +102,10 @@ const handleScrollTo = (e, href) => {
 >
   <img
     src="/images/TECHIMAGE.png"
-    className="w-full h-full object-cover brightness-130"
+    className="w-full  h-[750px] md:h-full object-cover object-[45%_center]  md:object-center  "
     alt=""
   />
-  <div className="absolute inset-0 bg-black/40 z-[1]" />
+
   <motion.div
   className="absolute inset-0 z-[2]"
   animate={{
@@ -141,36 +129,36 @@ const handleScrollTo = (e, href) => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="lg:col-span-7 flex flex-col justify-center text-left"
+          className="lg:col-span-7 flex flex-col  text-left"
         >
           {/* Subtle Tagline Badge */}
-          <motion.div variants={itemVariants} className="inline-flex items-center self-start bg-primary/10 border border-primary/20 text-primary font-semibold text-xs tracking-wider uppercase px-3 py-1.5 rounded-full mb-6">
+          <motion.div variants={itemVariants} className="inline-flex items-center self-start md:bg-primary/10 bg-white/30  md:bg-transparent backdrop-blur-xl  border border-primary/20 text-primary font-semibold text-xs tracking-wider uppercase px-3  py-1.5 rounded-full mb-6">
             Digital Transformation Partner
           </motion.div>
 
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-[54px] font-bold tracking-tight text-slate-400 leading-[1.15] mb-6"
+            className="text-5xl sm:text-5xl lg:text-[60px] font-bold tracking-tight text-slate-400 leading-[1.15] "
           >
             Building Smart <span className="text-primary">Digital Solutions</span> for Modern Businesses
           </motion.h1>
           
           {/* Key Bullet Points */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 gap-4 mb-10 max-w-lg">
-            <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
+          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4  md:mt-6  lg:mt-6 mt-12  mb-20 md:mb-8 max-w-xl">
+            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-400 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Enterprise Grade Security</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg  text-m  text-slate-400 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>AI Automation Integration</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-400 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Scalable Architectures</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-400 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Dedicated Support</span>
             </div>
