@@ -1,17 +1,20 @@
 import { motion } from 'framer-motion';
 import { Shield, Cpu, RefreshCw, Layers, Compass, HelpCircle} from 'lucide-react';
 
+
 export default function WhyChooseUs() {
   const cards = [
     {
       icon: Compass,
       title: "Client-Focused Approach",
+      image: "/images/PROFESSIONAL.png",
       subtitle: "Professional Solutions",
       desc: "We align closely with your corporate objectives, translating complex technical processes into clear business outcomes and high-converting workflows."
     },
     {
       icon: Shield,
       title: "Security-First Mindset",
+      image:"/images/",
       subtitle: "Secure Development",
       desc: "Rigorous threat modeling, industry-standard authentication methods, and end-to-end data encryption represent the foundation of every line of code we write."
     },
@@ -89,28 +92,37 @@ export default function WhyChooseUs() {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                className="bg-bg-slate-50 border border-border-light rounded-premium p-6 hover:bg-bg-white hover:border-primary/20 hover:shadow-premium transition-all duration-300 group cursor-default"
+                className="bg-black border border-border-light rounded-premium p-6  hover:border-primary/20 hover:shadow-premium transition-all duration-300 group cursor-default"
                 whileHover={{ y: -4 }}
+                  style={{backgroundImage: `url(${card.image})`,
+      backgroundSize: "100% 100%",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",}}
               >
+                
                 {/* Icon Wrapper */}
                 <div className="w-12 h-12 rounded-xl bg-bg-white border border-border-light flex items-center justify-center text-primary mb-6 shadow-sm group-hover:bg-primary group-hover:text-bg-white transition-colors duration-300">
                   <Icon className="w-6 h-6" />
                 </div>
 
-                {/* Subtitle Badge */}
-                <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted mb-2 block">
-                  {card.subtitle}
-                </span>
+              <div className="mt-auto rounded-2xl border border-white/20 bg-white/10 backdrop-blur-sm p-5 shadow-xl">
 
-                {/* Title */}
-                <h3 className="text-lg font-bold text-text-primary mb-3">
-                  {card.title}
-                </h3>
+  {/* Subtitle */}
+  <span className="text-[10px] font-bold uppercase tracking-[2px] text-blue-200 mb-2 block">
+    {card.subtitle}
+  </span>
 
-                {/* Description */}
-                <p className="text-sm text-text-muted leading-relaxed">
-                  {card.desc}
-                </p>
+  {/* Title */}
+  <h3 className="text-xl font-bold text-white mb-3">
+    {card.title}
+  </h3>
+
+  {/* Description */}
+  <p className="text-sm leading-7 text-white/80">
+    {card.desc}
+  </p>
+
+</div>
               </motion.div>
             );
           })}

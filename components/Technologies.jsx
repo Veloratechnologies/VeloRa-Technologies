@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import * as Icons from 'lucide-react';
+
 import { technologyStack } from '../content/technologies';
+
 
 export default function Technologies() {
   const [activeCategory, setActiveCategory] = useState(0);
@@ -72,7 +73,7 @@ export default function Technologies() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6"
           >
             {technologyStack[activeCategory].items.map((item, idx) => {
-              const Icon = Icons[item.icon] || Icons.Code;
+             
               return (
                 <motion.div
                   key={idx}
@@ -80,9 +81,19 @@ export default function Technologies() {
                   className="bg-bg-slate-50 border border-border-light rounded-premium p-5 flex flex-col items-center justify-center text-center shadow-sm hover:bg-bg-white hover:border-primary/20 hover:shadow-premium transition-all duration-300 group cursor-default"
                   whileHover={{ y: -3 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-bg-white border border-border-light flex items-center justify-center text-primary mb-4 transition-colors duration-300 group-hover:bg-primary group-hover:text-bg-white">
-                    <Icon className="w-5 h-5" />
-                  </div>
+                  <div className="w-20 h-20 rounded-full bg-bg-white border border-border-light flex items-center justify-center mb-4">
+
+    <video
+  src={item.icon}
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="auto"
+  className="w-12 h-12 object-contain"
+/>
+
+</div>
                   <h4 className="text-sm font-bold text-text-primary mb-1">
                     {item.name}
                   </h4>

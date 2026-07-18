@@ -179,7 +179,7 @@ export default function Contact() {
                       name="name"
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="Jane Doe"
+                      placeholder="Your Name"
                       required
                       className="w-full px-4 py-3 rounded-lg border border-border-medium bg-bg-white text-sm text-text-primary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-200"
                     />
@@ -196,7 +196,7 @@ export default function Contact() {
                       name="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="jane@company.com"
+                      placeholder="Example@company.com"
                       required
                       className="w-full px-4 py-3 rounded-lg border border-border-medium bg-bg-white text-sm text-text-primary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-200"
                     />
@@ -262,7 +262,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status.submitting}
-                  className="w-full flex items-center justify-center bg-primary hover:bg-primary-hover text-bg-white font-semibold py-3.5 px-6 rounded-premium shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5"
+                  className="w-full flex items-center justify-center bg-primary hover:bg-primary-hover text-bg-white font-semibold py-3.5 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5"
                 >
                   {status.submitting ? (
                     <div className="w-5 h-5 border-2 border-bg-white border-t-transparent rounded-full animate-spin" />
