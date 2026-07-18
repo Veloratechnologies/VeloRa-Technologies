@@ -76,15 +76,6 @@ const handleScrollTo = (e, href) => {
 </div>
       {/* Animated Background */}
 
-    <motion.div
-  className="absolute inset-0 bg-black"
-  initial={{ opacity: 1 }}
-  animate={{ opacity: 0.45 }}
-  transition={{
-    duration: 2,
-    ease: "easeOut",
-  }}
-/>
 
 <motion.div
   className="absolute inset-0 z-[2]"
@@ -123,7 +114,7 @@ const handleScrollTo = (e, href) => {
 >
   <img
     src="/images/TECHIMAGE.png"
-    className="w-full h-full object-cover"
+    className="w-full h-full object-cover brightness-130"
     alt=""
   />
   <div className="absolute inset-0 bg-black/40 z-[1]" />
@@ -143,9 +134,6 @@ const handleScrollTo = (e, href) => {
 />
 </motion.div>
       {/* Background Radial Glow */}
-      <div className="absolute inset-0 pointer-events-none premium-gradient-glow"
-       />
-
       <div className="max-w-7xl mx-auto px-6 md:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
       >
         {/* Left Content Side */}
@@ -167,15 +155,7 @@ const handleScrollTo = (e, href) => {
           >
             Building Smart <span className="text-primary">Digital Solutions</span> for Modern Businesses
           </motion.h1>
-
-          {/* Subheadline */}
-          {/* <motion.p
-            variants={itemVariants}
-            className="text-lg text-text-muted leading-relaxed mb-8 max-w-xl"
-          >
-            We help businesses grow through custom web development, AI-powered automation, and scalable software solutions designed for efficiency and long-term success.
-          </motion.p> */}
-
+          
           {/* Key Bullet Points */}
           <motion.div variants={itemVariants} className="grid grid-cols-2 gap-4 mb-10 max-w-lg">
             <div className="flex items-center space-x-2 text-sm text-slate-400 font-medium">
@@ -202,7 +182,7 @@ const handleScrollTo = (e, href) => {
             <a
               href="#services"
               onClick={(e) => handleScrollTo(e, '#services')}
-              className="inline-flex items-center justify-center text-base font-semibold text-gray-800 bg-bg-white hover:bg-bg-slate-50 border border-border-medium px-7 py-3.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center text-base font-semibold text-gray-800 bg-slate-400 hover:bg-slate-100 border border-border-medium px-7 py-3.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
             >
               Explore Services
               <ChevronRight className="ml-1 w-5 h-5" />
