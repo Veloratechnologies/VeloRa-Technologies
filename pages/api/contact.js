@@ -11,9 +11,9 @@ export default async function handler(req, res) {
   try {
     const { name, email, company, service, message } = req.body;
 
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "akashwork0252@gmail.com",
+      const result = await resend.emails.send({      
+        from: "onboarding@resend.dev",
+        to: "akashwork0252@gmail.com",
          
       subject: `New Lead - ${service}`,
 
@@ -106,16 +106,32 @@ VeloRa Technologies • Building Digital Solutions
 `
 ,
     });
+    console.log("Resend Result:", result);
+
+    if (result?.error) {
+  return res.status(500).json({
+    success: false,
+    resendError: result.error,
+    fullResponse: result,
+  });
+}
+
 
     return res.status(200).json({
       success: true,
     });
 
   } catch (error) {
-    console.log(error);
+  console.error("========== API ERROR ==========");
+  console.error(error);
 
-    return res.status(500).json({
-      success: false,
-    });
-  }
+  return res.status(500).json({
+    success: false,
+    message: error?.message || "Unknown Error",
+    name: error?.name,
+    stack: error?.stack,
+    cause: error?.cause,
+    error: JSON.stringify(error, Object.getOwnPropertyNames(error)),
+  });
+}
 }
