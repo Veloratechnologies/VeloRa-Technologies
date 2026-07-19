@@ -52,7 +52,7 @@ const trendsData = [
     growth: "+176%",
     metric: "Cloud Migration Growth",
     shadowColor: "rgba(14, 165, 233, 0.15)",
-    image: "",
+    image: "Cloud_Infrastructure.png",
   },
 
   {
@@ -65,7 +65,7 @@ const trendsData = [
     growth: "+212%",
     metric: "Data-Driven Decisions",
     shadowColor: "rgba(16, 185, 129, 0.15)",
-    image: "",
+    image: "Business_Intelligence.png",
   },
 
   {
@@ -78,7 +78,7 @@ const trendsData = [
     growth: "+188%",
     metric: "Digital Product Investment",
     shadowColor: "rgba(99, 102, 241, 0.15)",
-    image: "",
+    image: "Custom_Software.png",
   },
 
   {
@@ -91,7 +91,7 @@ const trendsData = [
     growth: "+327%",
     metric: "Generative AI Adoption",
     shadowColor: "rgba(168, 85, 247, 0.15)",
-    image: "",
+    image: "Enterprise_AI_Assistants.png",
   },
 ];
 
