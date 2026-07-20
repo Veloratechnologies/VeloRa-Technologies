@@ -179,31 +179,37 @@ export default function BusinessSolutions() {
 
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
         
+        {/* nevigation key and business solution heading on desktop view */}
         {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-10"
-        >
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full  border border-slate-300 text-[15px] font-bold uppercase tracking-[0.1em]"    style={{color:"#075985"} }>
-              <span className="w-1 h-1 rounded-full bg-slate-900 animate-pulse" />
-              Business Solutions
-            </div>
-          </div>
+        <motion.div
+  initial={{ opacity: 0, y: -20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.1 }}
+  className="flex items-center justify-between md:items-end md:mb-5"
+>
+  {/* Left Side */}
+  <div className="max-w-2xl">
+    <div
+      className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-300 text-[15px] font-bold uppercase tracking-[0.1em]"
+      style={{ color: "#075985" }}
+    >
+      <span className="w-1 h-1 rounded-full bg-slate-900 animate-pulse" />
+      Business Solutions
+    </div>
+  </div>
 
-          {/* Navigation Controls */}
-          <div className="flex items-center gap-3 self-end md:self-auto">
-            <button className="swiper-nav-prev w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 active:bg-slate-100 transition-all duration-200 cursor-pointer disabled:opacity-40">
-              <FiArrowLeft className="w-5 h-5" />
-            </button>
-            <button className="swiper-nav-next w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 active:bg-slate-100 transition-all duration-200 cursor-pointer disabled:opacity-40">
-              <FiArrowRight className="w-5 h-5" />
-            </button>
-          </div>
-        </motion.div>
+  {/* Right Side Navigation */}
+  <div className="flex items-center gap-3 shrink-0">
+    <button className="swiper-nav-prev w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 active:bg-slate-100 transition-all duration-200 cursor-pointer disabled:opacity-40">
+      <FiArrowLeft className="w-5 h-5" />
+    </button>
+
+    <button className="swiper-nav-next w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 active:bg-slate-100 transition-all duration-200 cursor-pointer disabled:opacity-40">
+      <FiArrowRight className="w-5 h-5" />
+    </button>
+  </div>
+</motion.div>
 
         {/* Slider Framework Container */}
         <motion.div

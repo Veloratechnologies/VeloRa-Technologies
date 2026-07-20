@@ -64,20 +64,10 @@ const handleScrollTo = (e, href) => {
     id="home"
  onMouseMove={handleBackgroundMove}
  onMouseLeave={resetBackground} 
-  className="relative min-h-screen flex items-start lg:items-center pt-24 lg:pt-28 pb-16 overflow-hidden mesh-grid bg-bg-light"
+  className="relative min-h-screen flex items-start lg:items-center pt-24 lg:pt-28  overflow-hidden mesh-grid bg-bg-light"
     >
 
-
-
-      {/* .......................................hero section image bottom curve */}
-      {/* Bottom Curve */}
-<div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
-  
-</div>
       {/* Animated Background */}
-
-
-
 
 <motion.div
   className="absolute inset-0 z-0"
@@ -102,7 +92,7 @@ const handleScrollTo = (e, href) => {
 >
   <img
     src="/images/TECHIMAGE.png"
-    className="w-full  h-[750px] md:h-full object-cover object-[45%_center]  md:object-center  "
+    className="w-full  h-full md:h-full object-cover object-[45%_center]  md:object-center  "
     alt=""
   />
 
@@ -185,12 +175,7 @@ const handleScrollTo = (e, href) => {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
           className="lg:col-span-5 relative"
         >
-          {/* Main Visual Wrapper */}
-          
-
-          {/* Decorative shapes behind */}
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/5 rounded-full blur-xl -z-10" />
-          <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary-light/5 rounded-full blur-lg -z-10" />
+     
         </motion.div>
       </div>
     </section>
