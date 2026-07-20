@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Inter } from 'next/font/google';
 import { ThemeProvider, useTheme } from '../context/ThemeContext';
 import { theme } from '../config/theme';
@@ -65,8 +66,15 @@ function AppContent({ Component, pageProps }) {
 
 export default function App(props) {
   return (
-    <ThemeProvider>
-      <AppContent {...props} />
-    </ThemeProvider>
+    <>
+      <Head>
+        <title>Velora Technologies</title>
+        <link rel="icon" type="image/png" href="/veloraLogo1.png" />
+      </Head>
+
+      <ThemeProvider>
+        <AppContent {...props} />
+      </ThemeProvider>
+    </>
   );
 }
