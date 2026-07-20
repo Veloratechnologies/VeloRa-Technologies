@@ -89,7 +89,7 @@ const SolutionCard = ({ item }) => {
       onMouseLeave={handleMouseLeave}
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      className="group relative flex flex-col justify-between h-[500px] rounded-[7px] border border-slate-300 shadow-[0_4px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(15,23,42,0.06)] hover:border-slate-300 overflow-hidden transition-all duration-500 ease-out bg-slate-300 backdrop-blur-3xl  ">
+      className="group relative flex flex-col justify-between h-auto min-h-[540px] md:h-[500px] rounded-[7px] border border-slate-300 shadow-[0_4px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(15,23,42,0.06)] hover:border-slate-300 overflow-hidden transition-all duration-500 ease-out bg-slate-300 backdrop-blur-3xl  ">
       
       <div >
         {/* Image & Reveal */}
@@ -139,9 +139,9 @@ const SolutionCard = ({ item }) => {
         </div>
 
         {/* Action Button */}
-        <div className=" p-3 border-t border-slate-50 flex items-center justify-between text-slate-900 font-medium text-[16px]">
-          <span className="relative overflow-hidden group/btn inline-flex items-center">
-            <span className="relative px-3 transition-transform duration-300 hover:scale-110">
+        <div className=" p-3 border-t border-slate-50 flex items-center justify-between text-slate-900 font-medium text-[16px] ">
+          <span className="relative overflow-hidden group/btn inline-flex items-center ">
+            <span className="relative px-5 transition-transform duration-300 hover:scale-110">
               Learn More
             </span>
           </span>
@@ -167,7 +167,7 @@ export default function BusinessSolutions() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full py-10 text-slate-900 overflow-visible font-sans select-none antialiased bg-sky-50"
+      className="relative w-full md:py-10 lg:py-10 py-5 text-slate-900 overflow-visible font-sans select-none antialiased bg-sky-50"
       
     >
       {/* Minimal Background Accents */}

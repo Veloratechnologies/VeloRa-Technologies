@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 const trendsData = [
-    {
+  {
     id: 1,
     icon: Code2,
     title: "Custom Software",
@@ -28,7 +28,7 @@ const trendsData = [
     shadowColor: "rgba(99, 102, 241, 0.15)",
     image: "Custom_Software.png",
   },
-      {
+  {
     id: 2,
     icon: Zap,
     title: "AI Workflow Automation",
@@ -52,7 +52,6 @@ const trendsData = [
     shadowColor: "rgba(14, 165, 233, 0.15)",
     image: "Cloud_Infrastructure.png",
   },
-
   {
     id: 4,
     icon: BarChart3,
@@ -65,8 +64,7 @@ const trendsData = [
     shadowColor: "rgba(16, 185, 129, 0.15)",
     image: "Business_Intelligence.png",
   },
-    
-    {
+  {
     id: 5,
     icon: Shield,
     title: "Zero Trust Security",
@@ -78,8 +76,6 @@ const trendsData = [
     shadowColor: "rgba(239, 68, 68, 0.15)",
     image: "/Zero_Trust_Security.png",
   },
-
-
   {
     id: 7,
     icon: Bot,
@@ -119,7 +115,7 @@ export default function MarketTrends() {
   const ActiveIcon = activeData.icon;
 
   return (
-    <section className="relative w-full py-36 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden select-none">
+    <section className="relative w-full py-10 lg:py-0 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden select-none">
       
       {/* Enterprise Subtle Grid Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -128,48 +124,48 @@ export default function MarketTrends() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 p lg:gap-8 items-center">
           
-          {/* ==================== LEFT SIDE: PREMIUM SYNCED HUD ==================== */}
-          <div className="lg:col-span-5 flex flex-col justify-between h-[520px]">
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.05] mt-6">
-                  Technology Trends <br />
-                  <span className=" bg-clip-text  text-primary">
-                    Driving Tomorrow
-                  </span>
-                </h2>
-              </div>
-
-              {/* Dynamic Text Information Box with Clean Crossfade */}
-              <div className="min-h-[160px] flex flex-col justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeData.id}
-                    initial={{ opacity: 0, x: -15 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 15 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="space-y-4"
-                  >
-                    <span className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase flex items-center gap-2">
-                      <ActiveIcon size={14} className="text-blue-600" />
-                      {activeData.subtitle}
-                    </span>
-                    <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
-                      {activeData.title}
-                    </h3>
-                    <p className="text-sm text-slate-500 font-normal leading-relaxed max-w-sm">
-                      {activeData.description}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+          {/* ==================== LEFT SIDE WRAPPER ==================== */}
+          <div className="contents lg:flex lg:col-span-5 lg:flex-col lg:justify-between lg:h-[520px]">
+            
+            {/* 1. HEADING (Mobile: Order 1) */}
+            <div className="order-1 lg:order-none w-full ">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.05] sm:mt-6">
+                Technology Trends <br />
+                <span className="bg-clip-text text-primary">
+                  Driving Tomorrow
+                </span>
+              </h2>
             </div>
 
-            {/* Premium Synchronized Progress Bars & Indicators */}
-            <div className="space-y-4 max-w-sm">
+            {/* 4. CONTENT / DESCRIPTION BOX (Mobile: Order 4) */}
+            <div className="order-4 lg:order-none w-full min-h-[140px] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeData.id}
+                  initial={{ opacity: 0, x: -15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 15 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-3 sm:space-y-4"
+                >
+                  <span className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase flex items-center gap-2">
+                    <ActiveIcon size={14} className="text-blue-600" />
+                    {activeData.subtitle}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                    {activeData.title}
+                  </h3>
+                  <p className="text-sm text-slate-500 font-normal leading-relaxed max-w-sm">
+                    {activeData.description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* 3. GROWTH + PROGRESS INDICATORS (Mobile: Order 3) */}
+            <div className="order-3 lg:order-none w-full py-3 space-y-4 max-w-sm">
               <div className="flex items-end justify-between border-b border-slate-100 pb-4">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -179,8 +175,12 @@ export default function MarketTrends() {
                     exit={{ opacity: 0, y: -10 }}
                     className="flex flex-col"
                   >
-                    <span className="text-4xl font-black tracking-tighter text-slate-900">{activeData.growth}</span>
-                    <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase mt-1">{activeData.metric}</span>
+                    <span className="text-3xl sm:text-4xl font-black tracking-tighter text-slate-900">
+                      {activeData.growth}
+                    </span>
+                    <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase mt-1">
+                      {activeData.metric}
+                    </span>
                   </motion.div>
                 </AnimatePresence>
                 
@@ -227,18 +227,19 @@ export default function MarketTrends() {
                 })}
               </div>
             </div>
+
           </div>
 
-          {/* ==================== RIGHT SIDE: MAXI IMAGE STACK WITH DYNAMIC FLIP ==================== */}
-          <div className="lg:col-span-7 flex items-center justify-center relative min-h-[580px] w-full">
+          {/* ==================== 2. RIGHT SIDE: IMAGE STACK (Mobile: Order 2) ==================== */}
+          <div className="order-2 lg:order-none lg:col-span-7 flex items-center justify-center relative min-h-[380px] sm:min-h-[480px] lg:min-h-[580px] w-full">
             
             {/* Ambient Shadow Box that syncs with card theme color */}
             <div 
-              className="absolute w-full max-w-[620px] h-[460px] rounded-sm blur-[60px] transition-all duration-700 pointer-events-none opacity-40"
+              className="absolute w-full max-w-[620px] h-[320px] sm:h-[460px] rounded-sm blur-[60px] transition-all duration-700 pointer-events-none opacity-40"
               style={{ backgroundColor: activeData.shadowColor }}
             />
 
-            <div className="relative w-full max-w-[620px] h-[460px]">
+            <div className="relative w-full max-w-[620px] h-[320px] sm:h-[460px]">
               <AnimatePresence mode="popLayout">
                 {stack.map((card, index) => {
                   if (index > 2) return null; // Render top 3 layered frames only
