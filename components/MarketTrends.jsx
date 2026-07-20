@@ -16,8 +16,20 @@ import {
 } from 'lucide-react';
 
 const trendsData = [
-  {
+    {
     id: 1,
+    icon: Code2,
+    title: "Custom Software",
+    subtitle: "DIGITAL TRANSFORMATION",
+    description:
+      "Organizations are moving away from one-size-fits-all platforms in favor of custom software tailored to their business processes. Personalized digital solutions improve operational efficiency, customer experience, scalability, and long-term return on technology investments.",
+    growth: "+188%",
+    metric: "Digital Product Investment",
+    shadowColor: "rgba(99, 102, 241, 0.15)",
+    image: "Custom_Software.png",
+  },
+      {
+    id: 2,
     icon: Zap,
     title: "AI Workflow Automation",
     subtitle: "INTELLIGENT AUTOMATION",
@@ -28,20 +40,6 @@ const trendsData = [
     shadowColor: "rgba(59, 130, 246, 0.15)",
     image: "/AI_Workflow_Automation1.png",
   },
-
-  {
-    id: 2,
-    icon: Shield,
-    title: "Zero Trust Security",
-    subtitle: "CYBERSECURITY FRAMEWORK",
-    description:
-      "With cyber threats becoming more sophisticated, enterprises are rapidly adopting Zero Trust Architecture. Continuous identity verification, endpoint protection, and least-privilege access have become essential strategies for protecting sensitive business data and digital infrastructure.",
-    growth: "+195%",
-    metric: "Cyber Risk Reduction",
-    shadowColor: "rgba(239, 68, 68, 0.15)",
-    image: "/Zero_Trust_Security.png",
-  },
-
   {
     id: 3,
     icon: Cloud,
@@ -67,22 +65,23 @@ const trendsData = [
     shadowColor: "rgba(16, 185, 129, 0.15)",
     image: "Business_Intelligence.png",
   },
-
-  {
+    
+    {
     id: 5,
-    icon: Code2,
-    title: "Custom Software",
-    subtitle: "DIGITAL TRANSFORMATION",
+    icon: Shield,
+    title: "Zero Trust Security",
+    subtitle: "CYBERSECURITY FRAMEWORK",
     description:
-      "Organizations are moving away from one-size-fits-all platforms in favor of custom software tailored to their business processes. Personalized digital solutions improve operational efficiency, customer experience, scalability, and long-term return on technology investments.",
-    growth: "+188%",
-    metric: "Digital Product Investment",
-    shadowColor: "rgba(99, 102, 241, 0.15)",
-    image: "Custom_Software.png",
+      "With cyber threats becoming more sophisticated, enterprises are rapidly adopting Zero Trust Architecture. Continuous identity verification, endpoint protection, and least-privilege access have become essential strategies for protecting sensitive business data and digital infrastructure.",
+    growth: "+195%",
+    metric: "Cyber Risk Reduction",
+    shadowColor: "rgba(239, 68, 68, 0.15)",
+    image: "/Zero_Trust_Security.png",
   },
 
+
   {
-    id: 6,
+    id: 7,
     icon: Bot,
     title: "Enterprise AI Assistants",
     subtitle: "GENERATIVE AI",
