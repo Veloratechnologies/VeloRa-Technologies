@@ -19,7 +19,7 @@ const services = [
     id: "web",
     title: "Enterprise Web Development",
     icon: Globe,
-    image: "/services/web-development.webp",
+    image: "/web-development.webp",
     description:
       "Build high-performance websites, SaaS products, portals and enterprise platforms that scale with your business.",
     features: [
@@ -43,7 +43,7 @@ const services = [
     id: "ai",
     title: "AI Automation",
     icon: BrainCircuit,
-    image: "/services/ai-automation.webp",
+    image: "/ai-automation.webp",
     description:
       "Transform repetitive business operations using AI copilots, intelligent assistants and workflow automation.",
     features: [
@@ -67,7 +67,7 @@ const services = [
     id: "automation",
     title: "Business Automation",
     icon: Workflow,
-    image: "/services/business-automation.webp",
+    image: "/business-automation.webp",
     description:
       "Reduce manual work by automating approvals, operations, customer journeys and internal workflows.",
     features: [
