@@ -13,34 +13,34 @@ export default function Navbar() {
   const router = useRouter();
   const isHomePage = router.pathname === "/";
 
-useEffect(() => {
-  let timeout;
+  useEffect(() => {
+    let timeout;
 
-  const handleScroll = () => {
-    clearTimeout(timeout);
+    const handleScroll = () => {
+      clearTimeout(timeout);
 
-    timeout = setTimeout(() => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    }, 100); // Scroll rukne ke 1 second baad
-  };
+      timeout = setTimeout(() => {
+        if (window.scrollY > 10) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+      }, 100); // Scroll rukne ke 1 second baad
+    };
 
-  window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  return () => {
-    clearTimeout(timeout);
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'Process', href: '#process' },
-    { name: 'Technologies', href: '#technologies' },
+    { name: 'Home', href: '/#home' },
+    { name: 'Services', href: '/WhatWeOffer' },
+    { name: 'Process', href: '/#process' },
+    { name: 'Technologies', href: '/#technologies' },
     { name: 'Contact Us', href: '/contactUs' },
   ];
 
@@ -61,78 +61,73 @@ useEffect(() => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled || !isHomePage
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
           ? 'bg-bg-black/80 backdrop-blur-md border-b border-border-light shadow-navbar py-3 '
           : 'bg-transparent  py-2 md:py-5 lg:py-5 backdrop-blur-xl  border-b border-border-light'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-3 md:px-8 flex items-center justify-between">
-        {/* Logo */} 
-        <a href="#home" onClick={(e) => handleScrollTo(e, '#home')} className="flex items-center space-x-2 group">
-         
+        {/* Logo */}
+        <a href="/" onClick={(e) => handleScrollTo(e, '#home')} className="flex items-center space-x-2 group">
+
           <img
-              src="/icons/logo1.png"
-              alt="VeloRa Technologies icon"
-              className=" w-12  h-8 md:h-12 lg:h-12 object-contain transition-transform duration-300 group-hover:scale-105"/>
+            src="/icons/logo1.png"
+            alt="VeloRa Technologies icon"
+            className=" w-12  h-8 md:h-12 lg:h-12 object-contain transition-transform duration-300 group-hover:scale-105" />
           <span
-              className={` md:text-3xl lg:text-3xl text-xl  font-bold tracking-tight flex items-center transition-colors duration-300  ${
-               isScrolled || !isHomePage
-               ?  "text-slate-900" : "text-white"}`}
->
+            className={` md:text-3xl lg:text-3xl text-xl  font-bold tracking-tight flex items-center transition-colors duration-300  ${isScrolled || !isHomePage
+                ? "text-slate-900" : "text-white"}`}
+          >
             {theme.logo.text}
             <span
-             className={`font-medium ml-1 md:text-lg lg:text-lg text-sm  md:pt-2 lg:pt-2 rounded-full transition-all duration-300 ${
-               isScrolled || !isHomePage
-              ? "bg-primary/10 text-primary"
-              : " text-white"
-               }`}
+              className={`font-medium ml-1 md:text-lg lg:text-lg text-sm  md:pt-2 lg:pt-2 rounded-full transition-all duration-300 ${isScrolled || !isHomePage
+                  ? "bg-primary/10 text-primary"
+                  : " text-white"
+                }`}
             >
               {theme.logo.subtext}
             </span>
           </span>
         </a>
 
-        {/* Desktop Navigation, Theme Toggle, and Consultation CTA */}
+        {/* Desktop Navigation and Consultation CTA */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) =>
-  link.href.startsWith("/") ? (
-    <Link
-      key={link.name}
-      href={link.href}
-      className={`text-sm font-medium transition-colors duration-300 ${
-        isScrolled || !isHomePage
-          ? "text-slate-800 hover:text-primary"
-          : "text-white hover:text-primary"
-      }`}
-    >
-      {link.name}
-    </Link>
-  ) : (
-    <a
-      key={link.name}
-      href={link.href}
-      onClick={(e) => handleScrollTo(e, link.href)}
-      className={`text-sm font-medium transition-colors duration-300 ${
-        isScrolled || !isHomePage
-          ? "text-slate-800 hover:text-primary"
-          : "text-white hover:text-primary"
-      }`}
-    >
-      {link.name}
-    </a>
-  )
-)}
+            link.href.startsWith("/") ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-sm font-medium transition-colors duration-300 ${isScrolled || !isHomePage
+                    ? "text-slate-800 hover:text-primary"
+                    : "text-white hover:text-primary"
+                  }`}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleScrollTo(e, link.href)}
+                className={`text-sm font-medium transition-colors duration-300 ${isScrolled || !isHomePage
+                    ? "text-slate-800 hover:text-primary"
+                    : "text-white hover:text-primary"
+                  }`}
+              >
+                {link.name}
+              </a>
+            )
+          )}
 
 
           {/* Consultation Button */}
           <Link
-  href="/contactUs"
-  className="inline-flex items-center justify-center text-sm font-semibold text-bg-white bg-primary hover:bg-primary-hover px-5 py-2.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
->
-  Book Consultation
-  <ArrowRight className="ml-2 w-4 h-4" />
-</Link>
+            href="/contactUs"
+            className="inline-flex items-center justify-center text-sm font-semibold text-bg-white bg-primary hover:bg-primary-hover px-5 py-2.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
+          >
+            Book Consultation
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -168,7 +163,7 @@ useEffect(() => {
                   {link.name}
                 </a>
               ))}
-               </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
