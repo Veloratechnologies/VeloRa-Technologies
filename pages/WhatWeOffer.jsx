@@ -91,7 +91,7 @@ const services = [
     id: "software",
     title: "Custom Software Development",
     icon: Code2,
-    image: "/services/custom-software.webp",
+    image: "/custom-software.webp",
     description:
       "Design and engineer custom software solutions built specifically for your organization's workflows.",
     features: [
@@ -115,7 +115,7 @@ const services = [
     id: "crm",
     title: "CRM & ERP Solutions",
     icon: Database,
-    image: "/services/crm.webp",
+    image: "/crm.webp",
     description:
       "Centralize your customer, operations and finance management through modern CRM and ERP systems.",
     features: [
@@ -139,7 +139,7 @@ const services = [
     id: "api",
     title: "API Integration",
     icon: Plug,
-    image: "/services/api.webp",
+    image: "/api.webp",
     description:
       "Connect your applications with secure, scalable API integrations across your entire business ecosystem.",
     features: [
@@ -317,7 +317,7 @@ export default function Services() {
 
             <div className="mt-24 space-y-36">
 
-              {services.slice(0,3).map((service,index)=>{
+              {services.map((service,index)=>{
 
                 const Icon=service.icon;
 
@@ -529,7 +529,7 @@ export default function Services() {
 
         {/* REMAINING SERVICES */}
 
-        <section className="py-24">
+        {/* <section className="py-24">
 
           <div className="max-w-7xl mx-auto px-6">
 
@@ -663,7 +663,7 @@ export default function Services() {
 
           </div>
 
-        </section>
+        </section> */}
 
         {/* DEVELOPMENT PROCESS */}
 
