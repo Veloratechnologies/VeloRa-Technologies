@@ -38,7 +38,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '/#home' },
-    { name: 'Services', href: '/WhatWeOffer' },
+    { name: 'Our Services', href: '/Our_Services' },
     { name: 'Process', href: '/#process' },
     { name: 'Technologies', href: '/#technologies' },
     { name: 'Contact Us', href: '/contactUs' },
@@ -121,13 +121,13 @@ export default function Navbar() {
 
 
           {/* Consultation Button */}
-          <Link
+          {/* <Link
             href="/contactUs"
             className="inline-flex items-center justify-center text-sm font-semibold text-bg-white bg-primary hover:bg-primary-hover px-5 py-2.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
           >
             Book Consultation
             <ArrowRight className="ml-2 w-4 h-4" />
-          </Link>
+          </Link> */}
         </div>
 
         {/* Mobile Menu Button */}

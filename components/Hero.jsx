@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ChevronRight, Play } from 'lucide-react';
 import CountUp from "react-countup";
 import { useMotionValue, useSpring } from "framer-motion";
+import {useRouter} from "next/router"
 
 
 // import { theme } from '../config/theme';
@@ -58,6 +59,8 @@ export default function Hero() {
       transition: { duration: 0.6, ease: [0.215, 0.610, 0.355, 1.000] },
     },
   };
+
+  const router =useRouter();
 
   return (
     <section
@@ -168,8 +171,8 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
 
             <a
-              href="#services"
-              onClick={(e) => handleScrollTo(e, '#services')}
+            
+              onClick={(e) => router.push("/Our_Services")}
               className="inline-flex items-center justify-center text-base font-semibold text-gray-800 bg-slate-400 hover:bg-slate-100 border border-border-medium px-7 py-3.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
             >
               Explore Services
