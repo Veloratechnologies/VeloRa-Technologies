@@ -14,31 +14,35 @@ export default function WhyChooseUs() {
     {
       icon: Shield,
       title: "Security-First Mindset",
-      image:"/images/",
+      image:"/images/Security-First_Mindset.png",
       subtitle: "Secure Development",
       desc: "Rigorous threat modeling, industry-standard authentication methods, and end-to-end data encryption represent the foundation of every line of code we write."
     },
     {
       icon: Cpu,
       title: "Modern Architecture",
+      image:"/images/Modern_Architecture.png",
       subtitle: "Modern Technologies",
       desc: "Deploying high-speed setups using Next.js, React, and modular APIs to ensure fast loading speeds, clean rendering, and exceptional core web vitals."
     },
     {
       icon: Layers,
       title: "Scalable Systems",
+      image:"/images/Scalable_Systems.png",
       subtitle: "Scalable Systems",
       desc: "Docker containerization and enterprise database configurations allow your platforms to handle rapid spikes in daily traffic without degradation."
     },
     {
       icon: HelpCircle,
       title: "Reliable Support",
+      image:"/images/Reliable_Support.png",
       subtitle: "Long-Term Support",
       desc: "Our commitment doesn't end at launch. We provide on-demand developer support, continuous maintenance, and performance optimization audits."
     },
     {
       icon: RefreshCw,
       title: "Automation Expertise",
+      image:"/images/Automation_Expertise.png",
       subtitle: "Business-Focused Approach",
       desc: "Maximizing ROI by identifying manual operational bottlenecks and integrating custom NLP AI agents and autonomous scheduling flows."
     }
@@ -92,7 +96,7 @@ export default function WhyChooseUs() {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                className="bg-black border border-border-light rounded-premium p-6  hover:border-primary/20 hover:shadow-premium transition-all duration-300 group cursor-default"
+                className="bg-black border border-border-light rounded-lg p-6  hover:border-primary/20 hover:shadow-premium transition-all duration-300 group cursor-default"
                 whileHover={{ y: -4 }}
                   style={{backgroundImage: `url(${card.image})`,
       backgroundSize: "100% 100%",

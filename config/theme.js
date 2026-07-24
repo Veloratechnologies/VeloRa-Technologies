@@ -20,7 +20,7 @@ export const theme = {
     slate500: "#64748B",  
     
     // Blue Shades
-    blue600: "#075985", // Primary Blue
+    blue600: "#002B66", // Primary Blue 075985
     blue700: "#1D4ED8",
     blue500: "#3B82F6",
     blue400: "#60A5FA",
