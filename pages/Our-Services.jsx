@@ -12,6 +12,8 @@ import {
   Plug,
   CheckCircle2,
   ChevronRight,
+  Search,
+  Megaphone
 } from "lucide-react";
 
 const services = [
@@ -157,6 +159,54 @@ const services = [
       "JWT",
       "Node.js",
       "AWS",
+    ],
+  },
+  {
+    id: "seo",
+    title: "SEO & Search Optimization",
+    icon: Search,
+    image: "/seo.webp",
+    description:
+      "Increase your online visibility with data-driven SEO strategies that improve search rankings, organic traffic, and long-term digital growth.",
+    features: [
+      "Technical SEO",
+      "Keyword Research",
+      "On-Page SEO",
+      "Off-Page SEO",
+      "Content Optimization",
+      "SEO Audits"
+    ],
+    technologies: [
+      "Google Search Console",
+      "Google Analytics",
+      "Ahrefs",
+      "SEMrush",
+      "Screaming Frog",
+      "Schema Markup"
+    ],
+  },
+  {
+    id: "marketing",
+    title: "Digital Marketing",
+    icon: Megaphone,
+    image: "/digital-marketing.webp",
+    description:
+      "Accelerate business growth through performance-driven digital marketing campaigns across search engines, social media, email, and paid advertising.",
+    features: [
+      "Performance Marketing",
+      "Google Ads",
+      "Social Media Marketing",
+      "Email Marketing",
+      "Lead Generation",
+      "Conversion Optimization"
+    ],
+    technologies: [
+      "Google Ads",
+      "Meta Ads",
+      "LinkedIn Ads",
+      "Mailchimp",
+      "HubSpot",
+      "Google Analytics"
     ],
   },
 ];

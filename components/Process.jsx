@@ -5,6 +5,24 @@ import { Search, Compass, Palette, Code, CheckCircle, Rocket, HeartHandshake } f
 export default function Process() {
   const [activeStep, setActiveStep] = useState(0);
 
+  const icons = [
+    Search,
+    Compass,
+    Palette,
+    Code,
+    CheckCircle,
+    Rocket,
+  ];
+
+  const steps = [
+    "Discovery",
+    "Planning",
+    "UI/UX Design",
+    "Development",
+    "Testing",
+    "Deployment",
+  ];
+
   // const steps = [
   //   {
   //     icon: Search,
@@ -159,73 +177,105 @@ export default function Process() {
     //   </div>
     // </section>
 
-    
 
-        <section className="py-24 bg-slate-900 text-white">
 
-          <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 bg-slate-900 text-white">
 
-            <div className="text-center">
+      <div className="max-w-7xl mx-auto px-6">
 
-              <span className="uppercase tracking-widest text-blue-400 font-semibold">
+        <div className="text-center">
 
-                OUR PROCESS
+          <span className="uppercase tracking-widest text-blue-400 font-semibold">
 
-              </span>
+            OUR PROCESS
 
-              <h2 className="text-5xl font-bold mt-5">
+          </span>
 
-                From Idea to Deployment
+          <h2 className="text-5xl font-bold mt-5">
 
-              </h2>
+            From Idea to Deployment
 
-              <p className="mt-6 text-slate-300 max-w-2xl mx-auto">
+          </h2>
 
-                Every successful digital product follows a structured development
-                process focused on quality, scalability and business outcomes.
+          <p className="mt-6 text-slate-300 max-w-2xl mx-auto">
 
-              </p>
+            Every successful digital product follows a structured development
+            process focused on quality, scalability and business outcomes.
 
-            </div>
+          </p>
 
-            <div className="grid lg:grid-cols-6 gap-8 mt-20">
+        </div>
 
-              {[
-                "Discovery",
-                "Planning",
-                "UI/UX Design",
-                "Development",
-                "Testing",
-                "Deployment"
-              ].map((step,index)=>(
+        <div className="relative mt-20">
 
-                <div
+          {/* Soft Glow */}
+          <div className="hidden lg:block absolute left-[8%] right-[8%] top-8 h-5 bg-blue-500/20 blur-xl rounded-full" />
 
+          {/* Gradient Connector */}
+          <div className="hidden lg:block absolute left-[8%] right-[8%] top-8 h-[2px] bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-600 rounded-full" />
+
+          {/* Animated Dot */}
+          <motion.div
+            className="hidden lg:block absolute top-[24px] left-[8%] w-4 h-4 rounded-full bg-cyan-300 shadow-[0_0_25px_#38bdf8]"
+            animate={{
+              x: [
+                "0%",
+                "6500%"
+              ]
+            }}
+            transition={{
+              duration: 40,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+
+          <div className="grid lg:grid-cols-6 gap-8 relative z-10">
+            {steps.map((step, index) => {
+              const Icon = icons[index];
+
+              return (
+                <motion.div
                   key={step}
-
-                  className="relative text-center"
-
+                  whileHover={{
+                    y: -10,
+                    transition: { duration: .25 }
+                  }}
+                  className="text-center"
                 >
-
-                  <div className="w-16 h-16 rounded-full bg-primary mx-auto flex items-center justify-center text-xl font-bold">
-
-                    {index+1}
-
+                  <div
+                    className="
+                    w-20
+                    h-20
+                    rounded-full
+                    bg-white
+                    border-4
+                    border-primary
+                    mx-auto
+                    flex
+                    items-center
+                    justify-center
+                    shadow-lg
+                    shadow-blue-500/20
+                    transition-all
+                    duration-300
+                    group-hover:shadow-blue-500/40
+                  "
+                  >
+                    <Icon className="w-8 h-8 text-primary" />
                   </div>
 
-                  <h3 className="mt-6 font-semibold">
-
+                  <h3 className="mt-6 font-semibold text-lg">
                     {step}
-
                   </h3>
-
-                </div>
-
-              ))}     
-            </div>
-
+                </motion.div>
+              );
+            })}
           </div>
+        </div>
 
-        </section>
+      </div>
+
+    </section>
   );
 }

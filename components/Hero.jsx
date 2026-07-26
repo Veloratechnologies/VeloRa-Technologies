@@ -135,7 +135,7 @@ export default function Hero() {
           className="lg:col-span-7 flex flex-col  text-left"
         >
           {/* Subtle Tagline Badge */}
-          <motion.div variants={itemVariants} className="inline-flex items-center self-start md:bg-primary/10 bg-white/30  md:bg-transparent backdrop-blur-xl  border border-primary/20 text-primary font-semibold text-xs tracking-wider uppercase px-3  py-1.5 rounded-full mb-6">
+          <motion.div variants={itemVariants} className="inline-flex items-center self-start bg-white/30 md:bg-white/10 border border-primary/20 text-primary font-semibold text-xs tracking-wider uppercase px-3  py-1.5 rounded-full mb-6">
             Digital Transformation Partner
           </motion.div>
 
@@ -172,7 +172,7 @@ export default function Hero() {
 
             <a
             
-              onClick={(e) => router.push("/Our_Services")}
+              onClick={(e) => router.push("/Our-Services")}
               className="inline-flex items-center justify-center text-base font-semibold text-gray-800 bg-slate-400 hover:bg-slate-100 border border-border-medium px-7 py-3.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
             >
               Explore Services

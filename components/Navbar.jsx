@@ -37,8 +37,8 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '/#home' },
-    { name: 'Our Services', href: '/Our_Services' },
+    { name: 'Home', href: '/' },
+    { name: 'Our Services', href: '/Our-Services' },
     { name: 'Process', href: '/#process' },
     { name: 'Technologies', href: '/#technologies' },
     { name: 'Contact Us', href: '/contactUs' },
@@ -46,6 +46,13 @@ export default function Navbar() {
 
   const handleScrollTo = (e, href) => {
     e.preventDefault();
+
+    // Navigate to another page
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
+
     setIsMobileMenuOpen(false);
     const targetElement = document.querySelector(href);
     if (targetElement) {
@@ -68,7 +75,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-3 md:px-8 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" onClick={(e) => handleScrollTo(e, '#home')} className="flex items-center space-x-2 group">
+        <a onClick={(e) => handleScrollTo(e, '/')} className="flex items-center space-x-2 group">
 
           <img
             src="/icons/logo1.png"

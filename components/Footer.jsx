@@ -1,11 +1,20 @@
 import React from 'react';
+import { useRouter } from "next/router";
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
+  const router = useRouter();
   const currentYear = new Date().getFullYear();
 
   const handleScrollTo = (e, href) => {
     e.preventDefault();
+
+    // Navigate to another page
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
+
     const targetElement = document.querySelector(href);
     if (targetElement) {
       const offset = 80;
@@ -19,18 +28,18 @@ export default function Footer() {
   };
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/Our-Services' },
     { name: 'Process', href: '#process' },
     { name: 'Technologies', href: '#technologies' },
-    { name: 'Contact', href: '#contact' },
-  ];
+    { name: 'Contact', href: '/contactUs' },
+  ];  
 
   const servicesLinks = [
-    { name: 'Web Development', href: '#services' },
-    { name: 'AI Automation', href: '#services' },
-    { name: 'Custom ERP / CRM', href: '#services' },
-    { name: 'API Integrations', href: '#services' },
+    { name: 'Web Development', href: '/Our-Services' },
+    { name: 'AI Automation', href: '/Our-Services' },
+    { name: 'Custom ERP / CRM', href: '/Our-Services' },
+    { name: 'API Integrations', href: '/Our-Services' },
   ];
 
   return (
@@ -44,7 +53,7 @@ export default function Footer() {
           {/* Brand & Socials Column */}
           <div className="lg:col-span-5 space-y-5">
             <a 
-              href="#home" 
+              href="/" 
               onClick={(e) => handleScrollTo(e, '#home')} 
               className="flex items-center space-x-2 group w-fit"
             >
