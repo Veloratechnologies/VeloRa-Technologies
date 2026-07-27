@@ -98,15 +98,15 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation and Consultation CTA */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-6  ">
           {navLinks.map((link) =>
             link.href.startsWith("/") ? (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-medium transition-colors duration-300 ${isScrolled || !isHomePage
-                    ? "text-slate-800 hover:text-primary"
-                    : "text-white hover:text-primary"
+                className={`text-sm font-medium transition-colors duration-300 bg-white/50 rounded-2xl border-gray-700 px-2 py-1 ${isScrolled || !isHomePage
+                    ? "text-slate-800 hover:text-primary transition-transform duration-400 hover:scale-105 "
+                    : "text-slate-800 hover:text-primary transition-transform duration-400 hover:scale-105 "
                   }`}
               >
                 {link.name}
