@@ -29,17 +29,17 @@ export default function Footer() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/Our-Services' },
+    { name: 'Services', href: '/Our_Services' },
     { name: 'Process', href: '#process' },
     { name: 'Technologies', href: '#technologies' },
     { name: 'Contact', href: '/contactUs' },
   ];  
 
   const servicesLinks = [
-    { name: 'Web Development', href: '/Our-Services' },
-    { name: 'AI Automation', href: '/Our-Services' },
-    { name: 'Custom ERP / CRM', href: '/Our-Services' },
-    { name: 'API Integrations', href: '/Our-Services' },
+    { name: 'Web Development', href: '/Our_Services' },
+    { name: 'AI Automation', href: '/Our_Services' },
+    { name: 'Custom ERP / CRM', href: '/Our_Services' },
+    { name: 'API Integrations', href: '/Our_Services' },
   ];
 
   return (

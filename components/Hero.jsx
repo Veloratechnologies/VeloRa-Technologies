@@ -172,7 +172,7 @@ export default function Hero() {
 
             <a
             
-              onClick={(e) => router.push("/Our-Services")}
+              onClick={(e) => router.push("/Our_Services")}
               className="inline-flex items-center justify-center text-base font-semibold text-gray-800 bg-slate-400 hover:bg-slate-100 border border-border-medium px-7 py-3.5 rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5"
             >
               Explore Services

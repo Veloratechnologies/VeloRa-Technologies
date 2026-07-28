@@ -51,7 +51,6 @@ const services = [
     features: [
       "AI Chatbots",
       "AI Assistants",
-      "LLM Integration",
       "Knowledge Base",
       "RAG Systems",
       "Document Intelligence",
@@ -62,7 +61,6 @@ const services = [
       "Python",
       "LangChain",
       "Node.js",
-      "Vector DB",
     ],
   },
   {
@@ -81,8 +79,6 @@ const services = [
       "Notifications",
     ],
     technologies: [
-      "Zapier",
-      "Make",
       "Node.js",
       "APIs",
       "Webhooks",
@@ -107,7 +103,6 @@ const services = [
     technologies: [
       "Next.js",
       "Node.js",
-      "Express",
       "MongoDB",
       "Docker",
       "AWS",
@@ -146,7 +141,6 @@ const services = [
       "Connect your applications with secure, scalable API integrations across your entire business ecosystem.",
     features: [
       "REST APIs",
-      "Payment Gateway",
       "Third-party APIs",
       "Authentication",
       "Cloud Integration",
@@ -179,8 +173,6 @@ const services = [
     technologies: [
       "Google Search Console",
       "Google Analytics",
-      "Ahrefs",
-      "SEMrush",
       "Screaming Frog",
       "Schema Markup"
     ],
@@ -204,8 +196,6 @@ const services = [
       "Google Ads",
       "Meta Ads",
       "LinkedIn Ads",
-      "Mailchimp",
-      "HubSpot",
       "Google Analytics"
     ],
   },
@@ -440,19 +430,19 @@ export default function Services() {
 
                       </div>
 
-                      <button className="mt-10 flex items-center font-semibold text-primary">
+                      {/* <button className="mt-10 flex items-center font-semibold text-primary">
 
                         Learn More
 
                         <ChevronRight className="ml-2"/>
 
-                      </button>
+                      </button> */}
 
                     </div>
 
                     <div>
 
-                      <div className="rounded-lg overflow-hidden shadow-2xl">
+                      <div className="rounded-sm border-2  border-cyan-900 overflow-hidden shadow-2xl">
 
                         <Image
                           src={service.image}
@@ -545,7 +535,7 @@ export default function Services() {
 
                   transition={{duration:.5}}
 
-                  className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all"
+                  className="bg-[#e5e7eb] rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all"
 
                 >
 
@@ -577,284 +567,7 @@ export default function Services() {
 
         </section>
 
-        {/* REMAINING SERVICES */}
-
-        {/* <section className="py-24">
-
-          <div className="max-w-7xl mx-auto px-6">
-
-            <div className="space-y-36">
-
-              {services.slice(3).map((service,index)=>{
-
-                const Icon=service.icon;
-
-                return(
-
-                  <motion.div
-
-                    key={service.id}
-
-                    initial={{opacity:0,y:60}}
-
-                    whileInView={{opacity:1,y:0}}
-
-                    viewport={{once:true}}
-
-                    transition={{duration:.7}}
-
-                    className={`grid lg:grid-cols-2 gap-16 items-center ${
-                      index%2===0 ? "lg:[&>*:first-child]:order-2" : ""
-                    }`}
-
-                  >
-
-                    <div>
-
-                      <div className="rounded-3xl overflow-hidden shadow-2xl">
-
-                        <Image
-
-                          src={service.image}
-
-                          alt={service.title}
-
-                          width={700}
-
-                          height={500}
-
-                          className="w-full h-full object-cover hover:scale-105 duration-500"
-
-                        />
-
-                      </div>
-
-                    </div>
-
-                    <div>
-
-                      <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center">
-
-                        <Icon className="w-8 h-8 text-primary"/>
-
-                      </div>
-
-                      <h3 className="text-4xl font-bold mt-8">
-
-                        {service.title}
-
-                      </h3>
-
-                      <p className="mt-6 text-lg text-slate-600 leading-8">
-
-                        {service.description}
-
-                      </p>
-
-                      <div className="grid md:grid-cols-2 gap-4 mt-10">
-
-                        {service.features.map((feature)=>(
-
-                          <div
-
-                            key={feature}
-
-                            className="flex items-center gap-3"
-
-                          >
-
-                            <CheckCircle2 className="w-5 h-5 text-primary"/>
-
-                            {feature}
-
-                          </div>
-
-                        ))}
-
-                      </div>
-
-                      <div className="flex flex-wrap gap-3 mt-10">
-
-                        {service.technologies.map((tech)=>(
-
-                          <span
-
-                            key={tech}
-
-                            className="px-4 py-2 rounded-full bg-slate-100 text-sm"
-
-                          >
-
-                            {tech}
-
-                          </span>
-
-                        ))}
-
-                      </div>
-
-                      <button className="mt-10 text-primary font-semibold flex items-center">
-
-                        Learn More
-
-                        <ChevronRight className="ml-2"/>
-
-                      </button>
-
-                    </div>
-
-                  </motion.div>
-
-                )
-
-              })}
-
-            </div>
-
-          </div>
-
-        </section> */}
-
-        {/* DEVELOPMENT PROCESS */}
-
-        {/* <section className="py-24 bg-slate-900 text-white">
-
-          <div className="max-w-7xl mx-auto px-6">
-
-            <div className="text-center">
-
-              <span className="uppercase tracking-widest text-blue-400 font-semibold">
-
-                OUR PROCESS
-
-              </span>
-
-              <h2 className="text-5xl font-bold mt-5">
-
-                From Idea to Deployment
-
-              </h2>
-
-              <p className="mt-6 text-slate-300 max-w-2xl mx-auto">
-
-                Every successful digital product follows a structured development
-                process focused on quality, scalability and business outcomes.
-
-              </p>
-
-            </div>
-
-            <div className="grid lg:grid-cols-6 gap-8 mt-20">
-
-              {[
-                "Discovery",
-                "Planning",
-                "UI/UX Design",
-                "Development",
-                "Testing",
-                "Deployment"
-              ].map((step,index)=>(
-
-                <div
-
-                  key={step}
-
-                  className="relative text-center"
-
-                >
-
-                  <div className="w-16 h-16 rounded-full bg-primary mx-auto flex items-center justify-center text-xl font-bold">
-
-                    {index+1}
-
-                  </div>
-
-                  <h3 className="mt-6 font-semibold">
-
-                    {step}
-
-                  </h3>
-
-                </div>
-
-              ))}     
-            </div>
-
-          </div>
-
-        </section> */}
-
-        {/* INDUSTRIES */}
-
-        {/* <section className="py-24">
-
-          <div className="max-w-7xl mx-auto px-6">
-
-            <div className="text-center max-w-3xl mx-auto">
-
-              <span className="uppercase tracking-widest text-primary font-semibold">
-
-                INDUSTRIES WE SERVE
-
-              </span>
-
-              <h2 className="text-5xl font-bold mt-5">
-
-                Technology Solutions Across Industries
-
-              </h2>
-
-              <p className="mt-6 text-lg text-slate-600">
-
-                We build scalable digital products tailored to different
-                industries and business models.
-
-              </p>
-
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
-
-              {[
-                "Healthcare",
-                "Finance",
-                "Education",
-                "Real Estate",
-                "Retail",
-                "Manufacturing",
-                "Logistics",
-                "Startups"
-              ].map((industry)=>(
-
-                <motion.div
-
-                  key={industry}
-
-                  whileHover={{y:-8}}
-
-                  className="rounded-2xl border border-slate-200 p-8 text-center hover:border-blue-500 hover:shadow-xl transition-all"
-
-                >
-
-                  <h3 className="text-xl font-semibold">
-
-                    {industry}
-
-                  </h3>
-
-                </motion.div>
-
-              ))}
-
-            </div>
-
-          </div>
-
-        </section> */}
-
-        {/* FAQ */}
-
-       
+        
 
         {/* CTA */}
 
@@ -890,7 +603,7 @@ export default function Services() {
 
             </p>
 
-            <div className="mt-12 flex flex-wrap justify-center gap-5">
+            {/* <div className="mt-12 flex flex-wrap justify-center gap-5">
 
               <button className="bg-white text-blue-700 px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all">
 
@@ -904,7 +617,7 @@ export default function Services() {
 
               </button>
 
-            </div>
+            </div> */}
 
           </div>
 
