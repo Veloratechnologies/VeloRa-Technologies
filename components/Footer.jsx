@@ -44,42 +44,43 @@ export default function Footer() {
 
   return (
     /* Exact Image Gradient: Deep Royal Blue to Indigo/Purple */
-    <footer className="w-full bg-gradient-to-r from-[#075985] via-[#002B66] to-[#1D4ED8] text-white pt-14 pb-8 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <footer className="w-full bg-gradient-to-r from-[#075985] via-[#002B66] to-[#1D4ED8] text-white pt-8 lg:pt-14 pb-5 lg:pb-8 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/15">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 pb-6 lg:pb-12 border-b border-white/15">
           
           {/* Brand & Socials Column */}
-          <div className="lg:col-span-5 space-y-5">
+          <div className="lg:col-span-5 space-y-4 text-center lg:text-left">
             <a 
               href="/" 
               onClick={(e) => handleScrollTo(e, '#home')} 
-              className="flex items-center space-x-2 group w-fit"
+              className="flex items-center justify-start lg:justify-start gap-2"
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white text-[#1d4ed8] font-black text-xl shadow-md">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center bg-white text-[#1d4ed8] font-black text-xl shadow-md ">
                 V
               </div>
-              <span className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+              <br/>
+              <span className="w-8 h-8 lg:w-10 lg:h-10 font-bold tracking-tight text-white flex items-center gap-2">
                 VeloRa
-                <span className="text-xs font-semibold bg-white/20 text-white px-2.5 py-0.5 rounded-full backdrop-blur-sm">
+                <span className="text-[10px] lg:text-xs font-semibold bg-white/20 text-white px-2.5 py-0.5 rounded-full backdrop-blur-sm">
                   Technologies
                 </span>
               </span>
             </a>
 
-            <p className="text-sm text-white/80 leading-relaxed max-w-md">
+            <p className="text-xs lg:text-sm text-white/80 leading-6 max-w-xs lg:max-w-md mx-auto lg:mx-0">
               VeloRa Technologies is a premier enterprise solutions agency specializing in custom web applications, API integrations, and modern AI automation pipelines.
             </p>
 
             {/* Social Icons */}
-            <div className="flex items-center space-x-3 pt-1">
+            <div className="flex justify-center lg:justify-start gap-3 pt-2">
               <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26Z"/>
                 </svg>
               </a>
-              <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
+              <a href="#" className="w-8 h-8 lg:w-9 lg:h-9 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
@@ -93,7 +94,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation Column */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="hidden lg:block lg:col-span-2 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white/90">NAVIGATION</h4>
             <ul className="space-y-2.5">
               {navLinks.map((link) => (
@@ -111,7 +112,7 @@ export default function Footer() {
           </div>
 
           {/* Services Column */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="hidden lg:block lg:col-span-2 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white/90">SERVICES</h4>
             <ul className="space-y-2.5">
               {servicesLinks.map((link, idx) => (
@@ -129,7 +130,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info Column */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className="hidden lg:block lg:col-span-3 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white/90">CONTACT</h4>
             <ul className="space-y-3 text-sm text-white/80">
               <li className="flex items-start space-x-3">
@@ -152,9 +153,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-white/70 gap-4">
+        <div className="pt-4 flex flex-col items-center justify-center lg:flex-row lg:justify-between text-[11px] lg:text-xs text-white/70 gap-2">
           <p>© {currentYear} VeloRa Technologies. All rights reserved.</p>
-          <div className="flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>

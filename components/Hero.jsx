@@ -104,7 +104,7 @@ export default function Hero() {
         }}
       >
         <img
-          src="/images/TECHIMAGE.png"
+          src="/images/heroImage_homepage.png"
           className="w-full  h-[750px] md:h-full object-cover object-[45%_center]  md:object-center  "
           alt=""
         />
@@ -142,26 +142,26 @@ export default function Hero() {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl sm:text-5xl lg:text-[60px] font-bold tracking-tight text-slate-400 leading-[1.15] "
+            className="text-5xl sm:text-5xl lg:text-[60px] font-bold tracking-tight text-slate-900 leading-[1.15] "
           >
             Building Smart <span className="text-primary">Digital Solutions</span> for Modern Businesses
           </motion.h1>
 
           {/* Key Bullet Points */}
           <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4  md:mt-6  lg:mt-6 mt-12  mb-20 md:mb-8 max-w-xl">
-            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-400 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-800 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Enterprise Grade Security</span>
             </div>
-            <div className="flex items-center space-x-2 md:text-lg  text-m  text-slate-400 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg  text-m  text-slate-800 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>AI Automation Integration</span>
             </div>
-            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-400 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-800 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Scalable Architectures</span>
             </div>
-            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-400 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-800 font-medium">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Dedicated Support</span>
             </div>
