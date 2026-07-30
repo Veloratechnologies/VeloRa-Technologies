@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     const { name, email, company, service, message } = req.body;
 
       const result = await resend.emails.send({      
-        from: "onboarding@resend.dev",
+        from: "VeloRa Technologies <hello@veloratechnologies.in>",
         to: "akashwork0252@gmail.com",
          
       subject: `New Lead - ${service}`,

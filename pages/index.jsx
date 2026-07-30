@@ -82,7 +82,7 @@
             {/* <Services /> */}
 
             {/* Why Choose Us Section */}
-            <WhyChooseUs />
+            {/* <WhyChooseUs /> */}
 
             {/* Process Section */}
             {/* <Process /> */}

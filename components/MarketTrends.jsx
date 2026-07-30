@@ -131,7 +131,7 @@ export default function MarketTrends() {
             
             {/* 1. HEADING (Mobile: Order 1) */}
             <div className="order-1 lg:order-none w-full ">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.05] sm:mt-6">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.05] sm:mt-6">
                 Technology Trends <br />
                 <span className="bg-clip-text text-primary">
                   Driving Tomorrow
@@ -150,14 +150,14 @@ export default function MarketTrends() {
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="space-y-3 sm:space-y-4"
                 >
-                  <span className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase flex items-center gap-2">
+                  <span className="lg:pt-6 md:pt-6 lg:text-[14px] md:text-[14px] text-[8px] font-extrabold tracking-wider text-slate-400 uppercase flex items-center gap-2">
                     <ActiveIcon size={14} className="text-blue-600" />
                     {activeData.subtitle}
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                  <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight">
                     {activeData.title}
                   </h3>
-                  <p className="text-sm text-slate-500 font-normal leading-relaxed max-w-sm">
+                  <p className="text-xs md:text-lg text-slate-500 font-normal leading-relaxed max-w-sm">
                     {activeData.description}
                   </p>
                 </motion.div>

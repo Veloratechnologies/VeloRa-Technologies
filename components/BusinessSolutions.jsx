@@ -191,7 +191,7 @@ export default function BusinessSolutions() {
   {/* Left Side */}
   <div className="max-w-2xl">
     <div
-      className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-300 text-[15px] font-bold uppercase tracking-[0.1em]"
+      className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-300 text-[10px]  lg:text-[15px] md:text-[15px] font-bold uppercase tracking-[0.1em]"
       style={{ color: "#075985" }}
     >
       <span className="w-1 h-1 rounded-full bg-slate-900 animate-pulse" />

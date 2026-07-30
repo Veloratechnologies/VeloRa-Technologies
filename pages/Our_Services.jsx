@@ -2,6 +2,7 @@ import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Footer from "../components/Footer"
 import {
   ArrowRight,
   Globe,
@@ -232,7 +233,7 @@ export default function Services() {
 
         {/* HERO */}
 
-        <section className="relative min-h-screen py-32 overflow-hidden">
+        <section className="relative min-h-[85vh] md:min-h-screen py-20 md:py-32 overflow-hidden flex items-center">
 
           <motion.div
             className="absolute inset-0 z-0"
@@ -261,11 +262,11 @@ export default function Services() {
             />
           </motion.div>
 
-          <div className="absolute inset-0 bg-gradient-to-r from-white/75 via-white/25 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 md:via-white/25 to-transparent"></div>
 
-          <div className="absolute -top-48 right-0 w-[600px] h-[600px] rounded-full bg-blue-100 blur-3xl opacity-40"></div>
+          <div className="absolute -top-48 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] rounded-full bg-blue-100 blur-3xl opacity-40"></div>
 
-          <div className="relative max-w-7xl mx-auto px-6">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
 
             <motion.div
               initial="hidden"
@@ -274,13 +275,13 @@ export default function Services() {
               className="max-w-xl"
             >
 
-              <span className="inline-flex items-center self-start md:bg-primary/10 bg-white/30  md:bg-transparent backdrop-blur-xl  border border-primary text-primary font-semibold text-xs tracking-wider uppercase px-3  py-1.5 rounded-full md:mb-6 md:mt-16">
+              <span className="inline-flex items-center self-start bg-primary/10 md:bg-white/30 backdrop-blur-xl border border-primary text-primary font-semibold text-[10px] md:text-xs tracking-wider uppercase px-2.5 py-1 md:px-3 md:py-1.5 rounded-full mb-4 md:mb-6 mt-8 md:mt-16">
 
                 OUR SERVICES
 
               </span> 
 
-              <h1 className="text-5xl sm:text-5xl lg:text-[60px] font-bold tracking-tight leading-[1.15] text-slate-900">
+              <h1 className="text-3xl sm:text-5xl lg:text-[60px] font-bold tracking-tight leading-[1.2] md:leading-[1.15] text-slate-900">
 
                 Enterprise Technology
 
@@ -292,7 +293,7 @@ export default function Services() {
 
               </h1>
 
-              <p className="mt-8 text-m leading-9 text-slate-700">
+              <p className="mt-4 md:mt-8 text-sm md:text-base leading-6 md:leading-9 text-slate-700">
 
                 We help startups, SMEs and enterprises build intelligent
                 software products, automate operations, modernize legacy
@@ -300,24 +301,6 @@ export default function Services() {
                 cutting-edge technologies.
 
               </p>
-
-                {/* <div className="mt-10 flex gap-5">
-
-                  <button className="rounded-full bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold flex items-center">
-
-                    Book Consultation
-
-                    <ArrowRight className="ml-3 w-5 h-5"/>
-
-                  </button>
-
-                  <button className="rounded-full border border-slate-300 px-8 py-4 font-semibold hover:border-blue-500">
-
-                    Explore Services
-
-                  </button>
-
-                </div> */}
 
             </motion.div>
 
@@ -327,25 +310,25 @@ export default function Services() {
 
         {/* SERVICES */}
 
-        <section className="py-24">
+        <section className="py-12 md:py-24">
 
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
             <div className="text-center max-w-3xl mx-auto">
 
-              <span className="text-primary font-semibold tracking-widest uppercase">
+              <span className="text-primary font-semibold tracking-widest text-xs md:text-base uppercase">
 
                 WHAT WE OFFER
 
               </span>
 
-              <h2 className="text-5xl font-bold mt-5">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mt-2 md:mt-5">
 
                 Technology Services That Drive Business Growth
 
               </h2>
 
-              <p className="mt-6 text-slate-600 text-lg">
+              <p className="mt-3 md:mt-6 text-slate-600 text-sm md:text-lg">
 
                 From enterprise software engineering to AI-powered automation,
                 we deliver scalable digital solutions designed around your
@@ -355,7 +338,7 @@ export default function Services() {
 
             </div>
 
-            <div className="mt-24 space-y-36">
+            <div className="mt-10 md:mt-24 space-y-12 md:space-y-36">
 
               {services.map((service,index)=>{
 
@@ -375,54 +358,55 @@ export default function Services() {
 
                     viewport={{once:true}}
 
-                    className={`grid lg:grid-cols-2 gap-16 items-center ${
-                      index%2!==0 ? "lg:[&>*:first-child]:order-2" : ""
+                    className={`grid grid-cols-2 gap-3 sm:gap-6 lg:gap-16 items-center ${
+                      index % 2 !== 0 ? "[&>*:first-child]:order-2" : ""
                     }`}
 
                   >
 
+                    {/* CONTENT SIDE */}
                     <div>
 
-                      <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center">
+                      <div className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-lg sm:rounded-xl md:rounded-2xl bg-blue-100 flex items-center justify-center">
 
-                        <Icon className="w-8 h-8 text-primary"/>
+                        <Icon className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 text-primary"/>
 
                       </div>
 
-                      <h3 className="text-4xl font-bold mt-8">
+                      <h3 className="text-sm sm:text-2xl md:text-4xl font-bold mt-2 sm:mt-4 md:mt-8 text-slate-900 leading-snug">
 
                         {service.title}
 
                       </h3>
 
-                      <p className="mt-6 text-slate-600 text-lg leading-8">
+                      <p className="mt-1.5 sm:mt-3 md:mt-6 text-slate-600 text-[11px] sm:text-sm md:text-lg leading-tight sm:leading-relaxed md:leading-8 line-clamp-3 sm:line-clamp-none">
 
                         {service.description}
 
                       </p>
 
-                      <div className="grid grid-cols-2 gap-4 mt-10">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2.5 md:gap-4 mt-2.5 sm:mt-4 md:mt-10">
 
                         {service.features.map((item)=>(
                           <div
                             key={item}
-                            className="flex items-center gap-3"
+                            className="flex items-center gap-1.5 sm:gap-2 md:gap-3"
                           >
-                            <CheckCircle2 className="w-5 h-5 text-primary"/>
+                            <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-primary shrink-0"/>
 
-                            <span>{item}</span>
+                            <span className="text-[10px] sm:text-xs md:text-base text-slate-700 font-medium truncate">{item}</span>
 
                           </div>
                         ))}
 
                       </div>
 
-                      <div className="flex flex-wrap gap-3 mt-10">
+                      <div className="flex flex-wrap gap-1 sm:gap-1.5 md:gap-3 mt-2.5 sm:mt-4 md:mt-10">
 
                         {service.technologies.map((tech)=>(
                           <span
                             key={tech}
-                            className="px-4 py-2 rounded-full bg-slate-100 text-sm"
+                            className="px-1.5 py-0.5 sm:px-2.5 sm:py-1 md:px-4 md:py-2 rounded-full bg-slate-100 text-[9px] sm:text-[11px] md:text-sm text-slate-700"
                           >
                             {tech}
                           </span>
@@ -430,19 +414,12 @@ export default function Services() {
 
                       </div>
 
-                      {/* <button className="mt-10 flex items-center font-semibold text-primary">
-
-                        Learn More
-
-                        <ChevronRight className="ml-2"/>
-
-                      </button> */}
-
                     </div>
 
+                    {/* IMAGE SIDE */}
                     <div>
 
-                      <div className="rounded-sm border-2  border-cyan-900 overflow-hidden shadow-2xl">
+                      <div className="rounded-lg sm:rounded-xl border md:border-2 border-cyan-900 overflow-hidden shadow-md md:shadow-2xl aspect-[4/3] sm:aspect-auto">
 
                         <Image
                           src={service.image}
@@ -467,25 +444,25 @@ export default function Services() {
 
         {/* WHY VELORA */}
 
-        <section className="py-24 bg-slate-50">
+        <section className="py-12 md:py-24 bg-slate-50">
 
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
             <div className="text-center max-w-3xl mx-auto">
 
-              <span className="uppercase tracking-widest text-primary font-semibold">
+              <span className="uppercase tracking-widest text-primary font-semibold text-xs md:text-base">
 
                 WHY CHOOSE VELORA
 
               </span>
 
-              <h2 className="text-5xl font-bold mt-5">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mt-2 md:mt-5">
 
                 Engineering Solutions That Create Business Value
 
               </h2>
 
-              <p className="mt-6 text-lg text-slate-600">
+              <p className="mt-3 md:mt-6 text-sm md:text-lg text-slate-600">
 
                 We don't just develop software. We solve business challenges through
                 technology, automation and scalable digital products.
@@ -494,7 +471,8 @@ export default function Services() {
 
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
+            {/* Mobile Grid: 2 columns, Desktop Grid: 3 columns */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8 mt-10 md:mt-20">
 
               {[
                 {
@@ -535,27 +513,31 @@ export default function Services() {
 
                   transition={{duration:.5}}
 
-                  className="bg-[#e5e7eb] rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all"
+                  className="bg-[#e5e7eb] rounded-2xl md:rounded-3xl p-3.5 sm:p-5 md:p-8 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between"
 
                 >
 
-                  <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center">
+                  <div>
 
-                    <CheckCircle2 className="text-primary"/>
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-blue-100 flex items-center justify-center">
+
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7 text-primary"/>
+
+                    </div>
+
+                    <h3 className="text-sm sm:text-lg md:text-2xl font-semibold mt-3 md:mt-6 text-slate-900">
+
+                      {item.title}
+
+                    </h3>
+
+                    <p className="mt-1.5 md:mt-4 text-[11px] sm:text-xs md:text-base text-slate-600 leading-normal md:leading-8">
+
+                      {item.desc}
+
+                    </p>
 
                   </div>
-
-                  <h3 className="text-2xl font-semibold mt-6">
-
-                    {item.title}
-
-                  </h3>
-
-                  <p className="mt-4 text-slate-600 leading-8">
-
-                    {item.desc}
-
-                  </p>
 
                 </motion.div>
 
@@ -567,15 +549,13 @@ export default function Services() {
 
         </section>
 
-        
-
         {/* CTA */}
 
-        <section className="relative overflow-hidden py-28 bg-primary">
+        <section className="relative overflow-hidden py-16 md:py-28 bg-primary">
 
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-700 via-primary to-indigo-700 opacity-90"></div>
+          <div className="absolute inset-0 bg-slate-100/70 opacity-90"></div>
 
-          <div className="relative max-w-5xl mx-auto px-6 text-center text-white">
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center text-white">
 
             <motion.h2
 
@@ -587,7 +567,7 @@ export default function Services() {
 
               transition={{duration:.6}}
 
-              className="text-5xl lg:text-6xl font-bold leading-tight"
+              className="text-2xl sm:text-4xl lg:text-6xl font-bold leading-tight"
 
             >
 
@@ -595,7 +575,7 @@ export default function Services() {
 
             </motion.h2>
 
-            <p className="mt-8 text-xl text-blue-100 leading-9 max-w-3xl mx-auto">
+            <p className="mt-4 md:mt-8 text-xs sm:text-base md:text-xl text-blue-100 leading-normal md:leading-9 max-w-3xl mx-auto">
 
               Whether you're launching a startup, modernizing enterprise
               software or automating business operations, Velora Technologies
@@ -603,27 +583,13 @@ export default function Services() {
 
             </p>
 
-            {/* <div className="mt-12 flex flex-wrap justify-center gap-5">
-
-              <button className="bg-white text-blue-700 px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all">
-
-                Book Free Consultation
-
-              </button>
-
-              <button className="border border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-700 transition-all">
-
-                View Portfolio
-
-              </button>
-
-            </div> */}
-
           </div>
 
         </section>
 
       </main>
+
+      <Footer/>
 
     </>
 

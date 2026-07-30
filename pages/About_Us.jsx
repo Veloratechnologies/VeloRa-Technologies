@@ -281,9 +281,9 @@ export default function About_Us() {
         </div>
 
         {/* Floating Glassmorphism Badge */}
-        <div className="absolute -bottom-5 left-6 md:left-10 z-20 backdrop-blur-md bg-white/80 border border-white/90 shadow-[0_8px_30px_rgba(0,0,0,0.08)] rounded-2xl px-6 py-4 flex items-center gap-3">
+        <div className="absolute -bottom-5 left-20 md:left-24 z-20 backdrop-blur-md bg-white/80 border border-white/90 shadow-[0_8px_30px_rgba(0,0,0,0.08)] rounded-2xl px-6 py-4 flex items-center gap-3">
           <span className="text-gray-900 font-bold text-sm md:text-base">
-            12+ Years Experience
+            19+ Years Experience
           </span>
         </div>
       </div>
@@ -296,11 +296,11 @@ export default function About_Us() {
         </h2>
 
         {/* Body Paragraphs */}
-        <p className="text-gray-600 leading-relaxed text-base md:text-lg">
-          Anil Gupta is the Director of Velora Technologies with over 12 years of experience in building and delivering scalable software solutions, enterprise applications, AI-powered systems, cloud platforms, and digital transformation projects.
+        <p className="text-gray-600 leading-relaxed  md:text-lg text-xs lg:text-lg ">
+          Anil Gupta is the Director of Velora Technologies with over 19 years of experience in building and delivering scalable software solutions, enterprise applications, AI-powered systems, cloud platforms, and digital transformation projects.
         </p>
 
-        <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+        <p className="text-gray-600 leading-relaxed md:text-lg text-xs lg:text-lg">
           His leadership focuses on innovation, quality engineering, client success, and building high-performance technology solutions that help businesses scale efficiently. He believes in creating long-term value through modern technology, strategic thinking, and continuous innovation.
         </p>
 
@@ -312,8 +312,8 @@ export default function About_Us() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <span className="text-gray-700 font-medium text-base">
-              12+ Years of Industry Experience
+            <span className="text-gray-700 md:text-lg text-xs lg:text-lg font-medium">
+              19+ Years of Industry Experience
             </span>
           </div>
 
@@ -323,7 +323,7 @@ export default function About_Us() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <span className="text-gray-700 font-medium text-base">
+            <span className="text-gray-700 md:text-lg text-xs lg:text-lg font-medium">
               Expert in Scalable Software Architecture
             </span>
           </div>
@@ -334,7 +334,7 @@ export default function About_Us() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <span className="text-gray-700 font-medium text-base">
+            <span className="text-gray-700 md:text-lg text-xs lg:text-lg font-medium">
               AI & Digital Transformation Leader
             </span>
           </div>
@@ -345,7 +345,7 @@ export default function About_Us() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <span className="text-gray-700 font-medium text-base">
+            <span className="text-gray-700 md:text-lg text-xs lg:text-lg font-medium">
               Client-First Innovation Approach
             </span>
           </div>
@@ -358,70 +358,61 @@ export default function About_Us() {
 
                 {/* ================= MISSION & VISION ================= */}
                 
-<section className="relative overflow-hidden py-16 lg:py-20">
+<section className="relative overflow-hidden py-8 sm:py-12 lg:py-20">
 
   {/* Background */}
-  <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-100 " />
+  <div className="absolute inset-0 bg-gradient-to-b" />
 
-  <div className="relative mx-auto max-w-5xl px-5">
+  <div className="relative mx-auto max-w-5xl px-3 sm:px-5">
 
     {/* Heading */}
-
     <div className="mx-auto max-w-2xl text-center">
 
-      <span className="inline-flex rounded-full bg-sky-100 px-4 py-2 text-sm font-semibold text-sky-700 dark:bg-sky-900/30 dark:text-sky-400">
+      <span className="inline-flex rounded-full px-2.5 py-0.5 md:py-2 lg:py-2 text-[10px] sm:text-xs font-semibold text-sky-700 dark:bg-sky-900/30 ">
         Mission & Vision
       </span>
 
-      <h2 className="mt-5 text-3xl font-bold text-slate-900 dark:text-white">
+      <h2 className="mt-2 sm:mt-5 text-lg sm:text-2xl lg:text-3xl font-bold text-slate-900">
         Driven by Purpose.
         <span className="text-sky-600"> Focused on Innovation.</span>
       </h2>
 
-      <p className="mt-4 text-slate-600 dark:text-slate-400">
+      <p className="mt-1.5 sm:mt-4 text-xs sm:text-sm lg:text-base text-white dark:text-slate-400">
         Every solution we build is backed by a clear mission and a long-term
         vision to create measurable business impact.
       </p>
 
     </div>
 
-    {/* Cards */}
+    {/* Cards Grid - 2 Columns on Mobile */}
+    <div className="mt-6 lg:mt-12 grid grid-cols-2 gap-2.5 sm:gap-4 lg:gap-6">
 
-    <div className="mt-12 grid gap-6 lg:grid-cols-2">
-
-      {/* Mission */}
-
+      {/* Mission Card */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: .5 }}
         whileHover={{ y: -6 }}
-        className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-md transition-all duration-300 hover:border-sky-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+        className="group relative overflow-hidden rounded-xl lg:rounded-2xl border-2   p-3 sm:p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:scale-110 bg-[#9BBCCE]  border-slate-600  hover:border-black flex flex-col justify-between"
       >
+        <div>
+          {/* Icon */}
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg lg:rounded-xl bg-sky-100 text-blackshrink-0">
+            <Target className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+          </div>
 
-        {/* Accent */}
+          <h3 className="mt-2.5 lg:mt-5 text-sm sm:text-lg lg:text-2xl font-bold leading-tight">
+            Our Mission
+          </h3>
 
-        <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-sky-500 to-cyan-500" />
-
-        {/* Icon */}
-
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-100 text-sky-600 dark:bg-sky-900/30">
-
-          <Target size={24} />
-
+          <p className="mt-1.5 lg:mt-4 text-[10px] sm:text-xs lg:text-[15px] leading-tight sm:leading-relaxed lg:leading-7 ">
+            Deliver scalable digital solutions that help businesses grow,
+            streamline operations and create exceptional customer experiences.
+          </p>
         </div>
 
-        <h3 className="mt-5 text-2xl font-bold text-slate-900 dark:text-white">
-          Our Mission
-        </h3>
-
-        <p className="mt-4 text-[15px] leading-7 text-slate-600 dark:text-slate-400">
-          Deliver scalable digital solutions that help businesses grow,
-          streamline operations and create exceptional customer experiences.
-        </p>
-
-        <div className="mt-6 space-y-3">
+        <div className="mt-3 lg:mt-6 space-y-1.5 sm:space-y-2 lg:space-y-3">
 
           {[
             "Quality-first engineering",
@@ -430,15 +421,13 @@ export default function About_Us() {
             "Business-driven innovation",
           ].map((item) => (
 
-            <div key={item} className="flex items-center gap-3">
+            <div key={item} className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
 
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 dark:bg-sky-900/30">
-
-                <Check size={14} className="text-sky-600" />
-
+              <div className="flex h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-6 lg:w-6 shrink-0 items-center justify-center rounded-full bg-sky-100 dark:bg-sky-900/30">
+                <Check className="w-2.5 h-2.5 lg:w-3.5 lg:h-3.5 text-sky-600" />
               </div>
 
-              <span className="text-sm text-slate-700 dark:text-slate-300">
+              <span className="text-[9px] sm:text-xs lg:text-sm font-medium text-slate-800 dark:text-slate-200 leading-tight">
                 {item}
               </span>
 
@@ -450,35 +439,31 @@ export default function About_Us() {
 
       </motion.div>
 
-      {/* Vision */}
-
+      {/* Vision Card */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: .5, delay: .1 }}
         whileHover={{ y: -6 }}
-        className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-md transition-all duration-300 hover:border-sky-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+        className="group relative overflow-hidden  lg:rounded-2xl  lg:p-6 shadow-md   rounded-md bg-slate-50 border-2 border-blue-200 flex items-center  p-1.5 sm:p-2.5  group-hover:border-blue-600 group-hover:bg-blue-50/60 group-hover:shadow-md transition-all duration-300 shrink-0 justify-between"
       >
+        <div>
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg lg:rounded-xl bg-white shrink-0">
+            <Globe className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+          </div>
 
-        <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-cyan-500 to-sky-600" />
+          <h3 className="mt-2.5 lg:mt-5 text-sm sm:text-lg lg:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+            Our Vision
+          </h3>
 
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600 dark:bg-cyan-900/30">
-
-          <Globe size={24} />
-
+          <p className="mt-1.5 lg:mt-4 text-[10px] sm:text-xs lg:text-[15px] leading-tight sm:leading-relaxed lg:leading-7 text-slate-700 dark:text-slate-300">
+            Become a trusted global technology partner recognised for innovation,
+            engineering excellence and sustainable digital transformation.
+          </p>
         </div>
 
-        <h3 className="mt-5 text-2xl font-bold text-slate-900 dark:text-white">
-          Our Vision
-        </h3>
-
-        <p className="mt-4 text-[15px] leading-7 text-slate-600 dark:text-slate-400">
-          Become a trusted global technology partner recognised for innovation,
-          engineering excellence and sustainable digital transformation.
-        </p>
-
-        <div className="mt-6 space-y-3">
+        <div className="mt-3 lg:mt-6 space-y-1.5 sm:space-y-2 lg:space-y-3">
 
           {[
             "Global technology leadership",
@@ -487,15 +472,13 @@ export default function About_Us() {
             "Continuous improvement",
           ].map((item) => (
 
-            <div key={item} className="flex items-center gap-3">
+            <div key={item} className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
 
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/30">
-
-                <Check size={14} className="text-cyan-600" />
-
+              <div className="flex h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-6 lg:w-6 shrink-0 items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/30">
+                <Check className="w-2.5 h-2.5 lg:w-3.5 lg:h-3.5 text-cyan-600" />
               </div>
 
-              <span className="text-sm text-slate-700 dark:text-slate-300">
+              <span className="text-[9px] sm:text-xs lg:text-sm font-medium text-slate-800 dark:text-slate-200 leading-tight">
                 {item}
               </span>
 
@@ -580,16 +563,15 @@ export default function About_Us() {
                 lg:ml-0 md:ml-0 ml-12
                 rounded-lg
                 border
-                border-slate-200
-                bg-white
+                // border-slate-200 bg-[#002B66]
+                
                 p-5
                 shadow-lg
 
                 sm:p-6
                 md:p-8
 
-                dark:border-slate-800
-                dark:bg-slate-900
+              
               "
             >
 
@@ -628,12 +610,12 @@ export default function About_Us() {
 
                 {/* ================= VALUES ================= */}
 
-<section className="relative overflow-hidden py-10 lg:py-16">
-  {/* Background */}
+{/* <section className="relative overflow-hidden py-10 lg:py-16">
+  
   <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-100  " />
 
   <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    {/* Heading */}
+   
 
     <div className="mx-auto max-w-2xl text-center">
       <span className="inline-flex rounded-full bg-sky-100 px-4 py-1 lg:text-lg text-sm font-semibold text-primary ">
@@ -646,7 +628,6 @@ export default function About_Us() {
       </p>
     </div>
 
-    {/* Cards */}
 
     <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5 pb-28">
       {values.map((value, index) => (
@@ -665,11 +646,11 @@ export default function About_Us() {
           }}
           className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-md transition-all duration-300 hover:border-sky-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
         >
-          {/* Glow */}
+      
 
           <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-sky-500/10 blur-2xl transition-all duration-500 group-hover:scale-150" />
 
-          {/* Icon */}
+    
 
           <motion.div
             whileHover={{
@@ -681,19 +662,17 @@ export default function About_Us() {
             <value.icon className="h-5 w-5" />
           </motion.div>
 
-          {/* Title */}
+        
 
           <h3 className="mt-4 text-base font-bold text-slate-900 dark:text-white">
             {value.title}
           </h3>
 
-          {/* Description */}
 
           <p className="mt-2 line-clamp-4 text-xs leading-5 text-slate-600 dark:text-slate-400">
             {value.description}
           </p>
 
-          {/* Bottom Accent */}
 
           <div className="mt-4 h-1 w-8 rounded-full bg-gradient-to-r from-sky-500 to-cyan-500 transition-all duration-300 group-hover:w-14" />
         </motion.div>
@@ -701,7 +680,7 @@ export default function About_Us() {
     </div>
   </div>
 </section>
-               
+                */}
             </main>
 
              <Footer />

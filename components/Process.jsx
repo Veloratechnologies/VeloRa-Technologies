@@ -63,7 +63,7 @@ export default function Process() {
 
   return (
 
-    <section className="py-24 bg-slate-9100 text-white">
+    <section className="py-24 bg-slate-100 text-white">
 
       <div className="max-w-7xl mx-auto px-6">
 

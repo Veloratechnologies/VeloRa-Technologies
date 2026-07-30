@@ -135,33 +135,33 @@ export default function Hero() {
           className="lg:col-span-7 flex flex-col  text-left"
         >
           {/* Subtle Tagline Badge */}
-          <motion.div variants={itemVariants} className="inline-flex items-center self-start bg-white/30 md:bg-white/10 border border-primary/20 text-primary font-semibold text-xs tracking-wider uppercase px-3  py-1.5 rounded-full mb-6">
+          <motion.div variants={itemVariants} className="inline-flex items-center self-start bg-white/30 md:bg-white/10 border border-primary/20 text-primary font-semibold text-xs tracking-wider uppercase px-3  py-1.5 rounded-full lg:mb-6 md:mb-6 mb-2">
             Digital Transformation Partner
           </motion.div>
 
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl sm:text-5xl lg:text-[60px] font-bold tracking-tight text-slate-900 leading-[1.15] "
+            className="text-4xl sm:text-6xl lg:text-[60px] font-bold tracking-tight text-slate-900 leading-[1.15] lg:max-w-none max-w-[250px]"
           >
             Building Smart <span className="text-primary">Digital Solutions</span> for Modern Businesses
           </motion.h1>
 
           {/* Key Bullet Points */}
           <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4  md:mt-6  lg:mt-6 mt-12  mb-20 md:mb-8 max-w-xl">
-            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-800 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg text-sm text-slate-800 font-medium  max-w-[190px] lg:max-w-none md:max-w-none">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Enterprise Grade Security</span>
             </div>
-            <div className="flex items-center space-x-2 md:text-lg  text-m  text-slate-800 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg  text-sm  text-slate-800 font-medium max-w-[190px] lg:max-w-none md:max-w-none">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>AI Automation Integration</span>
             </div>
-            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-800 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg text-sm text-slate-800 font-medium max-w-[10px] lg:max-w-none md:max-w-none">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Scalable Architectures</span>
             </div>
-            <div className="flex items-center space-x-2 md:text-lg text-m text-slate-800 font-medium">
+            <div className="flex items-center space-x-2 md:text-lg text-sm text-slate-800 font-medium max-w-[190px] lg:max-w-none md:max-w-none">
               <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
               <span>Dedicated Support</span>
             </div>

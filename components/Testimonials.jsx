@@ -32,73 +32,78 @@ const testimonialsData = [
   },
 ];
 
-// Stagger Animation Variants (Ek ke baad ek aane ke liye)
+// Stagger Animation Variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.25, // Har card 0.25s ke gap me aayega
+      staggerChildren: 0.15,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 35, scale: 0.95 },
+  hidden: { opacity: 0, y: 25, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.5, ease: 'easeOut' },
+    transition: { duration: 0.4, ease: 'easeOut' },
   },
 };
 
 export default function TestimonialSection() {
   const [startIndex, setStartIndex] = useState(0);
 
-  // Carousel Next/Prev (1 step sliding)
+  // Carousel Next/Prev (Cycles seamlessly across all testimonials)
   const nextSlide = () => {
-    setStartIndex((prev) => (prev + 1) % (testimonialsData.length - 2));
+    setStartIndex((prev) => (prev + 1) % testimonialsData.length);
   };
 
   const prevSlide = () => {
-    setStartIndex((prev) => (prev === 0 ? testimonialsData.length - 3 : prev - 1));
+    setStartIndex((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
   };
 
-  const visibleTestimonials = testimonialsData.slice(startIndex, startIndex + 3);
+  // Get 3 items with wrap-around so desktop always has 3 cards
+  const visibleTestimonials = [
+    testimonialsData[startIndex],
+    testimonialsData[(startIndex + 1) % testimonialsData.length],
+    testimonialsData[(startIndex + 2) % testimonialsData.length],
+  ];
 
   return (
-    <section className="min-h-screen bg-slate-950 flex items-center justify-center p-4 md:p-10">
-      {/* Main Dark Blue Container - Size Bada Kiya Hai */}
+    <section className="min-h-screen bg-slate-950 flex items-center justify-center p-3 sm:p-6 md:p-10">
+      {/* Main Dark Blue Container */}
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative w-full max-w-7xl bg-[#002B66] rounded-2xl p-8 md:p-14 shadow-2xl overflow-hidden text-white"
+        className="relative w-full max-w-7xl bg-[#002B66] rounded-xl md:rounded-2xl p-5 sm:p-8 md:p-14 shadow-2xl overflow-hidden text-white"
       >
         {/* Top-Left Large Quote Icon */}
         <motion.div
-          initial={{ y: -30, opacity: 0 }}
+          initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="absolute top-3 left-10 w-20 h-20 md:w-24 md:h-24 bg-[#3B82F6] rounded-full flex items-center justify-center shadow-lg z-10"
+          className="absolute top-2 left-4 sm:left-6 md:top-3 md:left-10 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-[#3B82F6] rounded-full flex items-center justify-center shadow-lg z-10"
         >
-          <Quote className="w-12 h-12 text-white fill-white rotate-180" />
+          <Quote className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white fill-white rotate-180" />
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start pt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-start pt-8 md:pt-12">
           
           {/* LEFT SIDE: Title & Subtitle */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-4 space-y-5 pr-2"
+            className="lg:col-span-4 space-y-3 md:space-y-5 pr-0 md:pr-2"
           >
-            <h2 className="pt-8 text-3xl md:text-4xl font-bold leading-tight">
-              Real Projects. <br /> Real Projects.
+            <h2 className="pt-4 md:pt-8 text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+              Real Projects. <br className="hidden sm:block" /> Real Projects.
             </h2>
-            <p className="text-blue-100/75 text-sm md:text-base leading-relaxed">
+            <p className="text-blue-100/80 text-xs sm:text-sm md:text-base leading-relaxed">
               From business websites to AI-powered automation, we build digital solutions that improve efficiency, generate quality leads, and help businesses scale with confidence.
             </p>
 
@@ -106,17 +111,17 @@ export default function TestimonialSection() {
             <motion.a
               whileHover={{ x: 6 }}
               href="#"
-              className="inline-flex items-center gap-2 text-base font-semibold text-white hover:text-blue-200 transition-colors pt-2"
+              className="inline-flex items-center gap-2 text-sm md:text-base font-semibold text-white hover:text-blue-200 transition-colors pt-1 md:pt-2"
             >
               Connect now
-              <span className="w-6 h-6 bg-[#C53030] rounded-full flex items-center justify-center text-[10px]">
-                <Play className="w-3 h-3 fill-white text-white ml-0.5" />
+              <span className="w-5 h-5 md:w-6 md:h-6 bg-[#C53030] rounded-full flex items-center justify-center text-[10px]">
+                <Play className="w-2.5 h-2.5 md:w-3 md:h-3 fill-white text-white ml-0.5" />
               </span>
             </motion.a>
           </motion.div>
 
-          {/* RIGHT SIDE: 3 Cards Carousel */}
-          <div className="lg:col-span-8 flex flex-col justify-between">
+          {/* RIGHT SIDE: Cards Carousel */}
+          <div className="lg:col-span-8 flex flex-col justify-between mt-2 md:mt-0">
             
             {/* Staggered Container for Cards */}
             <AnimatePresence mode="wait">
@@ -125,32 +130,35 @@ export default function TestimonialSection() {
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="grid grid-cols-1 md:grid-cols-3 gap-5"
+                className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5"
               >
-                {visibleTestimonials.map((item) => (
+                {visibleTestimonials.map((item, itemIdx) => (
                   <motion.div
                     key={item.id}
                     variants={cardVariants}
-                    whileHover={{ y: -10 }}
-                    className="bg-white text-slate-800 rounded-xl overflow-hidden shadow-xl flex flex-col justify-between min-h-[320px] p-7 border border-slate-100 group transition-shadow duration-300 hover:shadow-2xl"
+                    whileHover={{ y: -6 }}
+                    /* Mobile: Show only 1st card. Desktop: Show all 3 cards */
+                    className={`bg-white text-slate-800 rounded-xl overflow-hidden shadow-xl flex flex-col justify-between min-h-[220px] md:min-h-[320px] p-5 md:p-7 border border-slate-100 group transition-shadow duration-300 hover:shadow-2xl ${
+                      itemIdx > 0 ? 'hidden md:flex' : 'flex'
+                    }`}
                   >
                     {/* Top Portion: Icon + Text */}
                     <div>
                       {/* Mini Quote Icon */}
-                      <div className="w-10 h-10 bg-[#3B82F6] rounded-full flex items-center justify-center shadow-md mb-5 group-hover:scale-110 transition-transform">
-                        <Quote className="w-5 h-5 text-white fill-white rotate-180" />
+                      <div className="w-8 h-8 md:w-10 md:h-10 bg-[#3B82F6] rounded-full flex items-center justify-center shadow-md mb-3 md:mb-5 group-hover:scale-110 transition-transform">
+                        <Quote className="w-4 h-4 md:w-5 md:h-5 text-white fill-white rotate-180" />
                       </div>
 
                       {/* Review Text */}
-                      <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                      <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-normal">
                         "{item.text}"
                       </p>
                     </div>
 
                     {/* Bottom Portion: Author Info */}
-                    <div className="pt-6 border-t border-slate-100 mt-4">
-                      <h4 className="font-bold text-base text-slate-900">{item.name}</h4>
-                      <p className="text-xs text-blue-600 font-medium italic mt-0.5">{item.company}</p>
+                    <div className="pt-4 md:pt-6 border-t border-slate-100 mt-4">
+                      <h4 className="font-bold text-sm md:text-base text-slate-900">{item.name}</h4>
+                      <p className="text-[11px] md:text-xs text-blue-600 font-medium italic mt-0.5">{item.company}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -158,7 +166,7 @@ export default function TestimonialSection() {
             </AnimatePresence>
 
             {/* Controls Bar (Bottom Arrows & Dots) */}
-            <div className="flex items-center justify-between mt-10 pt-2">
+            <div className="flex items-center justify-between mt-6 md:mt-10 pt-2">
               
               {/* Navigation Arrows */}
               <div className="flex gap-2">
@@ -166,30 +174,30 @@ export default function TestimonialSection() {
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ backgroundColor: '#2563EB' }}
                   onClick={prevSlide}
-                  className="w-10 h-10 bg-[#3B82F6] rounded-lg flex items-center justify-center text-white transition-colors shadow-md"
+                  className="w-8 h-8 md:w-10 md:h-10 bg-[#3B82F6] rounded-lg flex items-center justify-center text-white transition-colors shadow-md"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
                 </motion.button>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ backgroundColor: '#2563EB' }}
                   onClick={nextSlide}
-                  className="w-10 h-10 bg-[#3B82F6] rounded-lg flex items-center justify-center text-white transition-colors shadow-md"
+                  className="w-8 h-8 md:w-10 md:h-10 bg-[#3B82F6] rounded-lg flex items-center justify-center text-white transition-colors shadow-md"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
                 </motion.button>
               </div>
 
-              {/* Pagination Dots */}
-              <div className="flex items-center gap-2">
-                {[0, 1].map((dotIndex) => (
+              {/* Pagination Dots (4 Dots) */}
+              <div className="flex items-center gap-1.5 md:gap-2">
+                {testimonialsData.map((_, dotIndex) => (
                   <button
                     key={dotIndex}
                     onClick={() => setStartIndex(dotIndex)}
-                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                    className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${
                       startIndex === dotIndex
-                        ? 'w-6 bg-white'
-                        : 'w-2.5 bg-blue-300/40 hover:bg-white/60'
+                        ? 'w-5 md:w-6 bg-white'
+                        : 'w-2 md:w-2.5 bg-blue-300/40 hover:bg-white/60'
                     }`}
                   />
                 ))}
