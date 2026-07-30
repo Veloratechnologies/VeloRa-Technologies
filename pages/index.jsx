@@ -23,8 +23,8 @@
       <>
         <Head>
           <link rel="icon" type="image/png" href="/icons/favicon.png" />
-          <title>{`${theme.companyName} | Enterprise Web Dev & AI Automation`}</title>
-          <meta name="description" content="We engineer premium custom web applications, robust CRM/ERP integrations, and advanced business process automation using AI agents for international companies." />
+          <title>{`${theme.companyName} | AI Automation & Web Development Company | Custom Software Solutions | Velora Technologies`}</title>
+          <meta name="description" content="Velora Technologies is an AI automation and web development company specializing in custom software, CRM development, business process automation, enterprise web applications, API integrations, and scalable digital solutions for modern businesses." />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="keywords" content="Web Development, AI Automation, Business Automation, CRM Development, ERP Development, API Integrations, Digital Transformation" />
           <meta name="author" content={theme.companyName} />
