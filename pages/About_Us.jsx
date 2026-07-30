@@ -394,25 +394,25 @@ export default function About_Us() {
         viewport={{ once: true }}
         transition={{ duration: .5 }}
         whileHover={{ y: -6 }}
-        className="group relative overflow-hidden rounded-xl lg:rounded-2xl border-2   p-3 sm:p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:scale-110 bg-[#9BBCCE]  border-slate-600  hover:border-black flex flex-col justify-between"
+        className="group relative overflow-hidden rounded-xl lg:rounded-2xl border-2   p-3 sm:p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:scale-110 bg-[#e5e7eb]    flex flex-col justify-between"
       >
         <div>
           {/* Icon */}
-          <div className="flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg lg:rounded-xl bg-sky-100 text-blackshrink-0">
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg lg:rounded-xl bg-blue-100 text-primary">
             <Target className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
           </div>
 
-          <h3 className="mt-2.5 lg:mt-5 text-sm sm:text-lg lg:text-2xl font-bold leading-tight">
+          <h3 className="mt-2.5 lg:mt-5 text-sm sm:text-lg lg:text-2xl font-bold leading-tight text-slate-900">
             Our Mission
           </h3>
 
-          <p className="mt-1.5 lg:mt-4 text-[10px] sm:text-xs lg:text-[15px] leading-tight sm:leading-relaxed lg:leading-7 ">
+          <p className="mt-1.5 lg:mt-4 text-[10px] sm:text-xs lg:text-[15px] leading-tight sm:leading-relaxed lg:leading-7 text-slate-700 ">
             Deliver scalable digital solutions that help businesses grow,
             streamline operations and create exceptional customer experiences.
           </p>
         </div>
 
-        <div className="mt-3 lg:mt-6 space-y-1.5 sm:space-y-2 lg:space-y-3">
+        <div className="mt-3 lg:mt-6 space-y-1.5 sm:space-y-2 lg:space-y-3 text-slate-900">
 
           {[
             "Quality-first engineering",
@@ -427,7 +427,7 @@ export default function About_Us() {
                 <Check className="w-2.5 h-2.5 lg:w-3.5 lg:h-3.5 text-sky-600" />
               </div>
 
-              <span className="text-[9px] sm:text-xs lg:text-sm font-medium text-slate-800 dark:text-slate-200 leading-tight">
+              <span className="text-[9px] sm:text-xs lg:text-sm font-medium text-slate-800  leading-tight">
                 {item}
               </span>
 
@@ -446,24 +446,24 @@ export default function About_Us() {
         viewport={{ once: true }}
         transition={{ duration: .5, delay: .1 }}
         whileHover={{ y: -6 }}
-        className="group relative overflow-hidden  lg:rounded-2xl  lg:p-6 shadow-md   rounded-md bg-slate-50 border-2 border-blue-200 flex items-center  p-1.5 sm:p-2.5  group-hover:border-blue-600 group-hover:bg-blue-50/60 group-hover:shadow-md transition-all duration-300 shrink-0 justify-between"
+        className="group relative overflow-hidden rounded-xl lg:rounded-2xl border-2   p-3 sm:p-4 lg:p-6 transition-all duration-300 hover:shadow-xl hover:scale-110 bg-[#e5e7eb]    flex flex-col justify-between"
       >
         <div>
-          <div className="flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg lg:rounded-xl bg-white shrink-0">
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg lg:rounded-xl bg-blue-200 shrink-0 text-primary">
             <Globe className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
           </div>
 
-          <h3 className="mt-2.5 lg:mt-5 text-sm sm:text-lg lg:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+          <h3 className="mt-2.5 lg:mt-5 text-sm sm:text-lg lg:text-2xl font-bold text-slate-900 leading-tight">
             Our Vision
           </h3>
 
-          <p className="mt-1.5 lg:mt-4 text-[10px] sm:text-xs lg:text-[15px] leading-tight sm:leading-relaxed lg:leading-7 text-slate-700 dark:text-slate-300">
+          <p className="mt-1.5 lg:mt-4 text-[10px] sm:text-xs lg:text-[15px] leading-tight sm:leading-relaxed lg:leading-7 text-slate-700">
             Become a trusted global technology partner recognised for innovation,
             engineering excellence and sustainable digital transformation.
           </p>
         </div>
 
-        <div className="mt-3 lg:mt-6 space-y-1.5 sm:space-y-2 lg:space-y-3">
+        <div className="mt-3 lg:mt-6 space-y-1.5 sm:space-y-2 lg:space-y-3 ">
 
           {[
             "Global technology leadership",
@@ -472,13 +472,13 @@ export default function About_Us() {
             "Continuous improvement",
           ].map((item) => (
 
-            <div key={item} className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
+            <div key={item} className="flex items-center gap-1.5 sm:gap-2 lg:gap-3 text-slate-700 ">
 
               <div className="flex h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-6 lg:w-6 shrink-0 items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/30">
                 <Check className="w-2.5 h-2.5 lg:w-3.5 lg:h-3.5 text-cyan-600" />
               </div>
 
-              <span className="text-[9px] sm:text-xs lg:text-sm font-medium text-slate-800 dark:text-slate-200 leading-tight">
+              <span className="text-[9px] sm:text-xs lg:text-sm font-medium text-slate-800  leading-tight">
                 {item}
               </span>
 
