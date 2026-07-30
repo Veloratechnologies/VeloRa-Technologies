@@ -17,6 +17,11 @@ export default function Navbar() {
     { name: 'Contact Us', href: '/contactUs' }
   ];
 
+  // Function to check if a link is active
+  const isActive = (href) => {
+    return router.pathname === href;
+  };
+
   const handleScrollTo = (e, href) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
@@ -48,7 +53,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/50 backdrop-blur-md border-b border-border-light shadow-navbar py-3">
+    // Mobile ke liye padding py-3 se py-2 ki gayi hai (Compact mobile navbar)
+    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/50 backdrop-blur-md border-b border-border-light shadow-navbar py-2 md:py-3">
       <div className="max-w-7xl mx-auto px-3 md:px-8 flex items-center justify-between">
         
         {/* Logo */}
@@ -56,48 +62,66 @@ export default function Navbar() {
           <img
             src="/icons/logo1.png"
             alt="VeloRa Technologies icon"
-            className="w-12 h-8 md:h-12 lg:h-12 object-contain transition-transform duration-300 group-hover:scale-105"
+            // Mobile par height h-8 se h-7 ki gayi hai
+            className="w-auto h-7 md:h-12 object-contain transition-transform duration-300 group-hover:scale-105"
           />
           <span className="md:text-3xl lg:text-3xl text-xl font-bold tracking-tight flex items-center text-slate-900 transition-colors duration-300">
             {theme.logo.text}
-            <span className="font-medium ml-1 md:text-lg lg:text-lg text-sm rounded-full transition-all duration-300 bg-primary/10 text-primary px-2 py-0.5">
+            <span className="font-medium ml-1 md:text-lg lg:text-lg text-xs rounded-full transition-all duration-300 bg-primary/10 text-primary px-2 py-0.5">
               {theme.logo.subtext}
             </span>
           </span>
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) =>
-            link.href.startsWith("/") && !link.href.includes("#") ? (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-slate-800 hover:text-primary transition-all duration-300 px-2 py-1 hover:scale-105"
-              >
-                {link.name}
-              </Link>
-            ) : (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleScrollTo(e, link.href)}
-                className="text-sm font-medium text-slate-800 hover:text-primary transition-all duration-300 px-2 py-1 hover:scale-105 cursor-pointer"
-              >
-                {link.name}
-              </a>
-            )
-          )}
+        <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            const baseClasses = "relative text-sm font-medium transition-all duration-300 px-3 py-1.5 hover:scale-105 cursor-pointer rounded-full";
+            const activeClasses = active 
+              ? "text-primary bg-primary/5" 
+              : "text-slate-800 hover:text-primary";
+
+            return (
+              <div key={link.name} className="relative group">
+                {link.href.startsWith("/") && !link.href.includes("#") ? (
+                  <Link
+                    href={link.href}
+                    className={`${baseClasses} ${activeClasses}`}
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleScrollTo(e, link.href)}
+                    className={`${baseClasses} ${activeClasses}`}
+                  >
+                    {link.name}
+                  </a>
+                )}
+                
+                {/* Desktop Active Indicator Line */}
+                {active && (
+                  <motion.div 
+                    layoutId="activeNavIndicator"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-primary rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Mobile Menu Toggle Button */}
-        <div className="flex items-center space-x-4 md:hidden">
+        <div className="flex items-center md:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-lg text-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-slate-800 transition-colors bg-slate-100"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
@@ -110,19 +134,29 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white/20 backdrop-blur-md border-b border-border-light overflow-hidden"
+            className="md:hidden bg-white/95 backdrop-blur-sm border-b border-border-light overflow-hidden shadow-inner"
           >
-            <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleScrollTo(e, link.href)}
-                  className="text-base bg-white/50 backdrop-blur-lg w-fit rounded-full text-left px-5 py-2 font-medium text-slate-800 hover:text-primary transition-colors cursor-pointer"
-                >
-                  {link.name}
-                </a>
-              ))}
+            {/* Thoda compact padding mobile menu ke liye */}
+            <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col space-y-1.5">
+              {navLinks.map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleScrollTo(e, link.href)}
+                    // Mobile highlight logic
+                    className={`text-sm w-full rounded-xl text-left px-4 py-2.5 font-semibold transition-colors cursor-pointer flex items-center justify-between
+                      ${active 
+                        ? "bg-primary/10 text-primary" 
+                        : "text-slate-800 hover:bg-slate-50 hover:text-primary"
+                      }`}
+                  >
+                    {link.name}
+                    {active && <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>}
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
         )}
