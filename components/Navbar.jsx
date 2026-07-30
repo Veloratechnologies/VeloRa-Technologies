@@ -14,7 +14,8 @@ export default function Navbar() {
     { name: 'Our Services', href: '/Our_Services' },
     { name: 'Technologies', href: '/Technologies' },
     { name: 'About Us', href: '/About_Us' },
-    { name: 'Contact Us', href: '/contactUs' }
+    { name: 'Contact Us', href: '/contactUs' },
+    {name: 'Blogs', href:'/blog'}
   ];
 
   // Function to check if a link is active

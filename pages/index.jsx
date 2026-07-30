@@ -2,14 +2,8 @@
   import Navbar from '../components/Navbar';
   import Hero from '../components/Hero';
   import TrustedBy from '../components/TrustedBy';
-  import Services from '../components/Services';
-  import WhyChooseUs from '../components/WhyChooseUs';
-  import Process from '../components/Process';
-  // import Technologies from '@/components/Technologies';
-  import CaseStudies from '../components/CaseStudies';
   import Testimonials from '../components/Testimonials';
   import FAQ from '../components/FAQ';
-  import Contact from '../components/Contact';
   import Footer from '../components/Footer';
   import { theme } from '../config/theme';
   import Technologies from '../components/Technologies';
@@ -26,7 +20,30 @@
           <title>{`${theme.companyName} | AI Automation & Web Development Company | Custom Software Solutions | Velora Technologies`}</title>
           <meta name="description" content="Velora Technologies is an AI automation and web development company specializing in custom software, CRM development, business process automation, enterprise web applications, API integrations, and scalable digital solutions for modern businesses." />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="keywords" content="Web Development, AI Automation, Business Automation, CRM Development, ERP Development, API Integrations, Digital Transformation" />
+          <meta
+name="keywords"
+content="
+AI Automation Company,
+Web Development Company,
+Custom Software Development,
+Business Automation,
+CRM Development,
+ERP Development,
+Next.js Development,
+React Development,
+AI Agent Development,
+Workflow Automation,
+API Integration,
+Enterprise Software,
+Website Development,
+Software Company India,
+Digital Transformation,
+Cloud Solutions,
+SEO Services,
+Web Application Development,
+Automation Solutions,
+Business Website"
+/>
           <meta name="author" content={theme.companyName} />
           
           {/* Open Graph Meta Tags for Social Sharing */}
