@@ -5,158 +5,161 @@ import { Search, Compass, Palette, Code, CheckCircle, Rocket, HeartHandshake } f
 export default function Process() {
   const [activeStep, setActiveStep] = useState(0);
 
-  const steps = [
-    {
-      icon: Search,
-      title: "Discovery",
-      desc: "Deep research into your business processes, bottleneck assessment, and mapping core system requirements."
-    },
-    {
-      icon: Compass,
-      title: "Planning",
-      desc: "Architecting software layout, designing data flows, selecting stacks, and establishing final milestones."
-    },
-    {
-      icon: Palette,
-      title: "Design",
-      desc: "Creating interactive, premium, high-fidelity UI wireframes and establishing the visual brand language."
-    },
-    {
-      icon: Code,
-      title: "Development",
-      desc: "Writing modular, clean, and optimized code backed by strict security frameworks and database protocols."
-    },
-    {
-      icon: CheckCircle,
-      title: "Testing",
-      desc: "Executing automated unit tests, cross-device QA layouts, and load testing to guarantee flawless operation."
-    },
-    {
-      icon: Rocket,
-      title: "Deployment",
-      desc: "Containerized deployment to secure cloud server frameworks with automated CI/CD pipelines."
-    },
-    {
-      icon: HeartHandshake,
-      title: "Support",
-      desc: "Ongoing performance audits, database maintenance, API updates, and 24/7 server health monitoring."
-    }
+  const icons = [
+    Search,
+    Compass,
+    Palette,
+    Code,
+    CheckCircle,
+    Rocket,
   ];
 
+  const steps = [
+    "Discovery",
+    "Planning",
+    "UI/UX Design",
+    "Development",
+    "Testing",
+    "Deployment",
+  ];
+
+  // const steps = [
+  //   {
+  //     icon: Search,
+  //     title: "Discovery",
+  //     desc: "Deep research into your business processes, bottleneck assessment, and mapping core system requirements."
+  //   },
+  //   {
+  //     icon: Compass,
+  //     title: "Planning",
+  //     desc: "Architecting software layout, designing data flows, selecting stacks, and establishing final milestones."
+  //   },
+  //   {
+  //     icon: Palette,
+  //     title: "Design",
+  //     desc: "Creating interactive, premium, high-fidelity UI wireframes and establishing the visual brand language."
+  //   },
+  //   {
+  //     icon: Code,
+  //     title: "Development",
+  //     desc: "Writing modular, clean, and optimized code backed by strict security frameworks and database protocols."
+  //   },
+  //   {
+  //     icon: CheckCircle,
+  //     title: "Testing",
+  //     desc: "Executing automated unit tests, cross-device QA layouts, and load testing to guarantee flawless operation."
+  //   },
+  //   {
+  //     icon: Rocket,
+  //     title: "Deployment",
+  //     desc: "Containerized deployment to secure cloud server frameworks with automated CI/CD pipelines."
+  //   },
+  //   {
+  //     icon: HeartHandshake,
+  //     title: "Support",
+  //     desc: "Ongoing performance audits, database maintenance, API updates, and 24/7 server health monitoring."
+  //   }
+  // ];
+
   return (
-    <section id="process" className="py-20 bg-bg-slate-50 border-t border-border-light overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full">
-            Our Method
+
+    <section className="py-24 bg-slate-100 text-white">
+
+      <div className="max-w-7xl mx-auto px-6">
+
+        <div className="text-center">
+
+          <span className="uppercase tracking-widest text-blue-400 font-semibold">
+
+            OUR PROCESS
+
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary mt-4 mb-4">
-            How We Deliver Success
+
+          <h2 className="text-5xl font-bold mt-5">
+
+            From Idea to Deployment
+
           </h2>
-          <p className="text-base text-text-muted">
-            Our systematic engineering process ensures complete transparency, strict compliance with deadlines, and high-fidelity output.
+
+          <p className="mt-6 text-slate-300 max-w-2xl mx-auto">
+
+            Every successful digital product follows a structured development
+            process focused on quality, scalability and business outcomes.
+
           </p>
+
         </div>
 
-        {/* Desktop Connected Horizontal Timeline */}
-        <div className="hidden lg:block relative mt-12 mb-16">
-          {/* Main Connected Horizontal Line */}
-          <div className="absolute top-1/2 left-0 right-0 h-1 bg-border-medium -translate-y-1/2 -z-10 rounded-full" />
+        <div className="relative mt-20">
+
+          {/* Soft Glow */}
+          <div className="hidden lg:block absolute left-[8%] right-[8%] top-8 h-5 bg-blue-500/20 blur-xl rounded-full" />
+
+          {/* Gradient Connector */}
+          <div className="hidden lg:block absolute left-[8%] right-[8%] top-8 h-[2px] bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-600 rounded-full" />
+
+          {/* Animated Dot */}
           <motion.div
-            className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 -z-10 rounded-full"
-            initial={{ width: '0%' }}
-            whileInView={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            className="hidden lg:block absolute top-[24px] left-[8%] w-4 h-4 rounded-full bg-cyan-300 shadow-[0_0_25px_#38bdf8]"
+            animate={{
+              x: [
+                "0%",
+                "6500%"
+              ]
+            }}
+            transition={{
+              duration: 40,
+              repeat: Infinity,
+              ease: "linear"
+            }}
           />
 
-          {/* Connected timeline nodes */}
-          <div className="flex justify-between items-center relative z-10">
-            {steps.map((step, idx) => {
-              const Icon = step.icon;
-              const isActive = activeStep === idx;
-              const isPast = activeStep > idx;
+          <div className="grid lg:grid-cols-6 gap-8 relative z-10">
+            {steps.map((step, index) => {
+              const Icon = icons[index];
 
               return (
-                <div key={idx} className="flex flex-col items-center max-w-[120px]">
-                  {/* Outer circle */}
-                  <button
-                    onClick={() => setActiveStep(idx)}
-                    className={`w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                      isActive
-                        ? 'bg-primary border-primary text-bg-white shadow-md scale-110'
-                        : isPast
-                        ? 'bg-bg-white border-primary text-primary'
-                        : 'bg-bg-white border-border-medium text-text-muted hover:border-slate-500'
-                    }`}
+                <motion.div
+                  key={step}
+                  whileHover={{
+                    y: -10,
+                    transition: { duration: .25 }
+                  }}
+                  className="text-center"
+                >
+                  <div
+                    className="
+                    w-20
+                    h-20
+                    rounded-full
+                    bg-white
+                    border-4
+                    border-primary
+                    mx-auto
+                    flex
+                    items-center
+                    justify-center
+                    shadow-lg
+                    shadow-blue-500/20
+                    transition-all
+                    duration-300
+                    group-hover:shadow-blue-500/40
+                  "
                   >
-                    <Icon className="w-5 h-5" />
-                  </button>
-                  <span className={`text-xs font-bold tracking-tight mt-3 text-center transition-colors ${isActive ? 'text-primary' : 'text-text-secondary'}`}>
-                    0{idx + 1}. {step.title}
-                  </span>
-                </div>
+                    <Icon className="w-8 h-8 text-primary" />
+                  </div>
+
+                  <h3 className="mt-6 font-semibold text-lg">
+                    {step}
+                  </h3>
+                </motion.div>
               );
             })}
           </div>
         </div>
 
-        {/* Selected Step Description Card (Desktop Only) */}
-        <div className="hidden lg:block bg-bg-white border border-border-light shadow-premium rounded-premium p-8 max-w-3xl mx-auto text-center min-h-[160px]">
-          <motion.div
-            key={activeStep}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block">
-              Step 0{activeStep + 1}
-            </span>
-            <h3 className="text-2xl font-bold text-text-primary mb-3">
-              {steps[activeStep].title} Phase
-            </h3>
-            <p className="text-base text-text-muted leading-relaxed max-w-2xl mx-auto">
-              {steps[activeStep].desc}
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Responsive Vertical Layout (Mobile/Tablet Only) */}
-        <div className="lg:hidden relative border-l-2 border-border-medium ml-4 space-y-12">
-          {steps.map((step, idx) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="relative pl-8"
-              >
-                {/* Node icon element */}
-                <div className="absolute top-0 -left-6 w-11 h-11 rounded-full bg-bg-white border-2 border-primary text-primary flex items-center justify-center shadow-sm">
-                  <Icon className="w-4 h-4" />
-                </div>
-
-                {/* Content details */}
-                <div>
-                  <span className="text-[10px] font-bold text-primary tracking-widest uppercase block mb-1">
-                    Step 0{idx + 1}
-                  </span>
-                  <h3 className="text-lg font-bold text-text-primary mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-text-muted leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
       </div>
+
     </section>
   );
 }

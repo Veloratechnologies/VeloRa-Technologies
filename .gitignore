@@ -1,10 +1,12 @@
 node_modules/
+.next/\
+.env
+.env.local
+.env.*
+!.env.example
+
+# Next.js
 .next/
 
 # OpenNext
-.open-next
-
-# wrangler files
-.wrangler
-.dev.vars*
-!.dev.vars.example
+.open-next/
