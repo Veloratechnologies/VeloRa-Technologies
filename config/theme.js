@@ -36,7 +36,7 @@ export const theme = {
     borderMedium: "#CBD5E1"
   },
   contact: {
-    email: "veloratechnologiesofficial.com",
+    email: "veloratechnologiesofficial@gmail.com",
     phone: "+91 91984-27611 | +91 84290-  08091",
     office: "Noida Sector 63 G/10",
     hours: "Mon - Fri, 9 AM - 6 PM IST",

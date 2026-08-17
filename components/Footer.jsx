@@ -140,7 +140,7 @@ export default function Footer() {
               <li className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-white shrink-0" />
                 <a href="mailto:veloratechnologiesofficial.com" className="hover:text-white transition-colors">
-                  veloratechnologiesofficial.com
+                  veloratechnologiesofficial@gmail.com
                 </a>
               </li>
               <li className="flex items-center space-x-3">
