@@ -1,35 +1,48 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, color } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Play, Quote } from 'lucide-react';
 
 // Testimonials data
 const testimonialsData = [
-  {
-    id: 1,
-    name: 'Michael',
+  {    id: 1,
+    name: 'Harvinder Singh',
     company: 'Animal Feed Manufacturing',
-    text: "Built a modern business website, managed Facebook marketing campaigns, and improved the company's online presence with local SEO and lead generation strategies.",
-  },
+   text: (
+  <>
+    Built a modern business website {" "}
+    <a
+      style={{color: "blue"}}
+      href="https://teracattlefeed.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      teracattlefeed.com
+    </a>
+    , managed Facebook marketing campaigns, and improved the company's online
+    presence with local SEO and lead generation strategies.
+  </>
+),
+    },
   {
     id: 2,
-    name: 'Diane',
+    name: 'Shivam Saxena',
     company: 'CRM & Business Automation',
     text: 'Developed a custom CRM that captures website and WhatsApp leads instantly, sends automatic replies, and allows teams to manage follow-ups from one dashboard.',
   },
   {
     id: 3,
-    name: 'Allison',
+    name: 'Kuldeep chauhan',
     company: 'AI Automation',
     text: 'Created an AI-powered automation platform that handles customer inquiries, appointment scheduling, and workflow automation, reducing manual work and improving response time.',
   },
-  {
-    id: 4,
-    name: 'Robert',
-    company: 'Apex Logistics',
-    text: 'Top notch experience! The user interface is seamless and the service is reliable for all business needs with instant notifications.',
-  },
+  // {
+  //   id: 4,
+  //   name: 'Robert',
+  //   company: 'Apex Logistics',
+  //   text: 'Top notch experience! The user interface is seamless and the service is reliable for all business needs with instant notifications.',
+  // },
 ];
 
 // Stagger Animation Variants
