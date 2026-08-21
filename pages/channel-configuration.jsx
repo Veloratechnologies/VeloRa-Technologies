@@ -14,7 +14,7 @@ import {
   Globe2,
   X,
   Plus,
-  Users,
+  Unplug,
 } from "lucide-react";
 
 /*
@@ -29,7 +29,7 @@ const API_BASE_URL =
 
 /*
 |--------------------------------------------------------------------------
-| Theme
+| Primary Theme Color
 |--------------------------------------------------------------------------
 */
 
@@ -169,35 +169,56 @@ const ChannelConfiguration = ({
 
   const [channels, setChannels] = useState([]);
 
-  const [loadingChannels, setLoadingChannels] = useState(true);
+  const [loadingChannels, setLoadingChannels] =
+    useState(true);
 
-  const [connectingChannel, setConnectingChannel] = useState(null);
-
-  const [settingUpChannel, setSettingUpChannel] = useState(null);
-
-  const [connectedChannels, setConnectedChannels] = useState({});
-
-  const [setupError, setSetupError] = useState("");
-
-  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [connectingChannel, setConnectingChannel] =
+    useState(null);
 
   /*
-   * IMPORTANT:
-   * This is intentionally false on initial page load.
-   *
-   * It becomes true only after a fresh OAuth/setup-watch success.
+   * Used for the subscribe/setup-watch loader.
    */
-  const [showConnectionSuccess, setShowConnectionSuccess] =
+  const [settingUpChannel, setSettingUpChannel] =
+    useState(null);
+
+  /*
+   * Connection state of channels.
+   */
+  const [connectedChannels, setConnectedChannels] =
+    useState({});
+
+  /*
+   * Connection currently being disconnected.
+   */
+  const [disconnectingConnectionId, setDisconnectingConnectionId] =
+    useState(null);
+
+  /*
+   * Error popup.
+   */
+  const [setupError, setSetupError] = useState("");
+
+  const [showErrorModal, setShowErrorModal] =
+    useState(false);
+
+  /*
+   * OAuth success popup.
+   *
+   * This is shown ONLY when the user returns from Google.
+   *
+   * setup-watch is NOT automatically called anymore.
+   */
+  const [showOAuthSuccess, setShowOAuthSuccess] =
     useState(false);
 
   /*
   |--------------------------------------------------------------------------
-  | Fetch Channels
+  | Fetch All Channels
   |--------------------------------------------------------------------------
   |
   | GET /channels/all
   |
-  | Example:
+  | Response:
   |
   | [
   |   {
@@ -207,8 +228,9 @@ const ChannelConfiguration = ({
   |     "connection_status": "connected",
   |     "connected_accounts": [
   |       {
-  |         "id": 21,
-  |         "provider_identifier": "xyz@gmail.com"
+  |         "id": 24,
+  |         "provider_identifier": "akashwork0252@gmail.com",
+  |         "messagesubscription": true
   |       }
   |     ]
   |   }
@@ -266,23 +288,8 @@ const ChannelConfiguration = ({
       setChannels(data);
 
       /*
-      |--------------------------------------------------------------------------
-      | Initial Connection State
-      |--------------------------------------------------------------------------
-      |
-      | Direct page load:
-      |
-      | /channel-configuration
-      |
-      | If API says:
-      |
-      | connection_status: "connected"
-      |
-      | Gmail is immediately shown as connected.
-      |
-      |--------------------------------------------------------------------------
-      */
-
+       * Determine channel connection state from API.
+       */
       const initialConnectedState = {};
 
       data.forEach((channel) => {
@@ -329,7 +336,7 @@ const ChannelConfiguration = ({
 
   /*
   |--------------------------------------------------------------------------
-  | Get URL Parameters
+  | URL Parameters
   |--------------------------------------------------------------------------
   */
 
@@ -350,26 +357,24 @@ const ChannelConfiguration = ({
 
   /*
   |--------------------------------------------------------------------------
-  | Setup Channel After OAuth
+  | OAuth Redirect Handling
   |--------------------------------------------------------------------------
   |
-  | OAuth redirects to:
+  | IMPORTANT:
+  |
+  | We DO NOT call setup-watch here.
+  |
+  | After Google redirects back:
   |
   | /channel-configuration?channel=gmail&status=connected
   |
-  | Then:
-  |
-  | POST /channels/gmail/setup-watch
+  | we simply show the Gmail connected popup.
   |
   |--------------------------------------------------------------------------
   */
 
   useEffect(() => {
-    if (loadingChannels) {
-      return;
-    }
-
-    if (!channels.length) {
+    if (loadingChannels || !channels.length) {
       return;
     }
 
@@ -384,10 +389,6 @@ const ChannelConfiguration = ({
       status,
     } = urlData;
 
-    /*
-     * Only execute after OAuth.
-     */
-
     if (
       !channelFromUrl ||
       status !== "connected"
@@ -395,195 +396,28 @@ const ChannelConfiguration = ({
       return;
     }
 
-    const setupKey =
-      `channel_setup_${channelFromUrl.toLowerCase()}`;
+    /*
+     * Only show this popup for Gmail OAuth.
+     */
+    if (
+      channelFromUrl.toLowerCase() === "gmail"
+    ) {
+      setShowOAuthSuccess(true);
+    }
 
     /*
-     * Don't execute repeatedly.
+     * Remove URL parameters.
+     *
+     * This is important because we don't want the
+     * OAuth success popup to appear again after refresh.
      */
-
-    if (
-      typeof window !== "undefined" &&
-      sessionStorage.getItem(setupKey) === "completed"
-    ) {
-      return;
+    if (typeof window !== "undefined") {
+      window.history.replaceState(
+        {},
+        document.title,
+        "/channel-configuration"
+      );
     }
-
-    if (
-      typeof window !== "undefined" &&
-      sessionStorage.getItem(setupKey) === "running"
-    ) {
-      return;
-    }
-
-    const setupChannelAfterOAuth = async () => {
-      try {
-        if (typeof window !== "undefined") {
-          sessionStorage.setItem(
-            setupKey,
-            "running"
-          );
-        }
-
-        const matchedChannel = channels.find(
-          (item) =>
-            item?.code?.toLowerCase() ===
-            channelFromUrl.toLowerCase()
-        );
-
-        if (!matchedChannel) {
-          throw new Error(
-            `The ${channelFromUrl} channel is not available for configuration.`
-          );
-        }
-
-        const channelCode = matchedChannel.code;
-
-        /*
-        |--------------------------------------------------------------------------
-        | SHOW LOADER
-        |--------------------------------------------------------------------------
-        */
-
-        setSettingUpChannel(channelCode);
-
-        console.log(
-          `[Channel Configuration] Setting up ${channelCode}`
-        );
-
-        /*
-        |--------------------------------------------------------------------------
-        | POST /channels/{channel_code}/setup-watch
-        |--------------------------------------------------------------------------
-        */
-
-        const response = await fetch(
-          `${API_BASE_URL}/channels/${channelCode}/setup-watch`,
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        );
-
-        let data = null;
-
-        try {
-          data = await response.json();
-        } catch {
-          data = null;
-        }
-
-        console.log(
-          "[Channel Configuration] setup-watch:",
-          response.status,
-          data
-        );
-
-        /*
-        |--------------------------------------------------------------------------
-        | SUCCESS
-        |--------------------------------------------------------------------------
-        */
-
-        if (response.ok) {
-          if (typeof window !== "undefined") {
-            sessionStorage.setItem(
-              setupKey,
-              "completed"
-            );
-          }
-
-          setConnectedChannels((previous) => ({
-            ...previous,
-            [channelCode.toLowerCase()]: true,
-          }));
-
-          setSettingUpChannel(null);
-
-          /*
-           * Show success banner ONLY for this fresh connection.
-           */
-          setShowConnectionSuccess(true);
-
-          /*
-           * Refresh /channels/all WITHOUT showing the full page loader.
-           *
-           * This gets the latest connected_accounts list.
-           */
-          await fetchChannels(false);
-
-          /*
-           * Remove OAuth query parameters.
-           */
-          if (typeof window !== "undefined") {
-            window.history.replaceState(
-              {},
-              document.title,
-              "/channel-configuration"
-            );
-          }
-
-          return;
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | BACKEND ERROR
-        |--------------------------------------------------------------------------
-        |
-        | IMPORTANT:
-        | Never throw the backend response here.
-        | We show our own popup instead of the Next.js Runtime Error screen.
-        |
-        |--------------------------------------------------------------------------
-        */
-
-        const backendMessage =
-          data?.message ||
-          data?.detail ||
-          data?.error ||
-          `Unable to complete channel setup (${response.status}).`;
-
-        console.error(
-          "[Channel Configuration] setup-watch failed:",
-          backendMessage
-        );
-
-        setSettingUpChannel(null);
-
-        setSetupError(backendMessage);
-
-        setShowErrorModal(true);
-
-        if (typeof window !== "undefined") {
-          sessionStorage.removeItem(setupKey);
-        }
-      } catch (error) {
-        console.error(
-          "[Channel Configuration] setup-watch error:",
-          error
-        );
-
-        setSettingUpChannel(null);
-
-        setSetupError(
-          error?.message ||
-            "Something went wrong while setting up your account. Please try again."
-        );
-
-        setShowErrorModal(true);
-
-        if (typeof window !== "undefined") {
-          sessionStorage.removeItem(setupKey);
-        }
-      }
-    };
-
-    setupChannelAfterOAuth();
   }, [channels, loadingChannels]);
 
   /*
@@ -592,7 +426,6 @@ const ChannelConfiguration = ({
   |--------------------------------------------------------------------------
   |
   | POST /channels/{channel_code}/connect
-  |
   |--------------------------------------------------------------------------
   */
 
@@ -639,12 +472,6 @@ const ChannelConfiguration = ({
         data
       );
 
-      /*
-      |--------------------------------------------------------------------------
-      | API ERROR
-      |--------------------------------------------------------------------------
-      */
-
       if (!response.ok) {
         const errorMessage =
           data?.message ||
@@ -653,17 +480,10 @@ const ChannelConfiguration = ({
           `Failed to connect channel (${response.status}).`;
 
         setSetupError(errorMessage);
-
         setShowErrorModal(true);
 
         return;
       }
-
-      /*
-      |--------------------------------------------------------------------------
-      | Authorization URL
-      |--------------------------------------------------------------------------
-      */
 
       const authorizationUrl =
         data?.authorization_url;
@@ -679,11 +499,8 @@ const ChannelConfiguration = ({
       }
 
       /*
-      |--------------------------------------------------------------------------
-      | Redirect to Google
-      |--------------------------------------------------------------------------
-      */
-
+       * Redirect to Google.
+       */
       window.location.href = authorizationUrl;
     } catch (error) {
       console.error(
@@ -704,37 +521,245 @@ const ChannelConfiguration = ({
 
   /*
   |--------------------------------------------------------------------------
-  | Retry Setup
+  | Subscribe Gmail Account
+  |--------------------------------------------------------------------------
+  |
+  | POST /channels/gmail/setup-watch
+  |
+  | Body:
+  |
+  | {
+  |   "identifier": "email@gmail.com"
+  | }
+  |
+  |--------------------------------------------------------------------------
+  */
+
+  const handleSubscribe = async (account) => {
+    const identifier =
+      account?.provider_identifier;
+
+    if (!identifier) {
+      setSetupError(
+        "The Gmail account identifier is missing."
+      );
+
+      setShowErrorModal(true);
+
+      return;
+    }
+
+    try {
+      /*
+       * Close OAuth popup if it is still open.
+       */
+      setShowOAuthSuccess(false);
+
+      setSetupError("");
+      setShowErrorModal(false);
+
+      /*
+       * Show loader.
+       */
+      setSettingUpChannel("gmail");
+
+      console.log(
+        "[Channel Configuration] Subscribing Gmail account:",
+        identifier
+      );
+
+      const response = await fetch(
+        `${API_BASE_URL}/channels/gmail/setup-watch`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            identifier,
+          }),
+        }
+      );
+
+      let data = null;
+
+      try {
+        data = await response.json();
+      } catch {
+        data = null;
+      }
+
+      console.log(
+        "[Channel Configuration] setup-watch response:",
+        response.status,
+        data
+      );
+
+      /*
+       * --------------------------------------------------------------
+       * ERROR
+       * --------------------------------------------------------------
+       */
+
+      if (!response.ok) {
+        const errorMessage =
+          data?.message ||
+          data?.detail ||
+          data?.error ||
+          `Unable to subscribe this Gmail account (${response.status}).`;
+
+        console.error(
+          "[Channel Configuration] setup-watch failed:",
+          errorMessage
+        );
+
+        setSettingUpChannel(null);
+
+        setSetupError(errorMessage);
+        setShowErrorModal(true);
+
+        return;
+      }
+
+      /*
+       * --------------------------------------------------------------
+       * SUCCESS
+       * --------------------------------------------------------------
+       *
+       * Refresh /channels/all so that the new
+       * messagesubscription value comes from backend.
+       */
+
+      await fetchChannels(false);
+
+      /*
+       * Stop loader.
+       */
+      setSettingUpChannel(null);
+
+      console.log(
+        "[Channel Configuration] Gmail subscription successful."
+      );
+    } catch (error) {
+      console.error(
+        "[Channel Configuration] setup-watch error:",
+        error
+      );
+
+      setSettingUpChannel(null);
+
+      setSetupError(
+        error?.message ||
+          "Something went wrong while subscribing this Gmail account. Please try again."
+      );
+
+      setShowErrorModal(true);
+    }
+  };
+
+  /*
+  |--------------------------------------------------------------------------
+  | Disconnect Gmail Account
+  |--------------------------------------------------------------------------
+  |
+  | POST /channels/{connection_id}/disconnect
+  |--------------------------------------------------------------------------
+  */
+
+  const handleDisconnect = async (account) => {
+    const connectionId = account?.id;
+
+    if (!connectionId) {
+      setSetupError(
+        "The Gmail connection ID is missing."
+      );
+
+      setShowErrorModal(true);
+
+      return;
+    }
+
+    try {
+      setDisconnectingConnectionId(connectionId);
+
+      setSetupError("");
+      setShowErrorModal(false);
+
+      console.log(
+        "[Channel Configuration] Disconnecting Gmail connection:",
+        connectionId
+      );
+
+      const response = await fetch(
+        `${API_BASE_URL}/channels/${connectionId}/disconnect`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+
+      let data = null;
+
+      try {
+        data = await response.json();
+      } catch {
+        data = null;
+      }
+
+      console.log(
+        "[Channel Configuration] disconnect response:",
+        response.status,
+        data
+      );
+
+      if (!response.ok) {
+        const errorMessage =
+          data?.message ||
+          data?.detail ||
+          data?.error ||
+          `Failed to disconnect Gmail account (${response.status}).`;
+
+        setSetupError(errorMessage);
+        setShowErrorModal(true);
+
+        return;
+      }
+
+      /*
+       * Refresh account list.
+       */
+      await fetchChannels(false);
+    } catch (error) {
+      console.error(
+        "[Channel Configuration] disconnect error:",
+        error
+      );
+
+      setSetupError(
+        error?.message ||
+          "Unable to disconnect this Gmail account. Please try again."
+      );
+
+      setShowErrorModal(true);
+    } finally {
+      setDisconnectingConnectionId(null);
+    }
+  };
+
+  /*
+  |--------------------------------------------------------------------------
+  | Retry API
   |--------------------------------------------------------------------------
   */
 
   const handleRetrySetup = () => {
     setShowErrorModal(false);
-
-    const urlData = getChannelFromUrl();
-
-    if (!urlData) {
-      return;
-    }
-
-    const {
-      channel: channelFromUrl,
-      status,
-    } = urlData;
-
-    if (
-      !channelFromUrl ||
-      status !== "connected"
-    ) {
-      return;
-    }
-
-    const setupKey =
-      `channel_setup_${channelFromUrl.toLowerCase()}`;
-
-    if (typeof window !== "undefined") {
-      sessionStorage.removeItem(setupKey);
-    }
 
     fetchChannels(true);
   };
@@ -782,7 +807,9 @@ const ChannelConfiguration = ({
   */
 
   const connectedGmailAccounts =
-    Array.isArray(gmailChannel?.connected_accounts)
+    Array.isArray(
+      gmailChannel?.connected_accounts
+    )
       ? gmailChannel.connected_accounts
       : [];
 
@@ -833,7 +860,9 @@ const ChannelConfiguration = ({
       >
         <div
           className="flex items-center gap-2.5 text-[13px]"
-          style={{ color: theme.textSecondary }}
+          style={{
+            color: theme.textSecondary,
+          }}
         >
           <RefreshCw
             size={17}
@@ -862,6 +891,7 @@ const ChannelConfiguration = ({
         }}
       >
         <div className="mx-auto w-full max-w-[1240px] px-4 py-6 sm:px-6 sm:py-7 lg:px-8">
+
           {/* ============================================================
               HEADER
           ============================================================ */}
@@ -870,7 +900,9 @@ const ChannelConfiguration = ({
             <div className="mb-2 flex items-center gap-2 text-[13px]">
               <Settings2
                 size={17}
-                style={{ color: PRIMARY_COLOR }}
+                style={{
+                  color: PRIMARY_COLOR,
+                }}
               />
 
               <span
@@ -909,9 +941,9 @@ const ChannelConfiguration = ({
                 color: theme.textSecondary,
               }}
             >
-              Connect and manage the communication channels
-              your team uses to interact with customers and
-              leads.
+              Connect and manage the communication
+              channels your team uses to interact with
+              customers and leads.
             </p>
           </div>
 
@@ -920,11 +952,13 @@ const ChannelConfiguration = ({
           ============================================================ */}
 
           <div className="grid grid-cols-1 items-start gap-5 xl:grid-cols-[minmax(0,1fr)_330px]">
+
             {/* ==========================================================
                 LEFT CONTENT
             ========================================================== */}
 
             <div>
+
               {/* ========================================================
                   GMAIL CARD
               ======================================================== */}
@@ -936,6 +970,7 @@ const ChannelConfiguration = ({
                   borderColor: theme.border,
                 }}
               >
+
                 {/* Gmail Header */}
 
                 <div
@@ -944,8 +979,6 @@ const ChannelConfiguration = ({
                     borderColor: theme.border,
                   }}
                 >
-                  {/* Gmail Icon */}
-
                   <div
                     className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-xl"
                     style={{
@@ -964,8 +997,6 @@ const ChannelConfiguration = ({
                     />
                   </div>
 
-                  {/* Gmail Heading */}
-
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2.5">
                       <h2 className="text-[17px] font-semibold">
@@ -979,7 +1010,8 @@ const ChannelConfiguration = ({
                             ? {
                                 backgroundColor:
                                   `${PRIMARY_COLOR}12`,
-                                color: PRIMARY_COLOR,
+                                color:
+                                  PRIMARY_COLOR,
                               }
                             : {
                                 backgroundColor:
@@ -1004,7 +1036,8 @@ const ChannelConfiguration = ({
                     <p
                       className="mt-1 text-[13px] leading-5 sm:text-[14px]"
                       style={{
-                        color: theme.textSecondary,
+                        color:
+                          theme.textSecondary,
                       }}
                     >
                       {gmailChannel
@@ -1017,7 +1050,7 @@ const ChannelConfiguration = ({
                 </div>
 
                 {/* ======================================================
-                    LOADER
+                    SETUP LOADER
                 ====================================================== */}
 
                 {settingUpChannel === "gmail" ? (
@@ -1027,14 +1060,16 @@ const ChannelConfiguration = ({
                       style={{
                         backgroundColor:
                           theme.mutedBg,
-                        borderColor: theme.border,
+                        borderColor:
+                          theme.border,
                       }}
                     >
                       <RefreshCw
                         size={27}
                         className="mb-3 animate-spin"
                         style={{
-                          color: PRIMARY_COLOR,
+                          color:
+                            PRIMARY_COLOR,
                         }}
                       />
 
@@ -1045,33 +1080,39 @@ const ChannelConfiguration = ({
                       <p
                         className="mt-1.5 max-w-[420px] text-[12px] leading-5"
                         style={{
-                          color: theme.textSecondary,
+                          color:
+                            theme.textSecondary,
                         }}
                       >
-                        Your Gmail account has been
-                        connected. We are finishing the
-                        setup so your CRM can receive
-                        emails.
+                        Your Gmail subscription is
+                        being configured. We are
+                        finishing the setup so your
+                        CRM can receive emails.
                       </p>
                     </div>
                   </div>
                 ) : !isGmailConnected ? (
-                  /* ======================================================
+
+                  /* ====================================================
                      NOT CONNECTED
-                  ====================================================== */
+                  ==================================================== */
 
                   <div className="p-5 sm:p-[22px]">
+
                     <div
                       className="rounded-[13px] border p-5"
                       style={{
                         backgroundColor:
                           theme.mutedBg,
-                        borderColor: theme.border,
+                        borderColor:
+                          theme.border,
                       }}
                     >
-                      <div className="mb-[17px] flex items-center gap-3">
+
+                      <div className="flex items-center gap-4">
+
                         <div
-                          className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[11px] border"
+                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] border"
                           style={{
                             backgroundColor:
                               theme.cardBg,
@@ -1082,24 +1123,26 @@ const ChannelConfiguration = ({
                           <GoogleLogo size={22} />
                         </div>
 
-                        <div className="min-w-0">
+                        <div>
                           <h3 className="text-[15px] font-semibold">
                             Connect with Google
                           </h3>
 
                           <p
-                            className="mt-1 text-[12px] leading-[1.5]"
+                            className="mt-1 text-[12px] leading-5"
                             style={{
                               color:
                                 theme.textSecondary,
                             }}
                           >
-                            Securely connect your Gmail
-                            account using Google OAuth.
-                            You don't need to enter or
-                            share your Gmail password.
+                            Securely connect your
+                            Gmail account using
+                            Google OAuth. You don't
+                            need to enter or share
+                            your Gmail password.
                           </p>
                         </div>
+
                       </div>
 
                       <button
@@ -1115,7 +1158,7 @@ const ChannelConfiguration = ({
                             gmailChannel
                           )
                         }
-                        className="flex h-[46px] w-full items-center justify-center gap-2 rounded-[11px] border text-[14px] font-semibold shadow-sm transition hover:shadow disabled:cursor-not-allowed disabled:opacity-60"
+                        className="mt-5 flex h-[46px] w-full items-center justify-center gap-2 rounded-[11px] border text-[14px] font-semibold shadow-sm transition hover:shadow disabled:cursor-not-allowed disabled:opacity-60"
                         style={{
                           backgroundColor:
                             theme.cardBg,
@@ -1141,112 +1184,59 @@ const ChannelConfiguration = ({
                           </>
                         ) : (
                           <>
-                            <GoogleLogo size={18} />
+                            <GoogleLogo
+                              size={18}
+                            />
+
                             Connect with Google
                           </>
                         )}
                       </button>
                     </div>
 
-                    {/* Security */}
-
                     <div className="mt-[18px] flex items-start gap-2 px-1">
                       <ShieldCheck
                         size={17}
                         className="mt-0.5 shrink-0"
                         style={{
-                          color: PRIMARY_COLOR,
+                          color:
+                            PRIMARY_COLOR,
                         }}
                       />
 
                       <p
                         className="text-[12px] leading-[1.5]"
                         style={{
-                          color: theme.textSecondary,
+                          color:
+                            theme.textSecondary,
                         }}
                       >
-                        Your Gmail password is never
-                        shared with us. Google securely
-                        handles authentication and only
-                        the permissions you approve will
-                        be granted to the CRM.
+                        Your Gmail password is
+                        never shared with us.
+                        Google securely handles
+                        authentication and only the
+                        permissions you approve
+                        will be granted to the CRM.
                       </p>
                     </div>
+
                   </div>
                 ) : (
-                  /* ======================================================
+
+                  /* ====================================================
                      CONNECTED STATE
-                  ====================================================== */
+                  ==================================================== */
 
                   <div className="p-5 sm:p-[22px]">
-                    {/* ==================================================
-                        TEMPORARY SUCCESS MESSAGE
-                        Only shown after a fresh OAuth connection.
-                    ================================================== */}
-
-                    {showConnectionSuccess && (
-                      <div
-                        className="mb-5 flex items-start gap-3 rounded-[13px] border px-4 py-3.5"
-                        style={{
-                          backgroundColor: `${PRIMARY_COLOR}0b`,
-                          borderColor: `${PRIMARY_COLOR}35`,
-                        }}
-                      >
-                        <CheckCircle2
-                          size={21}
-                          className="mt-0.5 shrink-0"
-                          style={{
-                            color: PRIMARY_COLOR,
-                          }}
-                        />
-
-                        <div className="min-w-0 flex-1">
-                          <p
-                            className="text-[14px] font-semibold"
-                            style={{
-                              color: PRIMARY_COLOR,
-                            }}
-                          >
-                            Gmail connected successfully
-                          </p>
-
-                          <p
-                            className="mt-1 text-[12px] leading-5"
-                            style={{
-                              color:
-                                theme.textSecondary,
-                            }}
-                          >
-                            Your Gmail account is ready
-                            to use with the CRM.
-                          </p>
-                        </div>
-
-                        <button
-                          type="button"
-                          aria-label="Dismiss success message"
-                          onClick={() =>
-                            setShowConnectionSuccess(
-                              false
-                            )
-                          }
-                          className="shrink-0 rounded-md p-1 transition hover:bg-black/5"
-                          style={{
-                            color:
-                              theme.textSecondary,
-                          }}
-                        >
-                          <X size={16} />
-                        </button>
-                      </div>
-                    )}
 
                     {/* ==================================================
                         CONNECTED EMAIL ACCOUNTS
                     ================================================== */}
 
                     <div>
+
                       <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+
                         <div>
                           <h3 className="text-[14px] font-semibold">
                             Connected email accounts
@@ -1259,8 +1249,8 @@ const ChannelConfiguration = ({
                                 theme.textSecondary,
                             }}
                           >
-                            Gmail accounts connected to
-                            your CRM.
+                            Gmail accounts connected
+                            to your CRM.
                           </p>
                         </div>
 
@@ -1281,7 +1271,8 @@ const ChannelConfiguration = ({
                           style={{
                             borderColor:
                               PRIMARY_COLOR,
-                            color: PRIMARY_COLOR,
+                            color:
+                              PRIMARY_COLOR,
                             backgroundColor:
                               theme.cardBg,
                           }}
@@ -1302,107 +1293,185 @@ const ChannelConfiguration = ({
                             </>
                           )}
                         </button>
+
                       </div>
 
                       {connectedGmailAccounts.length >
                       0 ? (
                         <div className="space-y-2">
+
                           {connectedGmailAccounts.map(
-                            (account, index) => (
-                              <div
-                                key={
-                                  account?.id ??
-                                  `${account?.provider_identifier}-${index}`
-                                }
-                                className="flex items-center gap-3 rounded-[11px] border px-3.5 py-3"
-                                style={{
-                                  backgroundColor:
-                                    theme.mutedBg,
-                                  borderColor:
-                                    theme.border,
-                                }}
-                              >
+                            (account, index) => {
+
+                              const isSubscribed =
+                                account?.messagesubscription ===
+                                true;
+
+                              const isDisconnecting =
+                                disconnectingConnectionId ===
+                                account?.id;
+
+                              return (
                                 <div
-                                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
+                                  key={
+                                    account?.id ??
+                                    `${account?.provider_identifier}-${index}`
+                                  }
+                                  className="flex flex-col gap-3 rounded-[11px] border px-3.5 py-3 sm:flex-row sm:items-center"
                                   style={{
                                     backgroundColor:
-                                      theme.cardBg,
+                                      theme.mutedBg,
+                                    borderColor:
+                                      theme.border,
                                   }}
                                 >
-                                  <Mail
-                                    size={17}
-                                    style={{
-                                      color:
-                                        PRIMARY_COLOR,
-                                    }}
-                                  />
-                                </div>
 
-                                <div className="min-w-0 flex-1">
-                                  <p className="truncate text-[13px] font-medium">
-                                    {account?.provider_identifier ||
-                                      "Gmail account"}
-                                  </p>
+                                  {/* Account Icon */}
 
-                                  <p
-                                    className="mt-0.5 text-[11px]"
+                                  <div
+                                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
                                     style={{
-                                      color:
-                                        theme.textSecondary,
+                                      backgroundColor:
+                                        theme.cardBg,
                                     }}
                                   >
-                                    Connected
-                                  </p>
-                                </div>
+                                    <Mail
+                                      size={17}
+                                      style={{
+                                        color:
+                                          PRIMARY_COLOR,
+                                      }}
+                                    />
+                                  </div>
 
-                                <CheckCircle2
-                                  size={16}
-                                  className="shrink-0"
-                                  style={{
-                                    color:
-                                      PRIMARY_COLOR,
-                                  }}
-                                />
-                              </div>
-                            )
+                                  {/* Email */}
+
+                                  <div className="min-w-0 flex-1">
+                                    <p className="truncate text-[13px] font-medium">
+                                      {account?.provider_identifier ||
+                                        "Gmail account"}
+                                    </p>
+
+                                    <p
+                                      className="mt-0.5 text-[11px]"
+                                      style={{
+                                        color:
+                                          theme.textSecondary,
+                                      }}
+                                    >
+                                      Connected
+                                    </p>
+                                  </div>
+
+                                  {/* Actions */}
+
+                                  <div className="flex w-full items-center justify-end gap-2 sm:w-auto">
+
+                                    {/* Subscribe */}
+
+                                    {isSubscribed ? (
+                                      <span
+                                        className="inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-[11px] font-medium"
+                                        style={{
+                                          backgroundColor:
+                                            `${PRIMARY_COLOR}12`,
+                                          color:
+                                            PRIMARY_COLOR,
+                                        }}
+                                      >
+                                        <CheckCircle2
+                                          size={13}
+                                        />
+
+                                        Subscribed
+                                      </span>
+                                    ) : (
+                                      <button
+                                        type="button"
+                                        disabled={
+                                          settingUpChannel ===
+                                          "gmail"
+                                        }
+                                        onClick={() =>
+                                          handleSubscribe(
+                                            account
+                                          )
+                                        }
+                                        className="inline-flex h-8 items-center gap-1.5 rounded-lg border px-2.5 text-[11px] font-semibold transition bg-blue-600 hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
+                                        style={{
+                                          borderColor:
+                                            PRIMARY_COLOR,
+                                          color:
+                                            "White",
+                                        }}
+                                      >
+                                        <Plus
+                                          size={13}
+                                        />
+
+                                        Subscribe
+                                      </button>
+                                    )}
+
+                                    {/* Disconnect */}
+
+                                    <button
+                                      type="button"
+                                      disabled={
+                                        isDisconnecting
+                                      }
+                                      onClick={() =>
+                                        handleDisconnect(
+                                          account
+                                        )
+                                      }
+                                      className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-slate-300 px-2.5 text-[11px] font-medium text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+                                    >
+                                      {isDisconnecting ? (
+                                        <RefreshCw
+                                          size={13}
+                                          className="animate-spin"
+                                        />
+                                      ) : (
+                                        <Unplug
+                                          size={13}
+                                        />
+                                      )}
+
+                                      {isDisconnecting
+                                        ? "Disconnecting..."
+                                        : "Disconnect"}
+                                    </button>
+
+                                  </div>
+                                </div>
+                              );
+                            }
                           )}
+
                         </div>
                       ) : (
                         <div
-                          className="rounded-[11px] border border-dashed px-4 py-5 text-center"
+                          className="rounded-[11px] border px-4 py-5 text-center text-[12px]"
                           style={{
+                            backgroundColor:
+                              theme.mutedBg,
                             borderColor:
                               theme.border,
+                            color:
+                              theme.textSecondary,
                           }}
                         >
-                          <Users
-                            size={20}
-                            className="mx-auto mb-2"
-                            style={{
-                              color:
-                                theme.textSecondary,
-                            }}
-                          />
-
-                          <p className="text-[12px] font-medium">
-                            No connected accounts found
-                          </p>
-
-                          <p
-                            className="mt-1 text-[11px]"
-                            style={{
-                              color:
-                                theme.textSecondary,
-                            }}
-                          >
-                            Connect a Gmail account to
-                            get started.
-                          </p>
+                          No Gmail accounts are
+                          connected yet.
                         </div>
                       )}
+
                     </div>
+
                   </div>
                 )}
+
               </div>
 
               {/* ========================================================
@@ -1410,21 +1479,24 @@ const ChannelConfiguration = ({
               ======================================================== */}
 
               <div className="mt-7">
+
                 <h2 className="text-[18px] font-semibold">
                   Other Channels
                 </h2>
 
                 <p
-                  className="mt-1 text-[13px] leading-5"
+                  className="mt-1.5 mb-4 text-[13px] leading-5"
                   style={{
-                    color: theme.textSecondary,
+                    color:
+                      theme.textSecondary,
                   }}
                 >
-                  More communication channels can be
-                  configured here.
+                  More communication channels can
+                  be configured here.
                 </p>
 
-                <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+
                   {otherChannels.map((channel) => {
                     const Icon = channel.icon;
 
@@ -1436,7 +1508,7 @@ const ChannelConfiguration = ({
                     return (
                       <div
                         key={channel.code}
-                        className="relative min-h-[175px] rounded-[14px] border p-[18px]"
+                        className="min-h-[190px] rounded-[16px] border p-[18px]"
                         style={{
                           backgroundColor:
                             theme.cardBg,
@@ -1444,9 +1516,11 @@ const ChannelConfiguration = ({
                             theme.border,
                         }}
                       >
-                        <div className="flex items-start justify-between gap-3">
+
+                        <div className="flex items-start justify-between">
+
                           <div
-                            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[11px]"
+                            className="flex h-11 w-11 items-center justify-center rounded-[11px]"
                             style={{
                               backgroundColor:
                                 theme.mutedBg,
@@ -1474,6 +1548,7 @@ const ChannelConfiguration = ({
                               ? "Available"
                               : "Coming Soon"}
                           </span>
+
                         </div>
 
                         <h3 className="mt-[18px] text-[14px] font-semibold">
@@ -1489,11 +1564,15 @@ const ChannelConfiguration = ({
                         >
                           {channel.description}
                         </p>
+
                       </div>
                     );
                   })}
+
                 </div>
+
               </div>
+
             </div>
 
             {/* ==========================================================
@@ -1501,6 +1580,7 @@ const ChannelConfiguration = ({
             ========================================================== */}
 
             <div className="flex flex-col gap-5">
+
               {/* ========================================================
                   CONNECTION STATUS
               ======================================================== */}
@@ -1508,11 +1588,15 @@ const ChannelConfiguration = ({
               <div
                 className="rounded-[16px] border p-5"
                 style={{
-                  backgroundColor: theme.cardBg,
-                  borderColor: theme.border,
+                  backgroundColor:
+                    theme.cardBg,
+                  borderColor:
+                    theme.border,
                 }}
               >
+
                 <div className="mb-4 flex items-center gap-2.5">
+
                   <div
                     className="flex h-10 w-10 items-center justify-center rounded-[10px]"
                     style={{
@@ -1523,7 +1607,8 @@ const ChannelConfiguration = ({
                     <ShieldCheck
                       size={20}
                       style={{
-                        color: PRIMARY_COLOR,
+                        color:
+                          PRIMARY_COLOR,
                       }}
                     />
                   </div>
@@ -1543,6 +1628,7 @@ const ChannelConfiguration = ({
                       Current channel overview
                     </p>
                   </div>
+
                 </div>
 
                 {/* Gmail */}
@@ -1571,9 +1657,10 @@ const ChannelConfiguration = ({
                   <span
                     className="text-[11px] font-medium"
                     style={{
-                      color: isGmailConnected
-                        ? PRIMARY_COLOR
-                        : theme.textSecondary,
+                      color:
+                        isGmailConnected
+                          ? PRIMARY_COLOR
+                          : theme.textSecondary,
                     }}
                   >
                     {isGmailConnected
@@ -1649,6 +1736,7 @@ const ChannelConfiguration = ({
                     —
                   </span>
                 </div>
+
               </div>
 
               {/* ========================================================
@@ -1658,10 +1746,13 @@ const ChannelConfiguration = ({
               <div
                 className="rounded-[16px] border p-5"
                 style={{
-                  backgroundColor: theme.cardBg,
-                  borderColor: theme.border,
+                  backgroundColor:
+                    theme.cardBg,
+                  borderColor:
+                    theme.border,
                 }}
               >
+
                 <h3 className="text-[15px] font-semibold">
                   About Channel Configuration
                 </h3>
@@ -1673,12 +1764,13 @@ const ChannelConfiguration = ({
                       theme.textSecondary,
                   }}
                 >
-                  Connect your communication channels
-                  to bring customer conversations
-                  directly into your CRM. Once connected,
-                  your team can manage conversations,
-                  generate AI responses, and track
-                  customer interactions from one place.
+                  Connect your communication
+                  channels to bring customer
+                  conversations directly into your
+                  CRM. Once connected, your team can
+                  manage conversations, generate AI
+                  responses, and track customer
+                  interactions from one place.
                 </p>
 
                 <div
@@ -1692,7 +1784,8 @@ const ChannelConfiguration = ({
                     size={16}
                     className="mt-0.5 shrink-0"
                     style={{
-                      color: PRIMARY_COLOR,
+                      color:
+                        PRIMARY_COLOR,
                     }}
                   />
 
@@ -1703,36 +1796,159 @@ const ChannelConfiguration = ({
                         theme.textSecondary,
                     }}
                   >
-                    Only administrators can configure
-                    or disconnect communication
-                    channels.
+                    Only administrators can
+                    configure or disconnect
+                    communication channels.
                   </p>
                 </div>
+
               </div>
+
             </div>
           </div>
         </div>
       </div>
 
       {/* ================================================================
+          OAUTH SUCCESS POPUP
+      ================================================================ */}
+
+      {showOAuthSuccess && (
+        <div className="fixed inset-0 z-[9997] flex items-center justify-center bg-slate-900/45 px-4 backdrop-blur-[3px]">
+
+          <div
+            className="w-full max-w-[410px] rounded-[16px] border p-5 shadow-2xl"
+            style={{
+              backgroundColor:
+                theme.cardBg,
+              borderColor:
+                theme.border,
+            }}
+          >
+
+            <div className="flex items-start justify-between gap-4">
+
+              <div className="flex items-center gap-2.5">
+
+                <div
+                  className="flex h-9 w-9 items-center justify-center rounded-lg"
+                  style={{
+                    backgroundColor:
+                      `${PRIMARY_COLOR}12`,
+                  }}
+                >
+                  <CheckCircle2
+                    size={19}
+                    style={{
+                      color:
+                        PRIMARY_COLOR,
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <h3 className="text-[15px] font-semibold">
+                    Gmail connected
+                  </h3>
+
+                  <p
+                    className="mt-0.5 text-[11px]"
+                    style={{
+                      color:
+                        theme.textSecondary,
+                    }}
+                  >
+                    Google authorization successful
+                  </p>
+                </div>
+
+              </div>
+
+              <button
+                type="button"
+                aria-label="Close"
+                onClick={() =>
+                  setShowOAuthSuccess(false)
+                }
+                className="rounded-md p-1 transition hover:bg-slate-100"
+                style={{
+                  color:
+                    theme.textSecondary,
+                }}
+              >
+                <X size={17} />
+              </button>
+
+            </div>
+
+            <div
+              className="mt-4 rounded-[11px] border px-3.5 py-3"
+              style={{
+                backgroundColor:
+                  `${PRIMARY_COLOR}08`,
+                borderColor:
+                  `${PRIMARY_COLOR}25`,
+              }}
+            >
+              <p
+                className="text-[12px] leading-[1.55]"
+                style={{
+                  color:
+                    theme.textPrimary,
+                }}
+              >
+                Your Gmail account has been
+                connected successfully. If you
+                want emails and leads to be pushed
+                into the CRM, click{" "}
+                <strong>Subscribe</strong> for the
+                Gmail account you want to use.
+              </p>
+            </div>
+
+            <div className="mt-4 flex justify-end">
+
+              <button
+                type="button"
+                onClick={() =>
+                  setShowOAuthSuccess(false)
+                }
+                className="h-9 rounded-lg px-3.5 text-[12px] font-semibold text-white transition hover:opacity-90"
+                style={{
+                  backgroundColor:
+                    PRIMARY_COLOR,
+                }}
+              >
+                Got it
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* ================================================================
           SETUP LOADER
       ================================================================ */}
 
       {settingUpChannel && (
-        <div
-          className="fixed inset-0 z-[9998] flex items-center justify-center bg-slate-900/45 px-4 backdrop-blur-[3px]"
-        >
+        <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-slate-900/45 px-4 backdrop-blur-[3px]">
+
           <div
             className="w-full max-w-[360px] rounded-[16px] p-7 text-center shadow-2xl"
             style={{
-              backgroundColor: theme.cardBg,
+              backgroundColor:
+                theme.cardBg,
             }}
           >
+
             <RefreshCw
               size={29}
               className="mx-auto mb-3 animate-spin"
               style={{
-                color: PRIMARY_COLOR,
+                color:
+                  PRIMARY_COLOR,
               }}
             />
 
@@ -1743,13 +1959,16 @@ const ChannelConfiguration = ({
             <p
               className="mx-auto mt-1.5 max-w-[300px] text-[12px] leading-5"
               style={{
-                color: theme.textSecondary,
+                color:
+                  theme.textSecondary,
               }}
             >
-              Your Gmail account has been connected.
-              We are finishing the setup so your CRM
-              can receive emails.
+              Your Gmail account has been
+              connected. We are finishing the
+              setup so your CRM can receive
+              emails.
             </p>
+
           </div>
         </div>
       )}
@@ -1760,17 +1979,21 @@ const ChannelConfiguration = ({
 
       {showErrorModal && (
         <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-slate-900/45 px-4 backdrop-blur-[3px]">
+
           <div
             className="w-full max-w-[390px] rounded-[16px] border p-5 shadow-2xl"
             style={{
-              backgroundColor: theme.cardBg,
-              borderColor: theme.border,
+              backgroundColor:
+                theme.cardBg,
+              borderColor:
+                theme.border,
             }}
           >
-            {/* Modal Header */}
 
             <div className="flex items-start justify-between gap-4">
+
               <div className="flex items-center gap-2.5">
+
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-50">
                   <CircleAlert
                     size={19}
@@ -1780,7 +2003,7 @@ const ChannelConfiguration = ({
 
                 <div>
                   <h3 className="text-[15px] font-semibold">
-                    Unable to complete setup
+                    Unable to complete request
                   </h3>
 
                   <p
@@ -1793,6 +2016,7 @@ const ChannelConfiguration = ({
                     Channel configuration
                   </p>
                 </div>
+
               </div>
 
               <button
@@ -1809,18 +2033,16 @@ const ChannelConfiguration = ({
               >
                 <X size={17} />
               </button>
-            </div>
 
-            {/* Error Message */}
+            </div>
 
             <div className="mt-4 rounded-[10px] border border-red-200 bg-red-50 px-3 py-2.5 text-[12px] leading-[1.55] text-red-800">
               {setupError ||
                 "Unable to complete the channel configuration."}
             </div>
 
-            {/* Buttons */}
-
             <div className="mt-4 flex justify-end gap-2">
+
               <button
                 type="button"
                 onClick={() =>
@@ -1839,24 +2061,24 @@ const ChannelConfiguration = ({
                 Close
               </button>
 
-              {getChannelFromUrl()
-                ?.status === "connected" && (
-                <button
-                  type="button"
-                  onClick={
-                    handleRetrySetup
-                  }
-                  className="inline-flex h-9 items-center gap-1.5 rounded-lg px-3.5 text-[12px] font-semibold text-white transition hover:opacity-90"
-                  style={{
-                    backgroundColor:
-                      PRIMARY_COLOR,
-                  }}
-                >
-                  <RefreshCw size={13} />
-                  Try Again
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={
+                  handleRetrySetup
+                }
+                className="inline-flex h-9 items-center gap-1.5 rounded-lg px-3.5 text-[12px] font-semibold text-white transition hover:opacity-90"
+                style={{
+                  backgroundColor:
+                    PRIMARY_COLOR,
+                }}
+              >
+                <RefreshCw size={13} />
+
+                Try Again
+              </button>
+
             </div>
+
           </div>
         </div>
       )}
